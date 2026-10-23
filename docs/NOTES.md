@@ -69,6 +69,15 @@ once end to end; come back here for the details.
 - Bridge calls give up after 10 seconds by default and raise `TimeoutError` (Arduino's
   `bridge.py`).
 
+## Network rules
+
+- Install any Python packages on the UNO Q before it joins the camera's Wi-Fi: that network has
+  no Internet. This build needs none (see below), but the rule holds for anything you add.
+- The first run of an app needs Internet, to download and compile the sketch's libraries.
+- The camera serves one stream at a time: close the browser preview, or stop the board's app,
+  before another reader connects.
+- Keep USB connected while the board is on the camera's Wi-Fi; App Lab talks to it over USB.
+
 ## Safety rules
 
 - Duration 0 means "drive forever". Every pulse in the prep code is 1 to 1000 ms, enforced when
