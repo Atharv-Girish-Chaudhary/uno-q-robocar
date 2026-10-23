@@ -1,0 +1,78 @@
+{
+  "white_ball": {
+    "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
+    "shape": "round",
+    "roi_top_frac": 0.5,
+    "roi_bottom_frac": 1.0,
+    "blur_ksize": 3,
+    "open_ksize": 0,
+    "close_ksize": 5,
+    "min_area_px": 20,
+    "max_area_frac": 0.5,
+    "min_fill_ratio": 0.75,
+    "min_circularity": 0.65,
+    "circularity_min_radius_px": 10.0
+  },
+  "red_ball": {
+    "hsv_ranges": [
+      {"lower": [0, 120, 70], "upper": [8, 255, 255]},
+      {"lower": [170, 120, 70], "upper": [179, 255, 255]}
+    ],
+    "shape": "round",
+    "roi_top_frac": 0.0,
+    "roi_bottom_frac": 1.0,
+    "blur_ksize": 5,
+    "open_ksize": 3,
+    "close_ksize": 5,
+    "min_area_px": 20,
+    "max_area_frac": 0.5,
+    "min_fill_ratio": 0.75,
+    "min_circularity": 0.65,
+    "circularity_min_radius_px": 10.0
+  },
+  "white_goal": {
+    "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
+    "shape": "box",
+    "roi_top_frac": 0.38,
+    "roi_bottom_frac": 0.8,
+    "blur_ksize": 3,
+    "open_ksize": 0,
+    "close_ksize": 11,
+    "min_area_px": 150,
+    "max_area_frac": 0.3,
+    "min_fill_ratio": 0.3,
+    "min_aspect": 1.2,
+    "max_aspect": 6.0
+  },
+  "red_tape": {
+    "hsv_ranges": [
+      {"lower": [0, 120, 70], "upper": [10, 255, 255]},
+      {"lower": [160, 120, 70], "upper": [179, 255, 255]}
+    ],
+    "shape": "box",
+    "roi_top_frac": 0.0,
+    "roi_bottom_frac": 1.0,
+    "blur_ksize": 3,
+    "open_ksize": 3,
+    "close_ksize": 5,
+    "min_area_px": 60,
+    "max_area_frac": 0.6,
+    "min_fill_ratio": 0.3,
+    "min_aspect": 3.0,
+    "max_aspect": 80.0
+  },
+  "blue_tape": {
+    "hsv_ranges": [{"lower": [100, 120, 70], "upper": [130, 255, 255]}],
+    "shape": "box",
+    "roi_top_frac": 0.0,
+    "roi_bottom_frac": 1.0,
+    "blur_ksize": 3,
+    "open_ksize": 3,
+    "close_ksize": 5,
+    "min_area_px": 60,
+    "max_area_frac": 0.6,
+    "min_fill_ratio": 0.3,
+    "min_aspect": 3.0,
+    "max_aspect": 80.0
+  }
+}

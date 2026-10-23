@@ -1,0 +1,82 @@
+{
+  "run": {
+    "mode": "attempt",
+    "detector": "color",
+    "latency_direction": "rotate_left",
+    "latency_speed": 150,
+    "latency_ms": 200
+  },
+  "ball": {
+    "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
+    "shape": "round",
+    "roi_top_frac": 0.5,
+    "roi_bottom_frac": 1.0,
+    "blur_ksize": 3,
+    "open_ksize": 0,
+    "close_ksize": 5,
+    "min_area_px": 20,
+    "max_area_frac": 0.5,
+    "min_fill_ratio": 0.75,
+    "min_circularity": 0.65,
+    "circularity_min_radius_px": 10.0
+  },
+  "goal": {
+    "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
+    "shape": "box",
+    "roi_top_frac": 0.38,
+    "roi_bottom_frac": 0.8,
+    "blur_ksize": 3,
+    "open_ksize": 0,
+    "close_ksize": 11,
+    "min_area_px": 150,
+    "max_area_frac": 0.3,
+    "min_fill_ratio": 0.3,
+    "min_aspect": 1.2,
+    "max_aspect": 6.0
+  },
+  "model": {
+    "path": "models/robocar.eim",
+    "ball_labels": ["soccerball", "soccer_ball"],
+    "goal_labels": ["goal"],
+    "min_confidence": 0.45,
+    "start_timeout_s": 15.0,
+    "call_timeout_s": 2.0
+  },
+  "stream": {
+    "url": "http://192.168.5.1:81/stream",
+    "connect_timeout_s": 3.0,
+    "read_timeout_s": 1.0,
+    "stale_after_ms": 400,
+    "max_identical_frames": 5,
+    "reconnect_delay_s": 1.0,
+    "skip_after_connect": 2,
+    "loop_files": false
+  },
+  "controller": {
+    "center_band_px": 24,
+    "invert_steering": false,
+    "steer_mode": "strafe",
+    "strafe_speed": 120,
+    "rotate_speed": 160,
+    "steer_ms_min": 80,
+    "steer_ms_max": 220,
+    "approach_speed": 110,
+    "approach_ms": 200,
+    "slow_radius_px": 28,
+    "slow_y_frac": 0.65,
+    "slow_speed": 90,
+    "slow_ms": 150,
+    "close_radius_px": 42,
+    "close_y_frac": 0.82,
+    "push_speed": 160,
+    "push_ms": 350,
+    "max_pushes": 3,
+    "goal_band_px": 30,
+    "orbit_ms": 150,
+    "settle_ms": 120,
+    "min_new_frames": 2,
+    "miss_frames_to_end": 2,
+    "run_time_limit_s": 30,
+    "max_pulse_ms": 1000
+  }
+}

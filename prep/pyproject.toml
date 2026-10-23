@@ -1,0 +1,23 @@
+[project]
+name = "robocar-prep"
+version = "0.1.0"
+description = "Ball and goal detection, camera reading and decision logic for the Build Day Robocar track"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.0",
+    # 4.13 matches the OpenCV build inside the board's App Lab image.
+    "opencv-python>=4.13,<4.14",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

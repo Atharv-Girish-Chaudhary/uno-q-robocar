@@ -1,0 +1,9 @@
+# Fallback only. The App Lab image already ships numpy and Arduino's own
+# opencv-python-headless 4.13 build and pins it, so leave both out of the app's
+# python/requirements.txt: listing OpenCV there breaks the install on images up to
+# bricks/0.13.1. Use this file only if `import cv2` fails on the board, in a plain
+# venv on the board's Linux side. Never install it into prep/.venv, which has the
+# GUI build (opencv-python); two OpenCV builds in one environment fight over cv2.
+--only-binary=:all:
+numpy==2.2.6
+opencv-python-headless==4.13.0.92
