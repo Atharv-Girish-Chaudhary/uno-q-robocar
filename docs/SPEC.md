@@ -103,8 +103,15 @@ area.
 For a round shape, fill ratio is the blob's pixel count over the pixel count of its minimum
 enclosing circle clipped to the frame, so a ball cut by the bottom edge still scores near 1, and
 a box scores about 0.64 and is rejected by the 0.75 floor. Circularity (4πA/P²) is checked only
-above `circularity_min_radius_px`, because tiny far balls are too pixelated for it. Quality is
-fill times circularity (fill alone for tiny blobs).
+above `circularity_min_radius_px`, because tiny far balls are too pixelated for it, and it is
+measured on the convex hull, because a black patch on a soccer ball's outline cuts a notch that
+would otherwise sink the score. Quality is fill times circularity (fill alone for tiny blobs).
+
+The ball's search band must start below the goal's base. JPEG works in 8 by 8 pixel blocks, so
+the white goal's bottom bar smears brightness to the end of its block row, and the morphology
+then bridges that smear to a far ball just below it. On the synthetic field the band starts at
+0.57 of the frame height, the first block row below the goal; on the real field it is set with
+`tune.py`.
 
 `Detection` fields: `found`, `x`, `y`, `radius` (apparent, px), `width`, `height`, `quality`
 (0 to 1), `timestamp`, `touches_bottom`, `candidates`. `ColorVision(ball_cfg, goal_cfg)` runs one
@@ -180,7 +187,8 @@ the three modes, all taking any robot with `is_running()`, `drive(direction, spe
 `stop()`:
 
 - `run_attempt`: each pass checks `robot.is_running()`, waits for a fresh frame (newer than the
-  last one, `settle_ms` past the last pulse and at least `min_new_frames` after it), observes,
+  last one, `settle_ms` past the last pulse and at least `min_new_frames` after it, checking the
+  stream's health every 50 ms so a frozen camera ends the wait within `stale_after_ms`), observes,
   decides, logs one line, then calls `robot.stop()` on STOP or DONE, `robot.drive(...)` on a
   move, nothing on WAIT. Any exception is logged and followed by `robot.stop()` in its own guard,
   and the function returns, because App Lab's `App.run` shuts the whole app down when an error
