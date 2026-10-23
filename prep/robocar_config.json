@@ -9,7 +9,7 @@
   "ball": {
     "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
     "shape": "round",
-    "roi_top_frac": 0.5,
+    "roi_top_frac": 0.57,
     "roi_bottom_frac": 1.0,
     "blur_ksize": 3,
     "open_ksize": 0,
