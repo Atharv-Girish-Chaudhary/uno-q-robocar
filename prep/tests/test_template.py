@@ -104,6 +104,7 @@ def test_template_runs_the_loop_inside_the_guides_lifecycle(monkeypatch, capsys)
     monkeypatch.setitem(sys.modules, "arduino", arduino)
     monkeypatch.setitem(sys.modules, "arduino.app_utils", app_utils)
 
+    monkeypatch.setattr(sys, "dont_write_bytecode", True)  # write nothing into upstream/
     spec = importlib.util.spec_from_file_location("robot_client", ROBOT_CLIENT)
     robot_client = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(robot_client)
