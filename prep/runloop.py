@@ -150,6 +150,21 @@ def format_step(step: Step, would: bool = False) -> str:
     return f"[{step.t:6.2f}s] frame {o.frame_seq:5d} | {ball} | {goal} | {decision}"
 
 
+def _wait_fresh(
+    camera: Any, newer_than: float, min_seq: int, timeout_s: float, clock: Callable[[], float]
+) -> Any:
+    """Wait for a fresh frame in short slices, giving up as soon as the stream reports a stall,
+    so a frozen camera is noticed within stale_after_ms instead of after the whole timeout."""
+    deadline = clock() + timeout_s
+    while True:
+        slice_s = min(0.05, max(0.0, deadline - clock()))
+        frame = camera.wait_for_frame(newer_than=newer_than, min_seq=min_seq, timeout_s=slice_s)
+        if frame is not None:
+            return frame
+        if clock() >= deadline or not camera.status(clock()).ok:
+            return None
+
+
 def _safe_stop(robot: Any, log: Log) -> None:
     try:
         robot.stop()
@@ -189,7 +204,7 @@ def run_attempt(
                 newer_than = max(newer_than, state.last_move_end + cfg.settle_ms / 1000.0)
                 min_seq = max(min_seq, state.move_end_seq + cfg.min_new_frames)
             timeout = (cfg.settle_ms + cfg.max_frame_age_ms) / 1000.0
-            frame = camera.wait_for_frame(newer_than=newer_than, min_seq=min_seq, timeout_s=timeout)
+            frame = _wait_fresh(camera, newer_than, min_seq, timeout, clock)
             sighting = None
             if frame is not None:
                 image = frame.image
@@ -257,7 +272,7 @@ def observe_only(
                 summary.ended_by, summary.reason = "decision", "time limit reached"
                 break
             newer_than = last.arrival if last is not None else float("-inf")
-            frame = camera.wait_for_frame(newer_than=newer_than, timeout_s=cfg.max_frame_age_ms / 1000.0)
+            frame = _wait_fresh(camera, newer_than, 0, cfg.max_frame_age_ms / 1000.0, clock)
             sighting = None
             if frame is not None and frame.image is not None:
                 sighting = vision.observe(frame.image, frame.arrival)

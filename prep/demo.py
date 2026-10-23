@@ -148,6 +148,11 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     print_versions()
     camera = open_camera(settings, args.source)
+    # On the robot the camera starts long before the first BOOT press; here, wait for it.
+    if camera.wait_for_frame(timeout_s=settings.stream.connect_timeout_s + 2.0) is None:
+        print(f"no frames from {args.source}: {camera.status().reason}")
+        camera.close()
+        return 1
     vision = make_vision(settings)
     robot = DryRobot()
     display = Display(settings, args.show, args.save_dir) if (args.show or args.save_dir) else None
