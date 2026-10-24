@@ -71,13 +71,13 @@
     "close_y_frac": 0.82,
     "push_speed": 160,
     "push_ms": 350,
-    "max_pushes": 3,
+    "max_pushes": 8,
     "goal_band_px": 30,
     "orbit_ms": 150,
     "settle_ms": 120,
     "min_new_frames": 2,
     "miss_frames_to_end": 5,
-    "run_time_limit_s": 30,
+    "run_time_limit_s": 45,
     "max_pulse_ms": 1000
   }
 }
