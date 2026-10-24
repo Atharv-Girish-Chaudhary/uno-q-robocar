@@ -75,6 +75,11 @@ a waitlist.
   and near", and 6 "right speed=120 ms=86: ball 30 px right of center (band 24): slide toward
   it". The second BOOT press ended the run ("program stopped"). Moves came 0.5 to 2.5 s apart,
   set by the video rate.
+- 3:03 PM, first floor runs: both ended at 0.2 s with "ball lost for 2 frames in a row", before
+  any move. Pictures grabbed right after showed the ball about 20 cm ahead, and the model found
+  it there (confidence 1.0). The likely cause is the BOOT press itself: the button is on the
+  camera, so the hand pressing it can fill the first pictures, and `miss_frames_to_end` 2 ends
+  the run on the first two.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
