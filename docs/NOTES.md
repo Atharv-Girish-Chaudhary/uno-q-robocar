@@ -170,6 +170,13 @@ a waitlist.
   `nmcli con up "SSID"` moved the board back from the hotspot, the camera answered
   pings (2 to 4 ms, none lost), and inside the app's container the video reader had a live
   connection to 192.168.5.1:81 again, without an app restart.
+- 4:23 PM: BOOT presses did nothing: no run started in the log. Asked directly over Bridge, the
+  motor chip answered (`battery_mv` 11,029 with the new pack) but said `program_enabled` false and
+  `line_ok` false. The BOOT button and the line sensor both reach the chip over I2C from parts
+  powered by the robot's battery, so the flat pack seems to have left the chip's I2C link dead
+  while the chip itself, powered over USB, kept running. A full `app start` (which resets the
+  chip) at 4:24 left the chip silent ("Request 'stop' timed out"), as at 2:36, so it needs
+  `sudo reboot`.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
