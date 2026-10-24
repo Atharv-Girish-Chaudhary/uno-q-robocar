@@ -131,6 +131,14 @@ a waitlist.
   (`app.yaml`, `README.md`, `python/` with the model, `sketch/`; no `.cache`), 4.2 MB, and the
   pull request is github.com/aaishikasb/uno-q-hackout-submissions/pull/8. The ZIP was not
   test-imported into App Lab. The model file carries the Edge Impulse username.
+- 3:53 PM, the ZIP checked: the copy in the pull request is byte-identical to the one built, and
+  its 13 files match the board's running app. `arduino-app-cli app import` accepted it ("Import
+  successful", app ID `user:atharv-girish-chaudhary`) into a scratch folder (`HOME=/tmp/importhome`
+  keeps it out of App Lab's real app list), and `app details` read every description field. In
+  a throwaway container from the app's image, all its Python compiled, its settings loaded
+  (attempt, model, 8 pushes, 45 s, 5 misses), and its model found the ball, the goal between two
+  cones and nothing on empty floor, in 3 to 8 ms. Not tried: starting the imported app, which
+  would stop the demo app and reset the motor chip.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
