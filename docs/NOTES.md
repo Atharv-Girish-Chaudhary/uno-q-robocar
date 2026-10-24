@@ -98,7 +98,9 @@ a waitlist.
   from y=130 to y=210, then came three pushes (speed 160, 350 ms), each "goal not in view:
   pushing as if lined up", and the attempt finished after the third with the ball rolled on to
   y=150. The ball stayed at y=210 through the first two pushes, so they moved the robot and the
-  ball together. Pictures came about 2.2 a second, so a move came every 1.5 to 2 s.
+  ball together. Pictures came about 2.2 a second, so a move came every 1.5 to 2 s. The ball
+  stopped short of the cones: the run ended on its own push limit (`max_pushes` 3), not on a
+  failure.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
