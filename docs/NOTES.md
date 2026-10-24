@@ -189,6 +189,15 @@ a waitlist.
   sensor's lights blue every 1.5 s, also over I2C, so no blinking means the I2C wiring is off.
   Since the line sensor still answered at 4:06 on the flat pack and stopped after the swap, a
   cable knocked loose during the battery swap is the likeliest cause.
+- 4:32 PM, a stopgap for the judge: the board's `robot_client.py` (the guide's file, not in this
+  repo; the patched copy is in `prep/out/robocar-app/python/`) now also counts a run as enabled
+  while a file `python/go` exists, and deletes the file when the run ends, so a run can start from
+  the laptop (`touch` over adb). Loading it with a `--no-prepare` restart left the chip silent, so
+  the board was rebooted once more and fully started at 4:34 (`bridge: True`, battery 11,328), and
+  this time `line_ok` was true again. A laptop-started run at 4:34 stopped at 0.6 s with no ball in
+  view. Then a run started by BOOT (so the button works again) drove to the ball, pushed 4 times,
+  turned toward balls with `rotate_left` and `rotate_right`, and ended "ball gone after 4
+  push(es)" at 18.4 s.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
