@@ -110,6 +110,13 @@ flagged picture looked at by eye.
 All 353 are 512 by 512, the two labels are spelled the same everywhere, and no picture appears in
 both training and test. The picture names are on the game plan page, for the organizers.
 
+The organizers fixed it at 1:04 PM, and the same check ran again at 1:14. The training pictures
+are mostly right now: 3 still have a cone labelled `soccerball`, 1 has the ball labelled `goal`,
+and 2 have two cones with no boxes, out of 281. The 72 test pictures were not changed, so 5 still
+have a cone labelled `soccerball`, 4 the ball labelled `goal`, and about 6 a cone with no box.
+Test mistakes don't change the model, only its score: Edge Impulse marks some right answers as
+wrong, so the test accuracy reads lower than the truth.
+
 FOMO reports where the ball is, not how big it looks, so the controller judges "near" and
 "close" by how low the ball sits in the picture as well. Calibrate `slow_y_frac` and
 `close_y_frac` (see `CALIBRATION_LOG.md`).

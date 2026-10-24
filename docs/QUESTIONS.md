@@ -60,4 +60,5 @@ Qualcomm mentors on site.
     - Why it matters: the organizers' pictures box each cone as its own goal, and the app takes
       the single most confident goal box. With two cones it would line the ball up with one
       cone, a post, instead of the gap between them.
-    - Answer: open (asked on Oct 24).
+    - Answer: measure the spacing yourself, the organizers said on Oct 24. They also confirmed
+      the ball is white with black spots and the cones are yellow.

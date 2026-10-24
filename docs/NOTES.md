@@ -102,6 +102,11 @@ it matters. The two sections below give the details.
   a macOS build (`EDGE_IMPULSE.md`).
 - uv, Python 3.10, OpenCV's window build and the guide's Makefile all work on this Mac (checked
   Oct 22).
+- VS Code opens `prep/` as its folder. On Oct 24 at 12:49 its Ruff extension rewrote 23 files in
+  `prep/` (Ruff's fixes plus its formatter at 88 characters, and VS Code's JSON layout), and Ruff
+  and Pylance listed 207 warnings, none of them a bug. `prep/.vscode/settings.json` turns Ruff and
+  Pylance's type checking off for this folder and stops formatting on save; reload the VS Code
+  window for it to take effect.
 
 ## Safety rules
 
