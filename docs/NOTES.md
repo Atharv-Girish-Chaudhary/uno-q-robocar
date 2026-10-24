@@ -115,10 +115,10 @@ a waitlist.
   REACHABLE), and a full `app start` came up with `bridge: True` and the new settings. The app
   log keeps the earlier failed start above the new one, so read the newest "App is starting"
   block and its time before deciding a start failed.
-- 3:33 to 3:36 PM, five lined-up runs with 8 pushes and 45 s. The best two pushed 4 times each:
+- 3:32 to 3:36 PM, six lined-up runs with 8 pushes and 45 s. The best two pushed 4 times each:
   one followed the ball for 18 s until BOOT stopped it, and the other pushed, drove up again
   after the ball rolled ahead, pushed three more times, and ended "ball gone after 4 push(es)" at
-  23.2 s. One pushed twice and lost the ball at 7.3 s; two ended in the first 3 s, with no ball in
+  23.2 s. Two pushed twice and lost the ball (at 7.3 s and 31.3 s); two ended in the first 3 s, with no ball in
   view or the ball close and off to the left. No run used more than 4 pushes. The ball kept
   settling about 30 px left of center, just outside the 24 px band, and up to 8 slides in a row
   (speed 120, 86 ms) never re-centered it: sideways slides don't move the robot on this carpet.
