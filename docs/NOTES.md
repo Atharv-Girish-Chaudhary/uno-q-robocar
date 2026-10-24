@@ -70,6 +70,11 @@ a waitlist.
   It skips the preparing step (compiling the sketch and resetting the chip through openocd), the
   chip keeps running, and the app came up with `bridge: True`. Use it for settings and Python
   changes; only a changed sketch needs the full start.
+- 2:59 PM, first attempt-mode run, wheels raised: 13 moves in 14.3 s, each from a fresh picture:
+  6 "forward speed=110 ms=200: ball centered and far", 1 "forward speed=90 ms=150: ball centered
+  and near", and 6 "right speed=120 ms=86: ball 30 px right of center (band 24): slide toward
+  it". The second BOOT press ended the run ("program stopped"). Moves came 0.5 to 2.5 s apart,
+  set by the video rate.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
