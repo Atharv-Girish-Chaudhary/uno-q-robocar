@@ -166,6 +166,10 @@ a waitlist.
   reads about 11,550), and the board had fallen back to a phone hotspot saved on it, so
   `nmcli con up "SSID"` failed. The camera runs on the robot's battery, so a flat pack
   takes the video with it. The app itself kept running, with the motor chip answering.
+- 4:16 PM: with a charged battery in, the camera's network showed up in the first scan,
+  `nmcli con up "SSID"` moved the board back from the hotspot, the camera answered
+  pings (2 to 4 ms, none lost), and inside the app's container the video reader had a live
+  connection to 192.168.5.1:81 again, without an app restart.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
