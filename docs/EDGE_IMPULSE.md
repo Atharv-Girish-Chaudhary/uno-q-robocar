@@ -117,6 +117,17 @@ have a cone labelled `soccerball`, 4 the ball labelled `goal`, and about 6 a con
 Test mistakes don't change the model, only its score: Edge Impulse marks some right answers as
 wrong, so the test accuracy reads lower than the truth.
 
+### The first model on the board, Oct 24 at 2:40 PM
+
+Project `robocar-cones`, trained on the organizers' fixed pictures: F1 96.9% on 57 held-back
+pictures (goal 98%, ball 96.4%). Its resize mode came out as Fit shortest axis, so on the robot it
+sees the middle 240 of the camera's 320 columns. The download to use is the Linux (AARCH64)
+`.eim`: the Deployment page builds the C++ library by default, which is source code, not the
+program. Run on the board through `model_runner.py` (in a throwaway container from the app's
+image), on five of the organizers' pictures, it found the ball, both cones with the goal at their
+midpoint, and nothing on the empty floor, in 3 to 9 ms a picture. The midpoints landed within
+about 5 px of the hand-drawn boxes'.
+
 FOMO reports where the ball is, not how big it looks, so the controller judges "near" and
 "close" by how low the ball sits in the picture as well. Calibrate `slow_y_frac` and
 `close_y_frac` (see `CALIBRATION_LOG.md`).
