@@ -33,7 +33,14 @@ a waitlist.
 - On the camera's Wi-Fi the board is `192.168.5.2`. The app holds the camera's one stream, so a
   second viewer waits until the app stops. A 6-second recording at 1:55 PM had 21 frames, about
   3.5 a second at 13 to 14 KB each, far below the 15 the prep assumed; the crowded channel 1 is
-  the likely cause. The app restarted fine there with no Internet.
+  the likely cause. The app restarted fine there with no Internet. At 2:06 PM a second recording
+  had only 5 frames in 6 seconds, and pings to the camera took 21 to 288 ms, so the rate swings
+  with the room's Wi-Fi. NetworkManager leaves Wi-Fi power saving at its default on this
+  connection; turning it off (`802-11-wireless.powersave 2`) is the cheap thing to try first.
+- After the app stops, the camera keeps its one stream busy for a few seconds, so a second viewer
+  can time out if it connects at once; it works a few seconds later.
+- 2:06 PM: the cone-goal code (midpoint of two cones, yellow cone colors, ball floor 170) is on the
+  board, in watch-only mode, and the app started cleanly with it.
 
 ## Setup, in order
 
