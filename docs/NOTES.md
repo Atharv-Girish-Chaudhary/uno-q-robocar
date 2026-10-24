@@ -198,6 +198,12 @@ a waitlist.
   view. Then a run started by BOOT (so the button works again) drove to the ball, pushed 4 times,
   turned toward balls with `rotate_left` and `rotate_right`, and ended "ball gone after 4
   push(es)" at 18.4 s.
+- 4:37 PM, a ball-only run started from the laptop (no cones): 4 forward moves (speed 110,
+  200 ms) left the ball at y=150 every time, so they barely moved the robot; then y went 170, 190,
+  210 over 2 slow moves, 2 pushes followed, and after the second push the ball vanished from the
+  picture and the run ended "ball gone after 2 push(es)" at 12.9 s. Where it went decides the
+  fix: off to a side is outside the model's view (it sees only the middle 240 of 320 columns),
+  and right against the robot is below the camera's view.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.

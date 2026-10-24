@@ -69,4 +69,5 @@ These set `slow_radius_px`, `close_radius_px`, `slow_y_frac` and `close_y_frac` 
 | 8 | same | attempt | none | 1 slide toward a far ball, 8 moves to the ball, 3 pushes, done at 14.7 s | | the ball rolled ahead and left |
 | 9 | lined up, 6 runs | attempt | `max_pushes` 3 to 8, `run_time_limit_s` 30 to 45 | best two pushed 4 times (18 s, stopped with BOOT; 23.2 s, ball gone); two pushed twice; two ended in the first 3 s | | slides never re-centered a ball 30 px left |
 | 10 | lined up | attempt | none | 4 pushes, 2 slides toward a far ball, then 12 slides left that never re-centered the ball; ball gone at 36.7 s | | |
-| 11 | | attempt | `steer_mode` strafe to rotate, `center_band_px` 24 to 40 | | | |
+| 11 | lined up, after a reboot | attempt | `steer_mode` strafe to rotate, `center_band_px` 24 to 40 | 4 pushes, turned toward balls, ball gone at 18.4 s | | started with BOOT |
+| 12 | ball only, no cones | attempt | none | 4 forward moves that left the ball at y=150, 2 slow, 2 pushes, ball gone at 12.9 s | | started from the laptop |
