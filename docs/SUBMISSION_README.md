@@ -1,4 +1,4 @@
-# [PROJECT NAME]: Robocar track, Build Day with Qualcomm 2026
+# UNO Q Robocar: Robocar track, Build Day with Qualcomm 2026
 
 The robot finds a soccer ball with an Edge Impulse model running on the Arduino UNO Q, drives up
 to it in short moves, each one decided from a fresh camera picture, and pushes it toward a goal
@@ -7,12 +7,11 @@ low camera it never did, so the robot starts out facing the goal and pushes stra
 
 ## Team
 
-- [TEAM NAME]
-- [TEAM MEMBER NAMES]
+- Atharv Girish Chaudhary (@Atharv-Girish-Chaudhary)
 
 ## Source
 
-- Repository or ZIP: [REPOSITORY LINK OR ZIP FILE NAME]
+- Repository or ZIP: atharv-girish-chaudhary.zip, in github.com/aaishikasb/uno-q-hackout-submissions
 - `python/main.py`: the button-started run, from the guide's starter (in the repository:
   `prep/robocar_main_template.py`)
 - `python/detector.py`, `python/model_runner.py`: finding the ball and the goal, by color or with
@@ -173,9 +172,7 @@ The best runs drove up to the ball and kept pushing it: runs 5 and 8 pushed 3 ti
 and runs 10 and 14 pushed 4 times, following the ball after it rolled ahead. In run 5 the ball
 stopped short of the cones, so the push limit went from 3 to 8 and the time limit from 30 s to
 45 s. No run used more than 4 pushes: each ended when the ball rolled off to one side, where
-sideways slides could not bring it back to the center. Goals scored: [GOALS SCORED].
-
-Video of a run: [VIDEO LINK]
+sideways slides could not bring it back to the center. Goals scored: none confirmed.
 
 What went wrong and how it recovered:
 
