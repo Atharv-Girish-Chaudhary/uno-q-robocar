@@ -177,6 +177,12 @@ a waitlist.
   while the chip itself, powered over USB, kept running. A full `app start` (which resets the
   chip) at 4:24 left the chip silent ("Request 'stop' timed out"), as at 2:36, so it needs
   `sudo reboot`.
+- 4:26 PM: after `sudo reboot` the board joined the camera's network by itself, and a full
+  `app start` came up with `bridge: True` and `battery_mv` 10,909. But `line_ok` stayed false;
+  it was true at 3:32 and even at 4:06 on the flat pack. The sketch reads the camera's BOOT button
+  over the same I2C wiring (address 0x79, two bytes: press count and hold state), so a loose
+  cable after the battery swap would explain both. The test is a BOOT press: the robot's lights
+  show red, then yellow, then green when the chip hears it.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
