@@ -67,4 +67,4 @@ These set `slow_radius_px`, `close_radius_px`, `slow_y_frac` and `close_y_frac` 
 | 6 | same | attempt | none | 1 slide toward a far ball, 8 moves to the ball, 2 pushes; the ball rolled left, 4 slides left, ball gone at 22.1 s | | slides barely move it on carpet |
 | 7 | same | attempt | none | slid right toward a far ball, then no ball for 5 pictures, ended at 2.1 s | | |
 | 8 | same | attempt | none | 1 slide toward a far ball, 8 moves to the ball, 3 pushes, done at 14.7 s | | the ball rolled ahead and left |
-| 9 | | attempt | `max_pushes` 3 to 8, `run_time_limit_s` 30 to 45 | | | |
+| 9 | lined up, 5 runs | attempt | `max_pushes` 3 to 8, `run_time_limit_s` 30 to 45 | best two pushed 4 times (18 s, stopped with BOOT; 23.2 s, ball gone); one pushed twice; two ended in the first 3 s | | slides never re-centered a ball 30 px left |
