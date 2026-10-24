@@ -101,6 +101,16 @@ a waitlist.
   ball together. Pictures came about 2.2 a second, so a move came every 1.5 to 2 s. The ball
   stopped short of the cones: the run ended on its own push limit (`max_pushes` 3), not on a
   failure.
+- 3:21 to 3:27 PM, three more runs (miss limit 5, 3 pushes, 30 s). One reached the ball, pushed
+  twice, and the ball rolled off to the left; four slides left never re-centered it (it stayed at
+  x=70, then 50), so slides barely move the robot on this carpet; it ended "ball gone after 2
+  push(es)" at 22.1 s. One slid right toward a far ball (x=270, y=50) and then saw nothing,
+  ending at 2.1 s. One pushed three times and finished at 14.7 s, the ball rolled ahead and left.
+  Balls far away near the top of the picture (other teams', y=30 to 90) pulled the robot
+  sideways in 4 of the last 5 runs.
+- 3:28 PM: `max_pushes` went to 8 and `run_time_limit_s` to 45. This time the `--no-prepare`
+  restart failed: "Request 'stop' timed out after 10s", the motor chip silent again, though the
+  run before it had ended normally. `sudo reboot` is the known fix.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.

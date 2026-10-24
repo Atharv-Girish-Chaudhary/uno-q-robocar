@@ -64,3 +64,7 @@ These set `slow_radius_px`, `close_radius_px`, `slow_y_frac` and `close_y_frac` 
 | 3 | same | attempt | none | slid right twice toward a ball far right (x=210, y=50), lost it at 1.5 s | | maybe another team's ball |
 | 4 | same | attempt | none | 6 forward moves, 1 slide, then a slow approach (ball y 110 to 160) | | cut off at 9.4 s by an app stop |
 | 5 | ball 50 cm to 1 m ahead, two cones behind | attempt | `miss_frames_to_end` 2 to 5 | 1 slide toward a far ball, 6 moves to the ball, 3 pushes, done after 3 pushes at 14.7 s | | goal never seen, pushed straight; the ball stopped short of the cones |
+| 6 | same | attempt | none | 1 slide toward a far ball, 8 moves to the ball, 2 pushes; the ball rolled left, 4 slides left, ball gone at 22.1 s | | slides barely move it on carpet |
+| 7 | same | attempt | none | slid right toward a far ball, then no ball for 5 pictures, ended at 2.1 s | | |
+| 8 | same | attempt | none | 1 slide toward a far ball, 8 moves to the ball, 3 pushes, done at 14.7 s | | the ball rolled ahead and left |
+| 9 | | attempt | `max_pushes` 3 to 8, `run_time_limit_s` 30 to 45 | | | |
