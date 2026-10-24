@@ -106,7 +106,7 @@ it matters. The two sections below give the details.
   `prep/` (Ruff's fixes plus its formatter at 88 characters, and VS Code's JSON layout), and Ruff
   and Pylance listed 207 warnings, none of them a bug. `prep/.vscode/settings.json` turns Ruff and
   Pylance's type checking off for this folder and stops formatting on save; reload the VS Code
-  window for it to take effect. The rewrite itself was undone at 1:25 PM, with a patch of it kept
+  window for it to take effect. The rewrite itself was undone at 1:20 PM, with a patch of it kept
   in the trash folder.
 
 ## Safety rules
