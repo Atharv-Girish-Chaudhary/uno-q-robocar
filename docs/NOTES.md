@@ -22,6 +22,14 @@ a waitlist.
   camera's BOOT button, read over I2C (`0x79`).
 - The starter covers the motors (`sketch/sketch.ino`) and the camera firmware. You write the
   detector and the decision logic in `python/`.
+- This kit (Oct 24): its camera's network on Wi-Fi channel 1
+  like the 9 other teams' cameras in range. The board also carries the organizers' August app,
+  "Qualcomm/AI-LA Robot Soccer Cup" (500 ms moves, RED and BLUE teams switched by a 5 s BOOT
+  hold); leave it stopped.
+- `battery_mv` reads about 1.5 times too high on the UNO Q. The sketch's factor (29.89 mV per
+  step on A3) was set for the original Arduino, which measures against 5 V; the UNO Q measures
+  against 3.3 V. With the board switch on, it read about 11,270, which works out to about 7.4 V.
+  With the board switch off it reads about 1,315, because the pack isn't connected to the pin.
 
 ## Setup, in order
 
