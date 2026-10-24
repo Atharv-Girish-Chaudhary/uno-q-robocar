@@ -209,8 +209,8 @@ a waitlist.
   run. A caution on the forward moves: the model's positions come in 10 px steps, and far away a
   few centimeters change the picture by less than that, so y=150 four times does not prove the
   robot stood still; the approach is slow mostly because a move comes only every 1.5 s.
-- About 4:45 PM: presented to the judge with the robot ready. Result: first place in the Robocar
-  track.
+- About 4:45 PM: presented to the judge with the robot ready. Standing: first in the Robocar
+  track so far, not confirmed yet, since other teams are trying their runs again.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
