@@ -37,11 +37,15 @@ def test_saving_one_section_keeps_the_rest(tmp_path, config, presets):
     assert '"lower": [0, 120, 70]' in path.read_text()  # ranges stay readable on one line
 
 
-def test_demo_dry_runs_the_synthetic_video(tmp_path, capsys):
+def test_demo_dry_runs_the_synthetic_video(tmp_path, capsys, config, presets):
     frames, _ = syn.render()
     video = tmp_path / "clip.avi"
     syn.write_video(video, frames[:45])  # left_far, then the ball starts moving: 3 seconds
-    assert demo.main(["--source", str(video), "--save-dir", str(tmp_path / "frames"), "--restart-s", "0"]) == 0
+    # The video shows August's field, so the demo runs August's presets, not the live config's.
+    august = tmp_path / "robocar_config.json"
+    august.write_text(json.dumps(dict(config, ball=presets["white_ball"], goal=presets["white_goal"])))
+    args = ["--source", str(video), "--config", str(august), "--save-dir", str(tmp_path / "frames"), "--restart-s", "0"]
+    assert demo.main(args) == 0
     out = capsys.readouterr().out
     assert "--- run 1: BOOT pressed" in out
     assert "STEER   left" in out and "dry run: drive left" in out

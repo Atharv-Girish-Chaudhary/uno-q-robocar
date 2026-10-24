@@ -8,7 +8,7 @@ import pytest
 
 import runloop
 from controller import Action, ControllerConfig
-from detector import ColorVision
+from detector import ColorVision, DetectorConfig
 from runloop import RunConfig, load_settings, measure_latency, observe_only, run_attempt
 from stream import FrameSource, StreamConfig
 from tests.fakes import FakeClock, FakeProgramStopped, FakeRobot, PassThroughVision, ScriptedCamera, sight
@@ -170,10 +170,12 @@ def test_latency_mode_measures_how_long_the_picture_moves():
 # End to end: the run loop over the synthetic field video
 
 
-def test_synthetic_video_decisions_scene_by_scene(config):
+def test_synthetic_video_decisions_scene_by_scene(config, presets):
     images, truth = syn.render()
     settings = load_settings(config)
-    vision = ColorVision(settings.ball, settings.goal)
+    # The video shows August's field, so it gets August's presets, not the live config's ball and
+    # goal, which tune.py rewrites on the day.
+    vision = ColorVision(DetectorConfig.from_dict(presets["white_ball"]), DetectorConfig.from_dict(presets["white_goal"]))
     clock = FakeClock()
     camera = ScriptedCamera(clock, frames_every(clock, images), stale_after_ms=settings.stream.stale_after_ms)
     robot = FakeRobot(clock)

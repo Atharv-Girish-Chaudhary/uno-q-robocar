@@ -11,6 +11,7 @@ import runpy
 import sys
 import threading
 import types
+from dataclasses import replace
 from pathlib import Path
 
 import cv2
@@ -19,6 +20,7 @@ import pytest
 
 import runloop
 from controller import DIRECTIONS
+from detector import DetectorConfig
 from stream import FrameSource, StreamConfig
 from tools import make_synthetic_video as syn
 
@@ -115,6 +117,19 @@ def run_template(monkeypatch, capsys, board, camera, app):
     spec.loader.exec_module(robot_client)
     monkeypatch.setitem(sys.modules, "robot_client", robot_client)
     monkeypatch.setattr(runloop, "open_camera", lambda settings, source=None: camera)
+    real_load_settings = runloop.load_settings
+
+    def august_settings(path):
+        # The synthetic pictures show August's field, so the template gets August's ball and goal
+        # presets in place of the live config's, which tune.py rewrites on the day.
+        presets = json.loads((PREP / "detector_presets.json").read_text())
+        return replace(
+            real_load_settings(path),
+            ball=DetectorConfig.from_dict(presets["white_ball"]),
+            goal=DetectorConfig.from_dict(presets["white_goal"]),
+        )
+
+    monkeypatch.setattr(runloop, "load_settings", august_settings)
 
     runpy.run_path(str(PREP / "robocar_main_template.py"), run_name="__main__")
     return capsys.readouterr().out
