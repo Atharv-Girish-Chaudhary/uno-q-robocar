@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 356" width="600" height="445" role="img" aria-label="Python asks the board whether BOOT is on. No answer comes for 10 seconds, so Bridge raises a TimeoutError. Before the fix nothing catches it and App Lab ends the app, so BOOT does nothing. After the fix user_loop catches it, prints one error line, stops the motors, waits a second and asks again, and BOOT works as usual.">
+<title>Python asks the board whether BOOT is on. No answer comes for 10 seconds, so Bridge raises a TimeoutError. Before the fix nothing catches it and App Lab ends the app, so BOOT does nothing. After the fix user_loop catches it, prints one error line, stops the motors, waits a second and asks again, and BOOT works as usual.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="356" rx="12"/>
+<defs><marker id="m-x" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect class="d-box" x="90" y="12" width="300" height="48" rx="8"/>
+<text class="d-t d-b" x="240" y="32" text-anchor="middle">Python asks the board: is BOOT on?</text>
+<text class="d-m" x="240" y="50" text-anchor="middle">read_sensors over Bridge, again and again</text>
+<line class="d-line" x1="240" y1="60" x2="240" y2="83" marker-end="url(#m-x)"/>
+<rect class="d-stop" x="140" y="84" width="200" height="48" rx="8"/>
+<text class="d-t d-b" x="240" y="104" text-anchor="middle">No answer for 10 seconds</text>
+<text class="d-m" x="240" y="122" text-anchor="middle">Bridge raises TimeoutError</text>
+<path class="d-line" d="M240 132 L240 150 L124 150 L124 167" marker-end="url(#m-x)"/>
+<path class="d-line" d="M240 150 L356 150 L356 167" marker-end="url(#m-x)"/>
+<rect class="d-stop" x="16" y="168" width="216" height="48" rx="8"/>
+<text class="d-t d-b" x="124" y="188" text-anchor="middle">Before: nothing catches it</text>
+<text class="d-m" x="124" y="206" text-anchor="middle">the error leaves run_program</text>
+<line class="d-line" x1="124" y1="216" x2="124" y2="231" marker-end="url(#m-x)"/>
+<rect class="d-stop" x="16" y="232" width="216" height="48" rx="8"/>
+<text class="d-t d-b" x="124" y="252" text-anchor="middle">App Lab ends the app</text>
+<text class="d-m" x="124" y="270" text-anchor="middle">BOOT does nothing now</text>
+<rect class="d-yours" x="248" y="168" width="216" height="48" rx="8"/>
+<text class="d-t d-b" x="356" y="188" text-anchor="middle">After: user_loop catches it</text>
+<text class="d-m" x="356" y="206" text-anchor="middle">prints one [ERROR] line</text>
+<line class="d-line" x1="356" y1="216" x2="356" y2="231" marker-end="url(#m-x)"/>
+<rect class="d-yours" x="248" y="232" width="216" height="48" rx="8"/>
+<text class="d-t d-b" x="356" y="252" text-anchor="middle">Stop motors, wait 1 second</text>
+<text class="d-m" x="356" y="270" text-anchor="middle">then ask again</text>
+<line class="d-line" x1="356" y1="280" x2="356" y2="295" marker-end="url(#m-x)"/>
+<rect class="d-yours" x="248" y="296" width="216" height="48" rx="8"/>
+<text class="d-t d-b" x="356" y="316" text-anchor="middle">The board answers again</text>
+<text class="d-m" x="356" y="334" text-anchor="middle">BOOT starts runs as usual</text>
+</svg>
