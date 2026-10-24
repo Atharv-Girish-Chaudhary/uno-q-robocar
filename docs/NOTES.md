@@ -131,7 +131,7 @@ a waitlist.
   (`app.yaml`, `README.md`, `python/` with the model, `sketch/`; no `.cache`), 4.2 MB, and the
   pull request is github.com/aaishikasb/uno-q-hackout-submissions/pull/8. The ZIP was not
   test-imported into App Lab. The model file carries the Edge Impulse username.
-- 3:53 PM, the ZIP checked: the copy in the pull request is byte-identical to the one built, and
+- 3:49 PM, the ZIP checked: the copy in the pull request is byte-identical to the one built, and
   its 13 files match the board's running app. `arduino-app-cli app import` accepted it ("Import
   successful", app ID `user:atharv-girish-chaudhary`) into a scratch folder (`HOME=/tmp/importhome`
   keeps it out of App Lab's real app list), and `app details` read every description field. In
