@@ -36,6 +36,7 @@ qualcomm-build-day/
     SPEC.md                  this file
     NOTES.md  RUBRIC_PLAN.md  QUESTIONS.md  CHECKLIST.md  CALIBRATION_LOG.md
     SUBMISSION_README_TEMPLATE.md  EDGE_IMPULSE.md
+  figs/                      the diagrams as SVG files, shown in the README, the docs and the page
   prep/                      uv project, Python 3.10
     pyproject.toml  uv.lock  .python-version
     requirements-board.txt   fallback only, see below
@@ -179,6 +180,8 @@ slow approach) means radius at least `slow_radius_px` or center below `slow_y_fr
 | 13 | Close, goal not seen, ball outside the band | STEER toward it with `steer_mode` |
 | 14 | Close, goal not seen, centered | PUSH, as if the goal were lined up |
 
+![The same rules as four questions in order: picture fresh, ball seen, ball close, lined up with the goal](../figs/decision-rules.svg)
+
 Steering pulses grow from `steer_ms_min` at the band edge to `steer_ms_max` at the frame edge.
 When close, rotation centers the ball without changing where the goal sits relative to it, and a
 sideways step changes that relation: a near ball shifts more in the picture than the far goal,
@@ -186,6 +189,8 @@ so stepping right moves a goal that sits left of the ball toward the ball's line
 both end the run; they differ only in the reason.
 
 ### runloop.py
+
+![One pass of the loop: look, find, decide, move, then wait for a fresh picture; any doubt stops the run](../figs/run-loop.svg)
 
 `load_settings(path)`, `make_vision(settings)`, `open_camera(settings)`, `print_versions()`, and
 the three modes, all taking any robot with `is_running()`, `drive(direction, speed, ms)` and

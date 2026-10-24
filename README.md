@@ -6,6 +6,17 @@ pushes it toward the goal. This repo holds the detector, the camera reader and t
 logic, written and tested on a laptop before the robot exists, plus the notes and templates for
 the day.
 
+## How the robot works
+
+The UNO Q holds two computers: your Python runs on its Linux side and picks each move, and the
+microcontroller runs the motors and stops each move on time. Bridge carries the moves between them.
+
+![The UNO Q's two computers: your Python on the Linux side, the motor sketch on the microcontroller, Bridge between them](figs/robot-two-computers.svg)
+
+Every move is one short pulse decided from a fresh picture, and any doubt stops the run.
+
+![One pass of the loop: look, find, decide, move, then wait for a fresh picture; any doubt stops the run](figs/run-loop.svg)
+
 ## Layout
 
 ### The repo root
@@ -16,6 +27,7 @@ the day.
 | `CLAUDE.md` | The rules for Claude sessions in this repo: Python 3.10, one OpenCV build per environment, the 1000 ms pulse cap, no em or en dashes. |
 | `.gitignore` | Keeps `upstream/`, virtual environments, generated samples, recordings and trained models out of this repo's history. |
 | `docs/` | Notes for you and the judges, listed below. |
+| `figs/` | The diagrams as SVG files, each drawn once and shown in this README, the docs and the game plan page. |
 | `prep/` | The code: a uv project on Python 3.10, listed below. |
 | `upstream/` | The organizers' guide: a separate git clone, not part of this repo, explained below. |
 
@@ -44,6 +56,8 @@ Robot files, which go into the app on the day if pre-written code is allowed:
 - `robocar_main_template.py` is the guide's `main.py` wired to these; its contents become the
   app's `main.py`.
 
+![What goes into the app you submit: the 6 robot files into python/, the guide's sketch unchanged, the README from the template; tests and tools stay here](figs/submission-contents.svg)
+
 Laptop only, never on the robot:
 
 - `demo.py` dry-runs the whole loop with pretend motors; `tune.py` tunes colors with sliders.
@@ -58,6 +72,8 @@ A separate git clone of github.com/aaishikasb/uno-q-hackout, kept for reading. Y
 `.gitignore` leaves it out, so it is never committed or pushed here. Get it with
 `git clone https://github.com/aaishikasb/uno-q-hackout upstream`, and refresh it with
 `git -C upstream pull`. The guide has two tracks; only `robocar/` matters for this build.
+
+![Your repo and the organizers' guide share one folder but are two separate git repos; the robot's app takes files from both](figs/repo-and-upstream.svg)
 
 | Path | What it is for |
 |---|---|
@@ -107,6 +123,10 @@ A separate git clone of github.com/aaishikasb/uno-q-hackout, kept for reading. Y
 ```bash
 uv run pytest
 ```
+
+`uv run` makes `.venv` match the exact versions in `uv.lock` before it runs the command:
+
+![uv run reads pyproject.toml, takes the exact versions from uv.lock, makes .venv match, then runs the command inside it](figs/uv-run.svg)
 
 The board runs Python 3.13, so check that too; this builds a throwaway environment and leaves
 `prep/.venv` on 3.10:

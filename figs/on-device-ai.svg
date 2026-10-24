@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 262" width="600" height="327.5" role="img" aria-label="Once, before the event and online, you label pictures, train the model in the cloud and export model.eim. On the robot, offline, every camera picture goes to model.eim on the Qualcomm chip, which answers with where the ball is.">
+<title>Once, before the event and online, you label pictures, train the model in the cloud and export model.eim. On the robot, offline, every camera picture goes to model.eim on the Qualcomm chip, which answers with where the ball is.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="262" rx="12"/>
+        <defs><marker id="m-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect class="d-frame" x="8" y="12" width="464" height="104" rx="12"/>
+        <text class="d-m" x="20" y="30">once, before the event, online</text>
+        <rect class="d-box" x="20" y="48" width="136" height="48" rx="8"/>
+        <text class="d-t d-b" x="88" y="68" text-anchor="middle">Label pictures</text>
+        <text class="d-m" x="88" y="86" text-anchor="middle">ball, goal, empty</text>
+        <line class="d-line" x1="156" y1="72" x2="171" y2="72" marker-end="url(#m-ai)"/>
+        <rect class="d-box" x="172" y="48" width="136" height="48" rx="8"/>
+        <text class="d-t d-b" x="240" y="68" text-anchor="middle">Train the model</text>
+        <text class="d-m" x="240" y="86" text-anchor="middle">in the cloud</text>
+        <line class="d-line" x1="308" y1="72" x2="323" y2="72" marker-end="url(#m-ai)"/>
+        <rect class="d-model" x="324" y="48" width="136" height="48" rx="8"/>
+        <text class="d-t d-b" x="392" y="68" text-anchor="middle">Export model.eim</text>
+        <text class="d-m d-xs" x="392" y="86" text-anchor="middle">built for the UNO Q</text>
+        <path class="d-line" d="M392 96 L392 132 L240 132 L240 183" marker-end="url(#m-ai)"/>
+        <rect class="d-frame" x="8" y="148" width="464" height="104" rx="12"/>
+        <text class="d-m" x="20" y="166">on the robot, offline</text>
+        <rect class="d-box" x="20" y="184" width="136" height="48" rx="8"/>
+        <text class="d-t d-b" x="88" y="204" text-anchor="middle">Camera picture</text>
+        <text class="d-m" x="88" y="222" text-anchor="middle">320 by 240</text>
+        <line class="d-line" x1="156" y1="208" x2="171" y2="208" marker-end="url(#m-ai)"/>
+        <rect class="d-model" x="172" y="184" width="136" height="48" rx="8"/>
+        <text class="d-t d-b" x="240" y="204" text-anchor="middle">model.eim</text>
+        <text class="d-m d-xs" x="240" y="222" text-anchor="middle">on the Qualcomm chip</text>
+        <line class="d-line" x1="308" y1="208" x2="323" y2="208" marker-end="url(#m-ai)"/>
+        <rect class="d-box" x="324" y="184" width="136" height="48" rx="8"/>
+        <text class="d-t d-b" x="392" y="204" text-anchor="middle">The answer</text>
+        <text class="d-m" x="392" y="222" text-anchor="middle">ball at x 147, 82%</text>
+      </svg>

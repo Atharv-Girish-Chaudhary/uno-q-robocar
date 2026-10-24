@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 296" width="600" height="370" role="img" aria-label="Four moments on Saturday, each with its rules. Unboxing: wheels up and find the power switch, rules 1 and 2. First run while online: download and install now, rules 6 and 4. Board joins the camera Wi-Fi: close the laptop's preview, rule 5. Every run after that: BOOT is only software, rule 3.">
+<title>Four moments on Saturday, each with its rules. Unboxing: wheels up and find the power switch, rules 1 and 2. First run while online: download and install now, rules 6 and 4. Board joins the camera Wi-Fi: close the laptop's preview, rule 5. Every run after that: BOOT is only software, rule 3.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="296" rx="12"/>
+        <defs><marker id="m-rule" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect class="d-box" x="16" y="12" width="200" height="56" rx="8"/>
+        <text class="d-t d-b" x="116" y="35" text-anchor="middle">Unboxing</text>
+        <text class="d-m" x="116" y="53" text-anchor="middle">before the first move</text>
+        <line class="d-line" x1="216" y1="40" x2="239" y2="40" marker-end="url(#m-rule)"/>
+        <rect class="d-yours" x="240" y="12" width="224" height="56" rx="8"/>
+        <text class="d-t d-b" x="352" y="35" text-anchor="middle">Wheels up, find the switch</text>
+        <text class="d-m" x="352" y="53" text-anchor="middle">rules 1 and 2</text>
+        <line class="d-line" x1="116" y1="68" x2="116" y2="84" marker-end="url(#m-rule)"/>
+        <rect class="d-box" x="16" y="84" width="200" height="56" rx="8"/>
+        <text class="d-t d-b" x="116" y="107" text-anchor="middle">First run</text>
+        <text class="d-m" x="116" y="125" text-anchor="middle">board still online</text>
+        <line class="d-line" x1="216" y1="112" x2="239" y2="112" marker-end="url(#m-rule)"/>
+        <rect class="d-yours" x="240" y="84" width="224" height="56" rx="8"/>
+        <text class="d-t d-b" x="352" y="107" text-anchor="middle">Download and install now</text>
+        <text class="d-m" x="352" y="125" text-anchor="middle">rules 6 and 4</text>
+        <line class="d-line" x1="116" y1="140" x2="116" y2="156" marker-end="url(#m-rule)"/>
+        <rect class="d-box" x="16" y="156" width="200" height="56" rx="8"/>
+        <text class="d-t d-b" x="116" y="179" text-anchor="middle">Board joins camera Wi-Fi</text>
+        <text class="d-m" x="116" y="197" text-anchor="middle">no Internet from here on</text>
+        <line class="d-line" x1="216" y1="184" x2="239" y2="184" marker-end="url(#m-rule)"/>
+        <rect class="d-yours" x="240" y="156" width="224" height="56" rx="8"/>
+        <text class="d-t d-b" x="352" y="179" text-anchor="middle">Close the laptop's preview</text>
+        <text class="d-m" x="352" y="197" text-anchor="middle">rule 5</text>
+        <line class="d-line" x1="116" y1="212" x2="116" y2="228" marker-end="url(#m-rule)"/>
+        <rect class="d-box" x="16" y="228" width="200" height="56" rx="8"/>
+        <text class="d-t d-b" x="116" y="251" text-anchor="middle">Every run after that</text>
+        <text class="d-m" x="116" y="269" text-anchor="middle">BOOT starts and stops</text>
+        <line class="d-line" x1="216" y1="256" x2="239" y2="256" marker-end="url(#m-rule)"/>
+        <rect class="d-yours" x="240" y="228" width="224" height="56" rx="8"/>
+        <text class="d-t d-b" x="352" y="251" text-anchor="middle">BOOT is only software</text>
+        <text class="d-m" x="352" y="269" text-anchor="middle">rule 3</text>
+      </svg>

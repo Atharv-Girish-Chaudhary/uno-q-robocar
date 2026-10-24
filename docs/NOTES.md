@@ -10,6 +10,8 @@ a waitlist.
 
 ## The kit
 
+![The UNO Q's two computers: your Python on the Linux side, the motor sketch on the microcontroller, Bridge between them](../figs/robot-two-computers.svg)
+
 - An Arduino UNO Q on a Hiwonder miniAuto chassis, preassembled. Its mecanum wheels can drive,
   slide sideways and turn in place.
 - An ESP32-S3 camera (GC2145 sensor) with its own Wi-Fi network and no Internet. It streams
@@ -72,6 +74,13 @@ a waitlist.
   involved. That is why `rotate_speed` (160) is higher than `strafe_speed` (120).
 - Bridge calls give up after 10 seconds by default and raise `TimeoutError` (Arduino's
   `bridge.py`).
+
+## The six rules on the day
+
+Six rules from the guide, three for safety and three for the network, each placed at the moment
+it matters. The two sections below give the details.
+
+![Unboxing: wheels up and find the power switch. First run: download and install while online. Board joins the camera's Wi-Fi: close the laptop's preview. Every run: BOOT is only software](../figs/six-rules-timeline.svg)
 
 ## Network rules
 
@@ -153,6 +162,15 @@ uvx pip download numpy==2.2.6 opencv-python-headless==4.13.0.92 -d wheels --only
 3. Don't add a `requirements.txt` (see above).
 4. Start with `"mode": "observe"` in the config's `run` section, so the robot only watches and
    prints, then switch to `"attempt"`.
+
+## Watching a run from the laptop
+
+Keep the USB-C cable in while the robot runs: App Lab's log view, or `make logs` from a copy of
+`robocar/`, shows each decision line as it happens, with what the camera saw and why the robot
+moved. The laptop can't watch the video during a run, because the camera serves one viewer and
+the robot is using it; record with `demo.py --record` while the board's app is stopped instead.
+
+![The Mac reaches the board over USB-C and the Internet over the venue Wi-Fi; to preview or record, it joins the camera's Wi-Fi and loses its Internet](../figs/watching-a-run.svg)
 
 ## Laptop commands (from `prep/`)
 

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 302" width="600" height="377.5" role="img" aria-label="Label and train a detector builds data and evaluation skills. Running it on the board builds on-device inference. Look, decide, move, repeat is an agent loop. Stop on any doubt is a guardrail. Explaining it to the judges is writing up results.">
+<title>Label and train a detector builds data and evaluation skills. Running it on the board builds on-device inference. Look, decide, move, repeat is an agent loop. Stop on any doubt is a guardrail. Explaining it to the judges is writing up results.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="302" rx="12"/>
+        <defs><marker id="m-learn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect class="d-box" x="16" y="12" width="204" height="46" rx="8"/>
+        <text class="d-t d-b d-s" x="118" y="39" text-anchor="middle">Label and train a detector</text>
+        <line class="d-line" x1="220" y1="35" x2="251" y2="35" marker-end="url(#m-learn)"/>
+        <rect class="d-yours" x="252" y="12" width="212" height="46" rx="8"/>
+        <text class="d-t d-b" x="358" y="31" text-anchor="middle">Data and evaluation</text>
+        <text class="d-m" x="358" y="48" text-anchor="middle">pictures from your own camera</text>
+        <rect class="d-box" x="16" y="70" width="204" height="46" rx="8"/>
+        <text class="d-t d-b d-s" x="118" y="97" text-anchor="middle">Run it on the board</text>
+        <line class="d-line" x1="220" y1="93" x2="251" y2="93" marker-end="url(#m-learn)"/>
+        <rect class="d-yours" x="252" y="70" width="212" height="46" rx="8"/>
+        <text class="d-t d-b" x="358" y="89" text-anchor="middle">On-device inference</text>
+        <text class="d-m" x="358" y="106" text-anchor="middle">about 8 ms, little memory</text>
+        <rect class="d-box" x="16" y="128" width="204" height="46" rx="8"/>
+        <text class="d-t d-b d-s" x="118" y="155" text-anchor="middle">Look, decide, move, repeat</text>
+        <line class="d-line" x1="220" y1="151" x2="251" y2="151" marker-end="url(#m-learn)"/>
+        <rect class="d-yours" x="252" y="128" width="212" height="46" rx="8"/>
+        <text class="d-t d-b" x="358" y="147" text-anchor="middle">Agent loops</text>
+        <text class="d-m" x="358" y="164" text-anchor="middle">same shape as LLM tool use</text>
+        <rect class="d-box" x="16" y="186" width="204" height="46" rx="8"/>
+        <text class="d-t d-b d-s" x="118" y="213" text-anchor="middle">Stop on any doubt</text>
+        <line class="d-line" x1="220" y1="209" x2="251" y2="209" marker-end="url(#m-learn)"/>
+        <rect class="d-yours" x="252" y="186" width="212" height="46" rx="8"/>
+        <text class="d-t d-b" x="358" y="205" text-anchor="middle">Guardrails</text>
+        <text class="d-m" x="358" y="222" text-anchor="middle">fail-safe defaults</text>
+        <rect class="d-box" x="16" y="244" width="204" height="46" rx="8"/>
+        <text class="d-t d-b d-s" x="118" y="271" text-anchor="middle">Explain it to the judges</text>
+        <line class="d-line" x1="220" y1="267" x2="251" y2="267" marker-end="url(#m-learn)"/>
+        <rect class="d-yours" x="252" y="244" width="212" height="46" rx="8"/>
+        <text class="d-t d-b" x="358" y="263" text-anchor="middle">Writing up results</text>
+        <text class="d-m" x="358" y="280" text-anchor="middle">so others can repeat them</text>
+      </svg>

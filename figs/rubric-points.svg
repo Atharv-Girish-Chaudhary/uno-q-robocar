@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 92" width="600" height="115" role="img" aria-label="The 100 rubric points to scale. Ball detection 25 and actions driven by perception 25 make one half; goal-directed behavior 20, reliability 20 and explanation 10 make the other half.">
+<title>The 100 rubric points to scale. Ball detection 25 and actions driven by perception 25 make one half; goal-directed behavior 20, reliability 20 and explanation 10 make the other half.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="92" rx="12"/>
+        <rect class="r-hi" x="16" y="12" width="112" height="38"/>
+        <rect class="r-hi" x="128" y="12" width="112" height="38"/>
+        <rect class="r-lo" x="240" y="12" width="89.6" height="38"/>
+        <rect class="r-lo" x="329.6" y="12" width="89.6" height="38"/>
+        <rect class="r-lo" x="419.2" y="12" width="44.8" height="38"/>
+        <line class="r-sep" x1="128" y1="12" x2="128" y2="50"/>
+        <line class="r-sep" x1="240" y1="12" x2="240" y2="50"/>
+        <line class="r-sep" x1="329.6" y1="12" x2="329.6" y2="50"/>
+        <line class="r-sep" x1="419.2" y1="12" x2="419.2" y2="50"/>
+        <text class="r-on-hi" x="72" y="36" text-anchor="middle">25</text>
+        <text class="r-on-hi" x="184" y="36" text-anchor="middle">25</text>
+        <text class="r-on-lo" x="284.8" y="36" text-anchor="middle">20</text>
+        <text class="r-on-lo" x="374.4" y="36" text-anchor="middle">20</text>
+        <text class="r-on-lo" x="441.6" y="36" text-anchor="middle">10</text>
+        <polyline class="r-br-hi" points="16,58 16,64 238,64 238,58"/>
+        <polyline class="r-br-lo" points="242,58 242,64 464,64 464,58"/>
+        <text class="d-t d-b" x="127" y="84" text-anchor="middle">see the ball, act on it: 50</text>
+        <text class="d-m" x="353" y="84" text-anchor="middle">goal, safety, explaining: 50</text>
+      </svg>

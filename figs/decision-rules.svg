@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="600" height="450" role="img" aria-label="Four questions in order. Picture fresh and run OK? If not, stop or wait. Ball seen? If not, wait, then stop after 2 missed frames. Ball close? If not, steer or drive forward. Lined up with the goal? If not, rotate or step around. If yes, push.">
+<title>Four questions in order. Picture fresh and run OK? If not, stop or wait. Ball seen? If not, wait, then stop after 2 missed frames. Ball close? If not, steer or drive forward. Lined up with the goal? If not, rotate or step around. If yes, push.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="360" rx="12"/>
+        <defs><marker id="m-dec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect class="d-box" x="16" y="12" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="41" text-anchor="middle">Picture fresh, run OK?</text>
+        <line class="d-line" x1="236" y1="36" x2="275" y2="36" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="256" y="30" text-anchor="middle">no</text>
+        <rect class="d-stop" x="276" y="12" width="188" height="48" rx="8"/>
+        <text class="d-t d-b" x="370" y="32" text-anchor="middle">STOP or WAIT</text>
+        <text class="d-m" x="370" y="50" text-anchor="middle">old video or just moved</text>
+        <line class="d-line" x1="126" y1="60" x2="126" y2="84" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="134" y="77">yes</text>
+        <rect class="d-box" x="16" y="84" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="113" text-anchor="middle">Ball seen?</text>
+        <line class="d-line" x1="236" y1="108" x2="275" y2="108" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="256" y="102" text-anchor="middle">no</text>
+        <rect class="d-stop" x="276" y="84" width="188" height="48" rx="8"/>
+        <text class="d-t d-b" x="370" y="104" text-anchor="middle">WAIT, then STOP</text>
+        <text class="d-m" x="370" y="122" text-anchor="middle">after 2 missed frames</text>
+        <line class="d-line" x1="126" y1="132" x2="126" y2="156" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="134" y="149">yes</text>
+        <rect class="d-box" x="16" y="156" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="185" text-anchor="middle">Ball close?</text>
+        <line class="d-line" x1="236" y1="180" x2="275" y2="180" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="256" y="174" text-anchor="middle">no</text>
+        <rect class="d-yours" x="276" y="156" width="188" height="48" rx="8"/>
+        <text class="d-t d-b" x="370" y="176" text-anchor="middle">STEER or FORWARD</text>
+        <text class="d-m" x="370" y="194" text-anchor="middle">center it, then approach</text>
+        <line class="d-line" x1="126" y1="204" x2="126" y2="228" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="134" y="221">yes</text>
+        <rect class="d-box" x="16" y="228" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="257" text-anchor="middle">Lined up with the goal?</text>
+        <line class="d-line" x1="236" y1="252" x2="275" y2="252" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="256" y="246" text-anchor="middle">no</text>
+        <rect class="d-yours" x="276" y="228" width="188" height="48" rx="8"/>
+        <text class="d-t d-b" x="370" y="248" text-anchor="middle">ROTATE or ORBIT</text>
+        <text class="d-m" x="370" y="266" text-anchor="middle">turn, or step around it</text>
+        <line class="d-line" x1="126" y1="276" x2="126" y2="300" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="134" y="293">yes</text>
+        <rect class="d-yours" x="16" y="300" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="320" text-anchor="middle">PUSH</text>
+        <text class="d-m" x="126" y="338" text-anchor="middle">350 ms, up to 3 times</text>
+      </svg>

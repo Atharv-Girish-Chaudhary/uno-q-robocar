@@ -6,6 +6,8 @@ the guide's settings (`upstream/robocar/README.md`, "Edge Impulse: train a detec
 organizers' August dataset: 321 pictures from the robot's own camera, labelled goal, robot and
 soccer_ball.
 
+![Training happens once, online, and exports model.eim; on the robot the same file runs on every frame, offline: that is on-device AI](../figs/on-device-ai.svg)
+
 ## Steps
 
 1. Make a free account at studio.edgeimpulse.com. This needs you; I can't create accounts.

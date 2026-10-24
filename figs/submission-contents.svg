@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="600" height="375" role="img" aria-label="Three sources feed the app you submit: the prep robot files go into python, the organizers' starter gives the sketch and the rest of python, and the docs template becomes README.md. Tests, tools, demo.py, tune.py and the uv files stay in this repo.">
+<title>Three sources feed the app you submit: the prep robot files go into python, the organizers' starter gives the sketch and the rest of python, and the docs template becomes README.md. Tests, tools, demo.py, tune.py and the uv files stay in this repo.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="300" rx="12"/>
+        <defs><marker id="m-sub" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect class="d-yours" x="16" y="12" width="140" height="48" rx="8"/>
+        <text class="d-t d-b" x="86" y="32" text-anchor="middle">prep/ robot files</text>
+        <text class="d-m" x="86" y="50" text-anchor="middle">the 6 robot files</text>
+        <rect class="d-theirs" x="170" y="12" width="140" height="48" rx="8"/>
+        <text class="d-t d-b d-mono" x="240" y="32" text-anchor="middle">upstream/robocar/</text>
+        <text class="d-m" x="240" y="50" text-anchor="middle">their starter app</text>
+        <rect class="d-yours" x="324" y="12" width="140" height="48" rx="8"/>
+        <text class="d-t d-b" x="394" y="32" text-anchor="middle">docs/ template</text>
+        <text class="d-m" x="394" y="50" text-anchor="middle">submission README</text>
+        <line class="d-line" x1="86" y1="60" x2="86" y2="111" marker-end="url(#m-sub)"/>
+        <line class="d-line" x1="240" y1="60" x2="240" y2="111" marker-end="url(#m-sub)"/>
+        <line class="d-line" x1="394" y1="60" x2="394" y2="111" marker-end="url(#m-sub)"/>
+        <rect class="d-frame" x="8" y="96" width="464" height="120" rx="12"/>
+        <rect class="d-box" x="18" y="112" width="136" height="48" rx="8"/>
+        <text class="d-t d-b d-mono" x="86" y="132" text-anchor="middle">python/</text>
+        <text class="d-m d-xs" x="86" y="150" text-anchor="middle">main.py + prep files</text>
+        <rect class="d-box" x="172" y="112" width="136" height="48" rx="8"/>
+        <text class="d-t d-b d-mono" x="240" y="132" text-anchor="middle">sketch/</text>
+        <text class="d-m d-xs" x="240" y="150" text-anchor="middle">unchanged motor code</text>
+        <rect class="d-box" x="326" y="112" width="136" height="48" rx="8"/>
+        <text class="d-t d-b d-mono" x="394" y="132" text-anchor="middle">README.md</text>
+        <text class="d-m d-xs" x="394" y="150" text-anchor="middle">filled in Saturday</text>
+        <text class="d-m" x="20" y="200">the app you submit, exported from App Lab</text>
+        <rect class="d-box d-dash" x="16" y="240" width="448" height="48" rx="8"/>
+        <text class="d-t d-b" x="240" y="260" text-anchor="middle">Stays in this repo</text>
+        <text class="d-m" x="240" y="278" text-anchor="middle">tests, tools, demo.py, tune.py, the uv files</text>
+      </svg>
