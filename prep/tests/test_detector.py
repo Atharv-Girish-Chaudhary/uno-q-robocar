@@ -1,3 +1,4 @@
+import cv2
 import numpy as np
 import pytest
 
@@ -127,6 +128,68 @@ def test_midpoint_spans_both_cones():
         assert goal.quality == 0.6 and goal.touches_bottom and goal.timestamp == 1.0
 
 
+# Build Day's field, from the medians measured in the organizers' pictures (OpenCV hue,
+# saturation, brightness).
+def hsv_color(h, s, v):
+    return tuple(int(c) for c in cv2.cvtColor(np.uint8([[[h, s, v]]]), cv2.COLOR_HSV2BGR)[0, 0])
+
+
+CARPET, CREAM, CONE = hsv_color(21, 14, 151), hsv_color(29, 73, 248), hsv_color(31, 245, 237)
+LEFT_CONE, RIGHT_CONE = (110, 170, 30, 50), (230, 160, 24, 40)  # center x, base y, width, height
+
+
+def build_day_image(rng, cones=(), ball=None, spin=0.0):
+    """Gray carpet instead of the green floor, yellow cones standing on it (flat-topped, a third as
+    wide at the top), and the ball. For the cream ball the test sets syn.WHITE to CREAM first."""
+    image = syn.field()
+    image[syn.WALL_BOTTOM :] = CARPET
+    for cx, base, w, h in cones:
+        corners = [(cx - w // 2, base), (cx + w // 2, base), (cx + w // 6, base - h), (cx - w // 6, base - h)]
+        outline = np.array(corners, dtype=np.int32)
+        cv2.fillPoly(image, [outline], CONE, cv2.LINE_AA)
+    if ball is not None:
+        syn.draw_soccer_ball(image, *ball, spin=spin)
+    return syn.jpeg_roundtrip(syn.add_noise(image, rng))
+
+
+def test_two_yellow_cones_give_the_gap_between_them(presets, rng):
+    cones = detector(presets, "yellow_cones")
+    for shift in (-50, 0, 40):
+        left, right = (LEFT_CONE[0] + shift,) + LEFT_CONE[1:], (RIGHT_CONE[0] + shift,) + RIGHT_CONE[1:]
+        d = cones.detect(build_day_image(rng, cones=[left, right]), timestamp=2.0)
+        assert d.found and d.timestamp == 2.0 and d.candidates == 2
+        assert abs(d.x - (left[0] + right[0]) / 2) <= 2  # halfway between the two cones
+        # Left edge of one to right edge of the other; the blurred outer edges lose 1 to 3 px.
+        assert abs(d.width - (right[0] + 12 - (left[0] - 15))) <= 4
+        assert abs(d.height - 50) <= 3  # the taller cone
+
+
+def test_one_yellow_cone_is_no_goal_even_beside_the_ball(presets, rng, monkeypatch):
+    monkeypatch.setattr(syn, "WHITE", CREAM)
+    cones = detector(presets, "yellow_cones")
+    d = cones.detect(build_day_image(rng, cones=[LEFT_CONE], ball=(200, 170, 14)))
+    assert not d.found and d.candidates == 1  # the cream ball is no second cone
+
+
+def test_three_yellow_cones_use_the_two_biggest(presets, rng):
+    # A smaller cone far off to the right loses to the near pair.
+    image = build_day_image(rng, cones=[(90, 175, 34, 56), (210, 175, 34, 56), (290, 130, 20, 30)])
+    d = detector(presets, "yellow_cones").detect(image)
+    assert d.found and d.candidates == 3
+    assert abs(d.x - 150) <= 2
+
+
+def test_cream_ball_is_found_on_the_carpet_and_the_cones_are_not_balls(presets, rng, monkeypatch):
+    monkeypatch.setattr(syn, "WHITE", CREAM)  # the organizers' ball looks cream in the room's light
+    ball = detector(presets, "cream_ball")
+    for x, y, r in [(160, 150, 7), (170, 185, 14), (160, 205, 28)]:
+        for spin in (0.0, 0.7):
+            d = ball.detect(build_day_image(rng, cones=[LEFT_CONE, RIGHT_CONE], ball=(x, y, r), spin=spin))
+            assert d.found, f"ball at {(x, y, r)} spin {spin} not found"
+            assert abs(d.x - x) <= tolerance(r) and abs(d.radius - r) <= tolerance(r)
+    assert not ball.detect(build_day_image(rng, cones=[LEFT_CONE, RIGHT_CONE])).found
+
+
 def test_mask_is_empty_outside_the_search_band(presets, rng):
     ball = detector(presets, "white_ball", roi_top_frac=0.6, roi_bottom_frac=0.9)
     mask = ball.mask(syn.scene_image(rng, ball=(160, 200, 40)))
@@ -158,6 +221,8 @@ def test_config_round_trips(presets):
         ({"roi_top_frac": 0.8, "roi_bottom_frac": 0.5}, "search band"),
         ({"min_fill_ratio": 1.5}, "between 0 and 1"),
         ({"colour": "red"}, "unknown"),
+        ({"pair": "yes"}, "true or false"),
+        ({"pair": True}, "box shape"),
     ],
 )
 def test_bad_settings_are_refused(presets, change, message):

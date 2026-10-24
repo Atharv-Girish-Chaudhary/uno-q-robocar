@@ -7,7 +7,7 @@
     "latency_ms": 200
   },
   "ball": {
-    "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
+    "hsv_ranges": [{"lower": [0, 0, 170], "upper": [179, 150, 255]}],
     "shape": "round",
     "roi_top_frac": 0.57,
     "roi_bottom_frac": 1.0,
@@ -21,8 +21,9 @@
     "circularity_min_radius_px": 10.0
   },
   "goal": {
-    "hsv_ranges": [{"lower": [0, 0, 150], "upper": [179, 90, 255]}],
+    "hsv_ranges": [{"lower": [25, 200, 120], "upper": [37, 255, 255]}],
     "shape": "box",
+    "pair": true,
     "roi_top_frac": 0.38,
     "roi_bottom_frac": 0.8,
     "blur_ksize": 3,
@@ -31,7 +32,7 @@
     "min_area_px": 150,
     "max_area_frac": 0.3,
     "min_fill_ratio": 0.3,
-    "min_aspect": 1.2,
+    "min_aspect": 0.3,
     "max_aspect": 6.0
   },
   "model": {

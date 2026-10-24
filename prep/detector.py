@@ -1,16 +1,17 @@
 """Find the ball or the goal in one camera picture by color and shape.
 
 One detector class serves both targets with different settings from robocar_config.json:
-a "round" shape for the ball and a "box" shape for the goal. Steps: blur, convert to HSV,
-threshold each color range, keep only the search band of rows, clean up with morphology, then
-pick the best contour that passes the size and shape checks.
+a "round" shape for the ball and a "box" shape for each cone of the goal. Steps: blur, convert
+to HSV, threshold each color range, keep only the search band of rows, clean up with
+morphology, then pick the best contour that passes the size and shape checks. With "pair" on
+(the goal), the two best contours are the two cones, and the goal is the midpoint between them.
 """
 
 from __future__ import annotations
 
 import math
 from dataclasses import dataclass, replace
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import cv2
 import numpy as np
@@ -48,6 +49,8 @@ class HsvRange:
 class DetectorConfig:
     hsv_ranges: Tuple[HsvRange, ...]
     shape: str = "round"
+    # The goal's two cones: report the midpoint of the two best blobs, and nothing for one alone.
+    pair: bool = False
     roi_top_frac: float = 0.0
     roi_bottom_frac: float = 1.0
     blur_ksize: int = 5
@@ -78,6 +81,10 @@ class DetectorConfig:
             raise ValueError("a detector needs at least one HSV range")
         if self.shape not in SHAPES:
             raise ValueError(f"shape must be one of {SHAPES}, got {self.shape!r}")
+        if not isinstance(self.pair, bool):
+            raise ValueError(f"pair must be true or false, got {self.pair!r}")
+        if self.pair and self.shape != "box":
+            raise ValueError("pair needs the box shape: it joins the goal's two cones")
         if not 0.0 <= self.roi_top_frac < self.roi_bottom_frac <= 1.0:
             raise ValueError("the search band needs 0 <= roi_top_frac < roi_bottom_frac <= 1")
         for name in ("blur_ksize", "open_ksize", "close_ksize"):
@@ -206,8 +213,7 @@ class ColorDetector:
         h, w = mask.shape
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
         max_area = self.cfg.max_area_frac * w * h
-        best: Optional[Detection] = None
-        best_score = -1.0
+        scored: List[Tuple[float, Detection]] = []
         for contour in contours:
             bx, by, bw, bh = cv2.boundingRect(contour)
             if bw * bh < self.cfg.min_area_px:
@@ -221,9 +227,14 @@ class ColorDetector:
                 candidate = self._box(pixels, bx, by, bw, bh, h, timestamp)
             if candidate is None:
                 continue
-            score = candidate.quality * pixels
-            if score > best_score:
-                best, best_score = candidate, score
+            scored.append((candidate.quality * pixels, candidate))
+        # Best first. sorted() is stable, so among equal scores the first contour stays first.
+        ranked = [d for _, d in sorted(scored, key=lambda s: s[0], reverse=True)]
+        if self.cfg.pair:
+            # The goal is the gap between its two cones: one cone alone leaves nothing to aim at.
+            best = midpoint(ranked[0], ranked[1]) if len(ranked) >= 2 else None
+        else:
+            best = ranked[0] if ranked else None
         if best is None:
             return Detection.missing(timestamp, candidates=len(contours)), mask
         return replace(best, candidates=len(contours)), mask

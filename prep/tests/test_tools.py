@@ -8,7 +8,7 @@ from detector import DetectorConfig
 from tools import make_synthetic_video as syn
 
 
-@pytest.mark.parametrize("name", ["white_ball", "red_ball", "white_goal", "red_tape", "blue_tape"])
+@pytest.mark.parametrize("name", ["white_ball", "red_ball", "white_goal", "cream_ball", "yellow_cones", "red_tape", "blue_tape"])
 def test_sliders_round_trip_every_preset(presets, name):
     cfg = DetectorConfig.from_dict(presets[name])
     assert tune.from_sliders(tune.to_sliders(cfg), cfg) == cfg
