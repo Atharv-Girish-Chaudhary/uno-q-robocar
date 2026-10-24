@@ -55,6 +55,12 @@ a waitlist.
   serial line; the failing starts put none, so nothing reaches the router from the chip at all.
   Next test: a board restart, which also restarts the router; if the chip still says nothing,
   suspect the I2C wiring and ask the organizers.
+- 2:21 PM: `sudo reboot` fixed it. The router's log showed the chip's start-up text again, the app
+  started with `bridge: True`, and the distance and line sensors answered for the first time
+  today (516 mm, `line_ok` true). The battery number fell to about 6,500 from about 11,300
+  before 2:00, so check the pack with a meter. A watch-only run (BOOT pressed) averaged about
+  5 frames a second but had gaps of up to 1.5 s, which the 400 ms `stale_after_ms` treats as a
+  dead camera.
 
 ## Setup, in order
 
