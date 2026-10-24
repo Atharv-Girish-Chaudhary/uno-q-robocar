@@ -183,6 +183,12 @@ a waitlist.
   over the same I2C wiring (address 0x79, two bytes: press count and hold state), so a loose
   cable after the battery swap would explain both. The test is a BOOT press: the robot's lights
   show red, then yellow, then green when the chip hears it.
+- 4:29 PM: a BOOT press did nothing, and no run started in the log, so the chip's I2C read of the
+  button fails (`readCamButtonState` gives up when fewer than 2 bytes come back). The idle light
+  is a check anyone can see: while waiting for BOOT the sketch blinks the front ultrasonic
+  sensor's lights blue every 1.5 s, also over I2C, so no blinking means the I2C wiring is off.
+  Since the line sensor still answered at 4:06 on the flat pack and stopped after the swap, a
+  cable knocked loose during the battery swap is the likeliest cause.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
