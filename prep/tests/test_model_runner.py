@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+import model_runner
 from model_runner import EimRunner, ModelConfig, ModelVision, prepare
 from tools import make_synthetic_video as syn
 
@@ -94,13 +95,53 @@ def test_close_stops_the_process_and_cleans_up():
     assert not os.path.exists(tempdir)
 
 
-def test_missing_or_non_executable_model_is_explained(tmp_path):
+def stand_in_model(path):
+    """A .eim stand-in that starts the fake model, saved without its run permission, the way
+    make flash's unzip leaves a real one."""
+    path.write_text(f'#!/bin/sh\nexec "{sys.executable}" "{FAKE}" "$@"\n')
+    path.chmod(0o644)
+    return path
+
+
+def test_missing_model_is_explained(tmp_path):
     with pytest.raises(FileNotFoundError, match="docs/EDGE_IMPULSE.md"):
         ModelVision(ModelConfig(path=str(tmp_path / "missing.eim")))
+
+
+def test_model_without_its_run_permission_still_starts(tmp_path):
+    model = stand_in_model(tmp_path / "model.eim")
+    v = ModelVision(ModelConfig(path=str(model)))
+    try:
+        assert v.info["model_parameters"]["labels"] == ["goal", "soccerball"]
+    finally:
+        v.close()
+    assert os.access(model, os.X_OK)  # restored on the file, so the next start needs nothing
+
+
+def test_model_that_cannot_be_changed_runs_from_a_copy(tmp_path, monkeypatch):
+    model = stand_in_model(tmp_path / "model.eim")
+    real_chmod = os.chmod
+
+    def read_only_app_folder(path, mode, *args, **kwargs):
+        if os.fspath(path) == str(model):
+            raise PermissionError("read-only file system")
+        return real_chmod(path, mode, *args, **kwargs)
+
+    monkeypatch.setattr(model_runner.os, "chmod", read_only_app_folder)
+    v = ModelVision(ModelConfig(path=str(model)))
+    try:
+        assert v.runner.command[0] != str(model)  # it started the runnable copy
+        assert v.info["model_parameters"]["labels"] == ["goal", "soccerball"]
+    finally:
+        v.close()
+    assert not os.access(model, os.X_OK)
+
+
+def test_model_that_is_not_a_program_fails_loudly(tmp_path):
     model = tmp_path / "model.eim"
     model.write_bytes(b"not a program")
     model.chmod(0o644)
-    with pytest.raises(PermissionError, match="chmod"):
+    with pytest.raises(OSError):
         ModelVision(ModelConfig(path=str(model)))
 
 

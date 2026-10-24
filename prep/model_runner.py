@@ -91,9 +91,12 @@ class EimRunner:
         self._id = 0
 
     def start(self) -> Dict[str, Any]:
-        if self.command == [self.model_path]:
-            _check_executable(self.model_path)
+        own_model = self.command == [self.model_path]
+        if own_model:
+            _check_exists(self.model_path)
         self._tempdir = tempfile.mkdtemp(prefix="eim-")
+        if own_model:
+            self.command = [_runnable(self.model_path, self._tempdir)]
         socket_path = os.path.join(self._tempdir, "runner.sock")
         self._log = open(os.path.join(self._tempdir, "runner.log"), "wb")
         self.process = subprocess.Popen(
@@ -171,13 +174,28 @@ class EimRunner:
         return text[-300:] or "(no output)"
 
 
-def _check_executable(path: str) -> None:
+def _check_exists(path: str) -> None:
     if not os.path.exists(path):
         raise FileNotFoundError(
             f"no model at {path}; train one (docs/EDGE_IMPULSE.md) or set run.detector to color"
         )
+
+
+def _runnable(path: str, tempdir: str) -> str:
+    """The model as a file this process may start. The guide's `make flash` unzips the app with
+    Python's zipfile, which drops the execute bit, so give it back: on the file itself when
+    possible, otherwise on a copy in the runner's temporary folder."""
     if not os.access(path, os.X_OK):
-        raise PermissionError(f"{path} is not executable; run: chmod +x {path}")
+        try:
+            os.chmod(path, os.stat(path).st_mode | 0o111)
+        except OSError:
+            pass
+    if os.access(path, os.X_OK):
+        return path
+    copy = os.path.join(tempdir, os.path.basename(path))
+    shutil.copyfile(path, copy)
+    os.chmod(copy, 0o755)
+    return copy
 
 
 def prepare(

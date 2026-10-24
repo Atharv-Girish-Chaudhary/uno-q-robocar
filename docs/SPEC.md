@@ -128,7 +128,10 @@ first for the input size, channel count and resize mode, then `classify` with pi
 `(R << 16) + (G << 8) + B` after the same resize (`squash`, `fit-shortest` or `fit-longest`).
 Bounding boxes come back in the model's input pixels and are mapped back to the frame. It
 returns the same `Sighting` as `ColorVision`. FOMO models give centers, not sizes, which is why
-the controller can also judge closeness from the ball's height in the frame.
+the controller can also judge closeness from the ball's height in the frame. The guide's
+`make flash` unzips the app with Python's `zipfile`, which drops the execute bit, so before
+starting a model the runner gives it back, on the file when it can and otherwise on a copy in
+its temporary folder.
 
 ### stream.py
 
@@ -253,7 +256,8 @@ only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits.
   wrap is found only with both ranges; the goal detector finds the goal and not the ball; bad
   config values raise.
 - Model runner, against `fake_eim.py`: the handshake, the resize modes and the mapping of boxes
-  back to frame pixels, plus a clean stop.
+  back to frame pixels, a clean stop, and a model saved without its run permission, both when
+  the file can be fixed and when only a copy can.
 - Stream: the parser on the firmware's framing in random splits, one byte at a time, without
   `Content-Length`, with garbage first and with a broken JPEG; then live against
   `fake_camera.py`: newest frame wins, a stall is reported within `stale_after_ms` plus a margin,

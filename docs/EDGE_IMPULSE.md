@@ -29,13 +29,9 @@ soccer_ball.
 ## Trying it on the laptop
 
 The runner needs an `.eim` built for the machine it runs on: the UNO Q build only runs on the
-board. With a macOS build:
-
-```bash
-chmod +x models/robocar-mac.eim
-```
-
-Then point `model.path` at it in a copy of the config, and run the demo with the model:
+board. With a macOS build, point `model.path` at it in a copy of the config and run the demo with
+the model. No `chmod` is needed: the runner gives a model back its run permission when an unzip
+or a download has dropped it.
 
 ```bash
 uv run python demo.py --source 0 --show --detector model --config my_config.json
