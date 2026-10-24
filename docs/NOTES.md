@@ -160,6 +160,12 @@ a waitlist.
   Turning has never been tried on the floor, so the first run checks that a turn moves the ball
   toward the middle of the picture. Two tests and the second notebook had the slide directions
   written in; they now follow `steer_mode`.
+- 4:11 PM: the first run after that stopped at once, "camera feed problem: no frame yet
+  (OSError: [Errno 113] No route to host)". The camera's network was gone from
+  the board's Wi-Fi scan (other robots' cameras showed up), the battery read 5,380 (a fresh pack
+  reads about 11,550), and the board had fallen back to a phone hotspot saved on it, so
+  `nmcli con up "SSID"` failed. The camera runs on the robot's battery, so a flat pack
+  takes the video with it. The app itself kept running, with the motor chip answering.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
