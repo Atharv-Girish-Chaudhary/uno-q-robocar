@@ -46,8 +46,8 @@
   "stream": {
     "url": "http://192.168.5.1:81/stream",
     "connect_timeout_s": 3.0,
-    "read_timeout_s": 1.0,
-    "stale_after_ms": 400,
+    "read_timeout_s": 2.0,
+    "stale_after_ms": 1500,
     "max_identical_frames": 5,
     "reconnect_delay_s": 1.0,
     "skip_after_connect": 2,

@@ -58,7 +58,9 @@ Yours:
     cones', and raise the brightness floor above the carpet's (151).
 11. Watch-only test: ball left, center, right, far, near, then hidden. The printed detections
     should match. Every robot's camera uses Wi-Fi channel 1, so if runs stop with "newest frame
-    is N ms old" in the crowded room, raise `stream.stale_after_ms` a little, at most to 800.
+    is N ms old" in the crowded room, raise `stream.stale_after_ms`. On Oct 24 the room's video
+    had gaps of up to 1.5 s, so it went to 1500, with `read_timeout_s` at 2.0: the reader must
+    wait longer than that limit, or it drops the stream and reconnects first.
 12. Calibrate short moves with the wheels raised, then on the floor, and fill in
     `CALIBRATION_LOG.md`. The placeholder speeds give only about 24 to 33% wheel power, so expect
     to raise them if the robot barely moves. Run `"mode": "latency"` once on the floor and set
