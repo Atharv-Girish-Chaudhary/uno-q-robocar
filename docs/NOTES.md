@@ -30,6 +30,10 @@ a waitlist.
   step on A3) was set for the original Arduino, which measures against 5 V; the UNO Q measures
   against 3.3 V. With the board switch on, it read about 11,270, which works out to about 7.4 V.
   With the board switch off it reads about 1,315, because the pack isn't connected to the pin.
+- On the camera's Wi-Fi the board is `192.168.5.2`. The app holds the camera's one stream, so a
+  second viewer waits until the app stops. A 6-second recording at 1:55 PM had 21 frames, about
+  3.5 a second at 13 to 14 KB each, far below the 15 the prep assumed; the crowded channel 1 is
+  the likely cause. The app restarted fine there with no Internet.
 
 ## Setup, in order
 
