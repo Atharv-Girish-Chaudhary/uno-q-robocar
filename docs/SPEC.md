@@ -269,6 +269,12 @@ and the explanation drift apart.
   ranges, and the band bug fixed on Oct 22 (a ball band starting at the goal's 0.38 merges the
   far ball into the goal). Its step-by-step mask must equal `ColorDetector.mask()` pixel for
   pixel, and its pick must equal `analyze()`.
+- `02_how_the_robot_decides.ipynb` shows `controller.py` at work: the decision zones drawn on a
+  picture, the move for every ball position (with the goal ahead and off to the left), a
+  filmstrip of the 8 scenes with each decision drawn on, and the rules that aren't about the
+  ball: an old picture, a stalled feed, the time limit, too soon after a move, a lost ball, and
+  the push limit. Every decision comes from `controller.decide`, and each scene's must match
+  its known answer.
 
 The packages (ipykernel, matplotlib, nbclient) are the `notebooks` dependency group, on by
 default on the laptop through `default-groups`; the robot never imports them.

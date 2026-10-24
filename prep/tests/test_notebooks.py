@@ -14,7 +14,7 @@ from nbclient import NotebookClient
 NOTEBOOKS = Path(__file__).resolve().parents[1] / "notebooks"
 
 
-@pytest.mark.parametrize("name", ["01_how_the_detector_sees.ipynb"])
+@pytest.mark.parametrize("name", ["01_how_the_detector_sees.ipynb", "02_how_the_robot_decides.ipynb"])
 def test_notebook_runs_top_to_bottom(name):
     nb = nbformat.read(NOTEBOOKS / name, as_version=4)
     client = NotebookClient(nb, timeout=300, kernel_name="python3", resources={"metadata": {"path": str(NOTEBOOKS)}})
