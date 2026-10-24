@@ -66,6 +66,10 @@ a waitlist.
   again, with no "invalid packet" burst in the router log, while the restart after `sudo reboot`
   had worked. So on this board an app restart can leave the chip silent and only a board restart
   is sure to bring it back: put new files on the board, then reboot it, then start the app.
+- 2:58 PM, the fast way: `arduino-app-cli app stop` then `arduino-app-cli app start --no-prepare`.
+  It skips the preparing step (compiling the sketch and resetting the chip through openocd), the
+  chip keeps running, and the app came up with `bridge: True`. Use it for settings and Python
+  changes; only a changed sketch needs the full start.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
