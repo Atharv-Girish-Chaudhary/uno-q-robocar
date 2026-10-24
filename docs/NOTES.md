@@ -216,6 +216,11 @@ a waitlist.
   the front of the robot; twice the ball dropped into the blind spot for 2 pictures and came back,
   so the miss limit of 5 carried it through. It ended "attempt finished after 8 pushes" at 23.1 s.
   The second was stopped with BOOT after 4 forward moves, at about 5 s.
+- 4:51 PM: about 4x the distance per move, turning unchanged: approach 110 for 200 ms to 220 for
+  400 ms, slow 90 for 150 ms to 180 for 300 ms, push 160 for 350 ms to 255 (the top) for 550 ms.
+  The `--no-prepare` restart worked (`bridge: True`, `line_ok` true, battery 10,939). Motor speed
+  alone could not go 4x, since speeds stop at 255; the robot also looks slow because a move comes
+  only every 1.5 s, waiting for fresh pictures.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.

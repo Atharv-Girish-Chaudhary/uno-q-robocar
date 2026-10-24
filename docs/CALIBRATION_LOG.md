@@ -73,3 +73,4 @@ These set `slow_radius_px`, `close_radius_px`, `slow_y_frac` and `close_y_frac` 
 | 12 | ball only, no cones | attempt | none | 4 forward moves that left the ball at y=150, 2 slow, 2 pushes, ball gone at 12.9 s | | started from the laptop |
 | 13 | retry for the judges | attempt | none | 7 moves to the ball, then all 8 pushes, the ball kept at the front; done on the push limit at 23.1 s | | best run of the day |
 | 14 | retry for the judges | attempt | none | 4 forward moves, then stopped with BOOT at about 5 s | | |
+| 15 | | attempt | approach 220/400 ms, slow 180/300 ms, push 255/550 ms (about 4x the distance per move) | | | |
