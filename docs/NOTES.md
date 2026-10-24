@@ -122,6 +122,15 @@ a waitlist.
   view or the ball close and off to the left. No run used more than 4 pushes. The ball kept
   settling about 30 px left of center, just outside the 24 px band, and up to 8 slides in a row
   (speed 120, 86 ms) never re-centered it: sideways slides don't move the robot on this carpet.
+  One of these runs put the ball between the cones (seen at the field; the log can't show
+  which, since the robot never saw the cones).
+- 3:45 PM: submitted. The organizers' email at 2:59 named the hand-in: one pull request to
+  github.com/aaishikasb/uno-q-hackout-submissions adding only
+  `10-24-neu/robocar-track/<github-username>.zip`, with the submission details in the ZIP's
+  `app.yaml` description, before 4:00 PM. The ZIP was built from the board's app folder
+  (`app.yaml`, `README.md`, `python/` with the model, `sketch/`; no `.cache`), 4.2 MB, and the
+  pull request is github.com/aaishikasb/uno-q-hackout-submissions/pull/8. The ZIP was not
+  test-imported into App Lab. The model file carries the Edge Impulse username.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
