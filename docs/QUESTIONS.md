@@ -22,9 +22,10 @@ Qualcomm mentors on site.
    - Why it matters: it decides whether the prep code and a pre-trained model can be used as
      they are.
    - Answer: open.
-5. Will the boards have Internet on site for the first dependency download?
-   - Why it matters: the first run downloads and compiles the sketch's Arduino libraries.
-   - Answer: open. A phone hotspot is the backup.
+5. Which Wi-Fi network should the boards use for their first run, and does it need a login page?
+   - Why it matters: the first run downloads and compiles the sketch's Arduino libraries, and a
+     board without a screen can't get past a login page.
+   - Answer: open. The venue has Wi-Fi; a phone hotspot is the fallback.
 6. Arcade: does a RetroArch game count as original if we wrote it ourselves?
    - Why it matters: the Arcade rubric scores originality (20 points). Not this track, but worth
      knowing.
@@ -36,10 +37,13 @@ Qualcomm mentors on site.
    - Answer: doors and registration at 9:30 AM; building runs 10:00 AM to 4:00 PM (the listing
      says until 5:00). Source: the host's email of Oct 21.
 
-## Two more, from the research
+## More, from the research
 
 9. Which App Lab version and Python image do the boards run?
    - Why it matters: on images up to `bricks/0.13.1`, listing OpenCV in `requirements.txt` breaks
      the install.
 10. Is it the same black and white ball, white goal and taped field as the August Robot Soccer
     Cup, and will the guide's Edge Impulse project (1144501) get its labelled data?
+11. How do teams hand in the project: an App Lab export, a ZIP, a GitHub link or a form?
+    - Why it matters: it decides where the submission README goes and what else to include.
+    - Answer: open. Neither the event page nor the guide says.

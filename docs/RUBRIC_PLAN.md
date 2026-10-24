@@ -56,7 +56,9 @@ lengthen the pulses.
   down when one does, and then BOOT does nothing. The camera reader reconnects on its own, so the
   next BOOT press starts a clean run.
 - Show them: cover the ball (stop), unplug or switch off the camera mid-run (stop with the
-  reason printed), then press BOOT again (a clean restart).
+  reason printed), then switch the camera back on and press BOOT again (a clean restart). Wait
+  until the log shows fresh frames first: the board has to rejoin the camera's Wi-Fi, and BOOT
+  itself is read through the camera.
 - Evidence already: tests cover each of these against a fake camera that stalls, freezes and
   drops its connection; a frozen camera is reported within about 430 ms.
 

@@ -15,38 +15,58 @@ Yours:
 - [ ] Run the demo on your webcam in Warp, from `prep/`: `uv run python demo.py --source 0 --show`.
       Warp asks for camera access the first time.
 - [ ] Read the robocar guide once, end to end (`upstream/robocar/README.md`, about 15 minutes).
-- [ ] Pack the MacBook, its charger, and a USB-C cable that carries data, plus a spare cable.
-- [ ] Check that your phone can run a hotspot, as backup Internet for the board's first run.
-- [ ] Pack a tape measure and masking tape, for measuring pulses and marking start spots.
+- [ ] Pack the MacBook, its charger, and a USB-C cable that carries data (a longer one gives floor
+      runs more room), plus a spare cable.
+- [ ] Pack your phone and a cable for its hotspot. The venue has Wi-Fi, but campus networks
+      often need a login page that a board without a screen can't open, and the hotspot also
+      keeps the Mac online while its Wi-Fi is on the camera's network.
+- [ ] Pack some sticky notes or paper to mark start spots. To measure pulses, a sheet of letter
+      paper is 27.9 cm long, or use your phone's Measure app; ask the organizers for tape.
 - [ ] Have `QUESTIONS.md` ready to ask at check-in.
 
 ## On the day, in order
 
 1. Arrive by 9:30 AM; building starts at 10:00.
-2. Ask the open questions (ball and goal, final run setup, pre-written code, Internet).
+2. Ask the open questions in `QUESTIONS.md`: the ball and goal, the final run setup, pre-written
+   code, which Wi-Fi the boards use, and how to hand in the project.
 3. Safety setup: raise the wheels and find the motor-power disconnect.
 4. Connect the UNO Q by USB and follow App Lab's board connection guide. Collect the camera's
-   Wi-Fi name and password, and the motor calibration.
+   Wi-Fi name and password, and the motor calibration. If App Lab offers to update the board's
+   software, ask the organizers first.
 5. While the board has Internet, run the starter once (it compiles the sketch's libraries), and
    press BOOT for the 200 ms test pulse.
-6. Press BOOT during a pulse and check that it stops.
-7. Camera: preview it from the laptop, find a good angle, then close the preview.
-8. Join the camera's Wi-Fi from the board's Linux side (`NOTES.md` has the command), then run the
+6. Still online, check that the app's Python can import OpenCV. If pre-written code is allowed,
+   copy the prep files into the app (`NOTES.md`) with `"mode": "observe"` and read the startup
+   line: Python, numpy and cv2 versions. If not, add `import cv2; print(cv2.__version__)` to the
+   starter's `main.py` for one run. If the import fails, add `prep/requirements-board.txt` now,
+   while the board can still download.
+7. With the wheels raised, set the starter's test pulse to 1000 ms for one run, press BOOT once
+   the wheels spin, and check that they stop at once; then set it back to 200 ms. Nobody can
+   press BOOT inside a 200 ms pulse.
+8. Camera: join the laptop to the camera's Wi-Fi (allow Local Network access if macOS asks),
+   preview it, find a good angle, then close the preview. The laptop has no Internet while it is
+   on that network.
+9. Join the camera's Wi-Fi from the board's Linux side (`NOTES.md` has the command), then run the
    guide's stream check from the app.
-9. If pre-written code is allowed, copy the prep files into the app (`NOTES.md`), with
-   `"mode": "observe"` first. Check the startup line: Python, numpy and cv2 versions.
 10. Record real footage from the laptop (board app stopped) and tune the ball and the goal with
-    `tune.py`; set the ball's search band to start just below the goal's base.
+    `tune.py`; set the ball's search band to start just below the goal's base. Record the goal
+    mouth up close too: the ball and the goal are both white and their search bands overlap
+    there, so check that they stay apart.
 11. Watch-only test: ball left, center, right, far, near, then hidden. The printed detections
-    should match.
+    should match. Every robot's camera uses Wi-Fi channel 1, so if runs stop with "newest frame
+    is N ms old" in the crowded room, raise `stream.stale_after_ms` a little, at most to 800.
 12. Calibrate short moves with the wheels raised, then on the floor, and fill in
-    `CALIBRATION_LOG.md`. Run `"mode": "latency"` once on the floor and set `settle_ms` from it.
+    `CALIBRATION_LOG.md`. The placeholder speeds give only about 25 to 33% wheel power, so expect
+    to raise them if the robot barely moves. Run `"mode": "latency"` once on the floor and set
+    `settle_ms` from it.
 13. Autonomous runs (`"mode": "attempt"`): wheels raised first, then on the floor from the
-    supplied start arrangement. Change one setting at a time and write it down.
+    supplied start arrangement. Change one setting at a time and write it down. Keep watch-only
+    runs short: each run holds every picture in memory, about 100 MB per 30 s at 15 frames a
+    second.
 14. Optional: retrain the Edge Impulse model with this camera's footage and switch
     `"detector": "model"`.
-15. Package: export the app from App Lab, fill in `SUBMISSION_README_TEMPLATE.md`, credit the
-    guide, Arduino, Hiwonder, Edge Impulse and OpenCV.
+15. Package: export the app from App Lab, copy `SUBMISSION_README_TEMPLATE.md` in as its
+    `README.md` and fill it in, and credit the guide, Arduino, Hiwonder, Edge Impulse and OpenCV.
 
 ## After the event
 

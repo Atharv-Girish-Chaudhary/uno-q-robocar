@@ -5,7 +5,8 @@ The quick reference for Saturday. It condenses the event guide (`upstream/README
 Oct 22, which adds `upstream/robocar/PREWORK.md`), Arduino's App Lab source (app-bricks-py at
 `bricks/0.13.1`), and the organizers' August event, the Robot Soccer Cup. Do the organizers'
 pre-work (about 30 minutes) and read the guide itself once end to end; come back here for the
-details.
+details. The event page is https://luma.com/2xsshzd3; on Oct 23 it showed the event as full, with
+a waitlist.
 
 ## The kit
 
@@ -80,6 +81,18 @@ details.
 - The camera serves one stream at a time: close the browser preview, or stop the board's app,
   before another reader connects.
 - Keep USB connected while the board is on the camera's Wi-Fi; App Lab talks to it over USB.
+- The laptop has no Internet while it is on the camera's Wi-Fi, so Claude and the web go offline
+  during previews, recordings and tuning. A phone hotspot over USB keeps the Mac online.
+
+## On the Mac
+
+- macOS asks before an app talks to devices on the local network, such as the camera at
+  `192.168.5.1`. Allow it for Warp and the browser (System Settings, Privacy & Security, Local
+  Network); without it, `demo.py` and `tune.py` fail with "No route to host".
+- An `.eim` built for the board is a Linux ARM program and won't run on the Mac; laptop tests need
+  a macOS build (`EDGE_IMPULSE.md`).
+- uv, Python 3.10, OpenCV's window build and the guide's Makefile all work on this Mac (checked
+  Oct 22).
 
 ## Safety rules
 
@@ -106,6 +119,11 @@ details.
 - So this build ships no `requirements.txt`. Listing `opencv-python-headless` there breaks the
   install on images up to `bricks/0.13.1` (Sep 29); Arduino fixed it on Sep 30 (PR 458). The
   template prints the Python, numpy and OpenCV versions at startup, which settles it.
+- Checked on Oct 23: App Lab 0.11.0 came out that day, and the PR 458 fix is still only in a
+  prerelease (`bricks/0.14.0rc1`, Oct 15), so the rule above stands. If App Lab offers to update
+  the board's software at the event, ask the organizers first. One open, unmerged pull request on
+  the guide (#1) would add a second way to run an Edge Impulse model, through App Lab's Video
+  Object Detection brick; the prep's model runner doesn't need it.
 - If `import cv2` does fail on Saturday, `prep/requirements-board.txt` has exact pins with Linux
   ARM wheels for Python 3.10 to 3.13 (checked with `uv pip compile --python-platform
   aarch64-unknown-linux-gnu`). Add them while the board still has Internet.
