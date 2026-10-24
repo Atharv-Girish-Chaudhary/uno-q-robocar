@@ -73,6 +73,12 @@ a waitlist.
   said connected while the camera's address stayed `INCOMPLETE` in `ip neigh` and the app logged
   "No route to host". `nmcli con up "SSID"` (it works over adb without sudo) brought the
   video back at once, about 7 frames a second. Run it after anything that restarts the camera.
+- 2:55 PM, first watch-only run with the model (ball about 1 m ahead, two cones about 2 m away
+  with a phone-length gap): 73 new frames in 21.7 s. The ball was found on 73 of 86 checks,
+  always at x=140 y=130, and the move each time was "forward speed=110 ms=200: ball centered and
+  far: approach". The goal was never found: the training pictures show the cones from above, as
+  round discs, while the robot sees them from the side and small at 2 m. The video still stalled
+  for about 1.5 to 2.5 s every 5 s or so (13 checks said "no new frame for 154N ms").
 
 ## Setup, in order
 
