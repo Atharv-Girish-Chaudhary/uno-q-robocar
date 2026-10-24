@@ -40,7 +40,13 @@ a waitlist.
 - After the app stops, the camera keeps its one stream busy for a few seconds, so a second viewer
   can time out if it connects at once; it works a few seconds later.
 - 2:06 PM: the cone-goal code (midpoint of two cones, yellow cone colors, ball floor 170) is on the
-  board, in watch-only mode, and the app started cleanly with it.
+  board. From 2:07 the app fails at start: its first Bridge call, `stop`, times out after 10 s,
+  so the motor chip (MCU) isn't answering, and the serial monitor (`arduino-app-cli monitor`)
+  gets no reply to `health` either. It started right after the camera was tilted by hand, and
+  the Python changes can't cause it: the failing call comes before any detector code runs. The
+  sketch talks to the camera's button and the sensors over I2C in `setup()` and every `loop()`,
+  so a disturbed camera cable that holds the I2C bus would stall it. Power saving off made the
+  fastest ping 2 ms instead of 21 ms; the busy channel still spikes to 200 ms.
 
 ## Setup, in order
 
