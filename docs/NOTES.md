@@ -66,6 +66,9 @@ a waitlist.
   again, with no "invalid packet" burst in the router log, while the restart after `sudo reboot`
   had worked. So on this board an app restart can leave the chip silent and only a board restart
   is sure to bring it back: put new files on the board, then reboot it, then start the app.
+- 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
+  battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
+  at 2:44.
 
 ## Setup, in order
 
