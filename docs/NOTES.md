@@ -75,11 +75,22 @@ a waitlist.
   and near", and 6 "right speed=120 ms=86: ball 30 px right of center (band 24): slide toward
   it". The second BOOT press ended the run ("program stopped"). Moves came 0.5 to 2.5 s apart,
   set by the video rate.
-- 3:03 PM, first floor runs: both ended at 0.2 s with "ball lost for 2 frames in a row", before
-  any move. Pictures grabbed right after showed the ball about 20 cm ahead, and the model found
-  it there (confidence 1.0). The likely cause is the BOOT press itself: the button is on the
-  camera, so the hand pressing it can fill the first pictures, and `miss_frames_to_end` 2 ends
-  the run on the first two.
+- 3:00 to 3:03 PM, the first four floor runs (attempt mode, the model, the ball ahead and two
+  cones behind it). Two ended at 0.2 s with "ball lost for 2 frames in a row", before any move.
+  The third saw a ball far off to the right (x=210, y=50), slid right twice, then lost it and
+  ended at 1.5 s; the pictures below show another team's ball far off, which may be what it saw.
+  The fourth drove toward the ball for 9.4 s: six forward moves (speed 110, 200 ms), one slide
+  right, then a slow approach as the ball got near (y from 110 to 160). It was still going when
+  I stopped the app at 3:03 to grab pictures, which cut it off, so check the log for a run in
+  progress before stopping the app. Those pictures show the ball about 20 cm ahead, where that
+  run had brought the robot, and the model found it there (confidence 1.0). The likely cause of
+  the instant stops is the BOOT press itself: the button is on the camera, so the hand pressing it
+  can fill the first pictures, and `miss_frames_to_end` 2 ends the run on the first two.
+- 3:13 PM: `miss_frames_to_end` went to 5, so a run holds still through up to 4 missed pictures
+  and ends on the fifth. The app restarted with `--no-prepare` and came up with `bridge: True`.
+  In the fourth run above, the ball stayed at y=130 across two forward moves, so a 200 ms move at
+  speed 110 may barely move the robot on this carpet (the model's positions come in 10 px steps,
+  so a small move can also hide in one step).
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
