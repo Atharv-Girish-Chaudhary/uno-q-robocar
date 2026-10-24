@@ -139,6 +139,18 @@ a waitlist.
   (attempt, model, 8 pushes, 45 s, 5 misses), and its model found the ball, the goal between two
   cones and nothing on empty floor, in 3 to 8 ms. Not tried: starting the imported app, which
   would stop the demo app and reset the motor chip.
+- 4:00 PM, why the goal was never seen, checked on the 3:03 recording (both cones in plain view,
+  about 30 px wide and 110 px apart). The model returned the ball and no cone box at all, and
+  this `.eim` reports no thresholds, so its cut-off can't be lowered. After its resize the cones
+  are about 12 px wide, like the training cones, so size is not the cause; the training pictures
+  show them from above, as round deep-yellow discs. The color range missed for another reason:
+  it was set from the organizers' pictures (cone saturation 245) and accepts 200 and up, while
+  this camera shows the cones at saturation 80 to 108 (hue 24 to 30, brightness 112 to 240). The
+  ball stays below saturation 52. A range of hue 20 to 36, saturation 65 to 255, brightness 100
+  to 255 found the goal in all 29 frames with the cones in view and in none of the other 76. With
+  `"detector": "model"` the color finder never runs: `runloop.py` hands the model both the ball
+  and the goal. The color ball finder found this ball in 28 of 29 frames, but it only searches the
+  bottom 43% of the picture, so it sees the ball only once it is within about 1 m.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
