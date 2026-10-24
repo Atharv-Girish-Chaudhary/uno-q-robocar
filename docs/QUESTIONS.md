@@ -21,7 +21,7 @@ Qualcomm mentors on site.
 4. Can we bring a detector prepared in advance, or must everything be built on the day?
    - Why it matters: it decides whether the prep code and a pre-trained model can be used as
      they are.
-   - Answer: open.
+   - Answer: yes, code written before the event is allowed (asked at check-in, Oct 24).
 5. Which Wi-Fi network should the boards use for their first run, and does it need a login page?
    - Why it matters: the first run downloads and compiles the sketch's Arduino libraries, and a
      board without a screen can't get past a login page.
