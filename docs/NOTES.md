@@ -91,6 +91,14 @@ a waitlist.
   In the fourth run above, the ball stayed at y=130 across two forward moves, so a 200 ms move at
   speed 110 may barely move the robot on this carpet (the model's positions come in 10 px steps,
   so a small move can also hide in one step).
+- 3:20 PM, the first full attempt (miss limit 5, the ball 50 cm to 1 m ahead, the cones behind
+  it): done in 14.7 s. The first picture held a ball far off to the right (x=250, y=70),
+  probably another team's, and the robot slid right toward it; from the second picture on it saw
+  this ball, centered. Five forward moves (speed 110, 200 ms) and one slow one brought the ball
+  from y=130 to y=210, then came three pushes (speed 160, 350 ms), each "goal not in view:
+  pushing as if lined up", and the attempt finished after the third with the ball rolled on to
+  y=150. The ball stayed at y=210 through the first two pushes, so they moved the robot and the
+  ball together. Pictures came about 2.2 a second, so a move came every 1.5 to 2 s.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
