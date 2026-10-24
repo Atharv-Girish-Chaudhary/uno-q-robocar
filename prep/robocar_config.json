@@ -54,9 +54,9 @@
     "loop_files": false
   },
   "controller": {
-    "center_band_px": 24,
+    "center_band_px": 40,
     "invert_steering": false,
-    "steer_mode": "strafe",
+    "steer_mode": "rotate",
     "strafe_speed": 120,
     "rotate_speed": 160,
     "steer_ms_min": 80,

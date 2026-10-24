@@ -48,7 +48,8 @@ def test_demo_dry_runs_the_synthetic_video(tmp_path, capsys, config, presets):
     assert demo.main(args) == 0
     out = capsys.readouterr().out
     assert "--- run 1: BOOT pressed" in out
-    assert "STEER   left" in out and "dry run: drive left" in out
+    left = "rotate_left" if config["controller"]["steer_mode"] == "rotate" else "left"
+    assert f"STEER   {left}" in out and f"dry run: drive {left}" in out
     assert "end of video" in out
     assert any((tmp_path / "frames").glob("*.jpg"))
 

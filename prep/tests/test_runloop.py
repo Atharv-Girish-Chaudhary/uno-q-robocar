@@ -195,11 +195,13 @@ def test_synthetic_video_decisions_scene_by_scene(config, presets):
         assert action in first, f"{action} missing from the first run: {first}"
     assert summaries[0].ended_by == "decision" and "ball gone after" in summaries[0].reason
 
-    assert (Action.STEER, "left") in seen["left_far"]
+    rotate = settings.controller.steer_mode == "rotate"
+    left, right = ("rotate_left", "rotate_right") if rotate else ("left", "right")
+    assert (Action.STEER, left) in seen["left_far"]
     assert (Action.FORWARD, "forward") in seen["moving_to_center"] | seen["approach"]
     assert (Action.PUSH, "forward") in seen["close_goal_behind"]
     assert (Action.ORBIT, "right") in seen["close_goal_left"]
     assert not any(a in (Action.FORWARD, Action.PUSH) for a, _ in seen["white_box_no_ball"])
-    assert (Action.STEER, "right") in seen["right_far"]
+    assert (Action.STEER, right) in seen["right_far"]
     # and every pulse was short and bounded (FakeRobot checks each one as it comes)
     assert robot.drives and all(1 <= ms <= settings.controller.max_pulse_ms for _, _, ms in robot.drives)
