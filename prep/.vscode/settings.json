@@ -1,0 +1,26 @@
+{
+  // VS Code opens prep/ as its folder. On Oct 24 the Ruff extension rewrote 23 files here on its
+  // own, and Ruff and Pylance flagged 207 warnings, none of them a bug, so both stay quiet in this
+  // folder. Autocomplete and go-to-definition still work.
+  "ruff.enable": false,
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none"
+  },
+  "[python]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "never",
+      "source.organizeImports": "never"
+    }
+  },
+  "[json]": {
+    "editor.formatOnSave": false
+  },
+  "notebook.formatOnSave.enabled": false,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "never",
+    "notebook.source.organizeImports": "never"
+  }
+}
