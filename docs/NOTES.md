@@ -151,6 +151,15 @@ a waitlist.
   `"detector": "model"` the color finder never runs: `runloop.py` hands the model both the ball
   and the goal. The color ball finder found this ball in 28 of 29 frames, but it only searches the
   bottom 43% of the picture, so it sees the ball only once it is within about 1 m.
+- A seventh 8-push run, just before 4:00: 4 pushes, two slides toward a far ball (x=250, y=50),
+  then the ball rolled left and 12 slides in a row over 15 s left it at x=70 to 90, until it was
+  lost ("ball gone after 4 push(es)" at 36.7 s). The clearest sign yet that slides don't move the
+  robot on this carpet.
+- 4:06 PM: `steer_mode` went to rotate (turn toward the ball, `rotate_speed` 160, 80 to 220 ms)
+  and `center_band_px` to 40, in one restart; `--no-prepare` worked this time (`bridge: True`).
+  Turning has never been tried on the floor, so the first run checks that a turn moves the ball
+  toward the middle of the picture. Two tests and the second notebook had the slide directions
+  written in; they now follow `steer_mode`.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
