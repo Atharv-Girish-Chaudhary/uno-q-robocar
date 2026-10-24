@@ -53,11 +53,12 @@ replaced the project's pictures with 353 new ones (281 for training, 72 for test
 shows a pale yellow ball on carpet, so they are probably from the event room. A few were uploaded
 without their boxes, and the organizer said they would fix those.
 
-![Your first model today in six steps: clone the organizers' project, check every picture has its boxes, train a small model, download the .eim file, onto the board, a watch-only test, then your own pictures and train again](../figs/todays-model.svg)
+![Your first model today in six steps: clone the organizers' project, box or delete the 6 pictures with no boxes, train a small model, download the .eim file, onto the board, a watch-only test, then your own pictures and train again](../figs/todays-model.svg)
 
-1. Wait for the organizer's word that the missing boxes are fixed. Then sign in at
-   studio.edgeimpulse.com, open the guide's project and click "Clone this project". A clone is a
-   copy made at that moment, so fixes to their project after it don't reach yours.
+1. Sign in at studio.edgeimpulse.com, open the guide's project and click "Clone this project".
+   A clone is a copy made at that moment, so fixes to their project after it don't reach yours.
+   At 12:35, 6 of the 353 pictures still had no boxes (3 for training, 3 for testing; read from
+   Edge Impulse's public API), few enough to fix in your copy instead of waiting.
 2. In your copy, check that every picture has its boxes: Data acquisition lists each picture's
    labels. A picture of the ball with no box on it teaches the model that the ball is
    background, so label or delete any without.

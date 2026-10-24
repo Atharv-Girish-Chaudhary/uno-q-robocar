@@ -140,7 +140,7 @@ it matters. The two sections below give the details.
   (released Sep 2) over the board's 0.90.0. The core is the kit App Lab builds the motor sketch
   with; 0.90.0 built the guide's sketch and runs it. 1.0.0 moves to Zephyr 4.4, so installing it
   means a rebuilt motor sketch: redo the BOOT test and the 1000 ms stop test afterwards, and ask
-  the organizers first.
+  the organizers first. Skipped at 12:30; the board stayed on 0.90.0 and the app kept running.
 - The guide's pull request #1, merged on Oct 24, adds two more ways to run an Edge Impulse
   model: `edge-impulse-linux` in `requirements.txt`, and App Lab's Video Object Detection brick.
   The prep's model runner needs neither; `EDGE_IMPULSE.md` says why.
