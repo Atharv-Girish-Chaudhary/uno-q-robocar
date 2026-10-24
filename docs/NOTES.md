@@ -1,9 +1,11 @@
 # Build Day notes
 
 The quick reference for Saturday. It condenses the event guide (`upstream/README.md` and
-`upstream/robocar/README.md`, commit `8f40c4e`), Arduino's App Lab source (app-bricks-py at
-`bricks/0.13.1`), and the organizers' August event, the Robot Soccer Cup. Read the guide itself
-once end to end; come back here for the details.
+`upstream/robocar/README.md`, written against commit `8f40c4e` and rechecked at `1fc4493` of
+Oct 22, which adds `upstream/robocar/PREWORK.md`), Arduino's App Lab source (app-bricks-py at
+`bricks/0.13.1`), and the organizers' August event, the Robot Soccer Cup. Do the organizers'
+pre-work (about 30 minutes) and read the guide itself once end to end; come back here for the
+details.
 
 ## The kit
 
@@ -21,7 +23,8 @@ once end to end; come back here for the details.
 ## Setup, in order
 
 1. Raise the wheels off the table, find the motor-power disconnect, and keep it within reach.
-2. Plug the UNO Q in with a USB-C cable that carries data, and follow App Lab's quickstart.
+2. Plug the UNO Q in with a USB-C cable that carries data, and follow App Lab's board
+   connection guide.
 3. Collect the camera's Wi-Fi name and password, and the robot's motor calibration, from the
    organizers. Find the BOOT button on the camera.
 4. While the board still has Internet, run the starter once: import the prepared ZIP in App Lab

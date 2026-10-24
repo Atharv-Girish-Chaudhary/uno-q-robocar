@@ -8,6 +8,8 @@ Done on Oct 22:
 - [x] Prep code written and tested (`uv run pytest` in `prep/`).
 
 Yours:
+- [ ] Do the organizers' pre-work, `upstream/robocar/PREWORK.md` (about 30 minutes, no board
+      needed). They added it on the evening of Oct 22 and ask for it before you connect the kit.
 - [ ] Install Arduino App Lab and open it once (docs.arduino.cc/software/app-lab).
 - [ ] Practice training one Edge Impulse model, following `EDGE_IMPULSE.md` (about an hour).
 - [ ] Run the demo on your webcam in Warp, from `prep/`: `uv run python demo.py --source 0 --show`.
@@ -23,8 +25,8 @@ Yours:
 1. Arrive by 9:30 AM; building starts at 10:00.
 2. Ask the open questions (ball and goal, final run setup, pre-written code, Internet).
 3. Safety setup: raise the wheels and find the motor-power disconnect.
-4. Connect the UNO Q by USB and follow App Lab's quickstart. Collect the camera's Wi-Fi name and
-   password, and the motor calibration.
+4. Connect the UNO Q by USB and follow App Lab's board connection guide. Collect the camera's
+   Wi-Fi name and password, and the motor calibration.
 5. While the board has Internet, run the starter once (it compiles the sketch's libraries), and
    press BOOT for the 200 ms test pulse.
 6. Press BOOT during a pulse and check that it stops.
@@ -45,3 +47,32 @@ Yours:
     `"detector": "model"`.
 15. Package: export the app from App Lab, fill in `SUBMISSION_README_TEMPLATE.md`, credit the
     guide, Arduino, Hiwonder, Edge Impulse and OpenCV.
+
+## After the event
+
+What the prep installed outside this folder, and how to remove it. Nothing is removed
+automatically.
+
+- adb, from Homebrew's `android-platform-tools` (37 MB, for the whole Mac). Keep it if you will use
+  an UNO Q again; otherwise:
+
+  ```bash
+  brew uninstall --cask android-platform-tools
+  ```
+
+- uv, from Homebrew (32 MB): keep it, it is your Python tool.
+- Python 3.10, 3.11 and 3.12, downloaded by uv on Oct 22 (201 MB in uv's own Python folder).
+  If no other project uses them:
+
+  ```bash
+  uv python uninstall 3.10 3.11 3.12
+  ```
+
+- uv's download cache (172 MB in uv's cache folder). Safe to clear, since uv downloads again when
+  needed:
+
+  ```bash
+  uv cache clean
+  ```
+
+- `prep/.venv` (148 MB) lives inside this folder and goes with it.

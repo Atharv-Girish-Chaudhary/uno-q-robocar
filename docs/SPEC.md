@@ -1,7 +1,8 @@
 # Build Day prep: spec
 
 Approved 2026-10-22. Source of truth for every robot fact here is `upstream/`
-(github.com/aaishikasb/uno-q-hackout) at commit `8f40c4e` of 2026-10-20. Facts about the
+(github.com/aaishikasb/uno-q-hackout) at commit `8f40c4e` of 2026-10-20, rechecked at `1fc4493` of
+2026-10-22, which only adds a pre-work page and a new setup link. Facts about the
 board's software come from Arduino's own source (app-bricks-py at `bricks/0.13.1`, PR 458), and
 facts about the field come from the organizers' August event, the Robot Soccer Cup
 (github.com/aaishikasb/qc-robot-soccer-cup and Edge Impulse project 1085406).
