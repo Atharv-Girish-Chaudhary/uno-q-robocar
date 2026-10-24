@@ -56,7 +56,7 @@ Yours:
     should match. Every robot's camera uses Wi-Fi channel 1, so if runs stop with "newest frame
     is N ms old" in the crowded room, raise `stream.stale_after_ms` a little, at most to 800.
 12. Calibrate short moves with the wheels raised, then on the floor, and fill in
-    `CALIBRATION_LOG.md`. The placeholder speeds give only about 25 to 33% wheel power, so expect
+    `CALIBRATION_LOG.md`. The placeholder speeds give only about 24 to 33% wheel power, so expect
     to raise them if the robot barely moves. Run `"mode": "latency"` once on the floor and set
     `settle_ms` from it.
 13. Autonomous runs (`"mode": "attempt"`): wheels raised first, then on the floor from the
