@@ -3,7 +3,8 @@
 Run as `python tools/fake_eim.py SOCKET_PATH`, the way an .eim is started. It listens on that
 Unix socket and speaks the same protocol: it answers "hello" like a 96x96 RGB FOMO model with the
 labels goal and soccerball, and answers "classify" by reporting the brightest round blob in the
-lower part of the picture as a soccerball box, in model pixels. Every reply ends with a zero byte.
+lower part of the picture as a soccerball box, in model pixels, plus any boxes given with
+--boxes (the goal's cones in the tests). Every reply ends with a zero byte.
 """
 
 from __future__ import annotations
@@ -41,7 +42,16 @@ def main() -> None:
     parser.add_argument("--resize-mode", default="squash")
     parser.add_argument("--labels", default="goal,soccerball")
     parser.add_argument("--die-after", type=int, help="exit after this many classify calls")
+    parser.add_argument(
+        "--boxes",
+        default="[]",
+        help='more boxes for every answer, as JSON [["goal", x, y, confidence], ...] in model pixels; each is 8 by 8 like FOMO\'s',
+    )
     args = parser.parse_args()
+    extra = [
+        {"label": label, "value": float(value), "x": int(x), "y": int(y), "width": 8, "height": 8}
+        for label, x, y, value in json.loads(args.boxes)
+    ]
 
     server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     server.bind(args.socket_path)
@@ -77,7 +87,8 @@ def main() -> None:
                     if args.die_after is not None and classified >= args.die_after:
                         os._exit(3)
                     classified += 1
-                    reply["result"] = {"bounding_boxes": find_ball(message["classify"], args.width, args.height)}
+                    boxes = find_ball(message["classify"], args.width, args.height) + extra
+                    reply["result"] = {"bounding_boxes": boxes}
                     reply["timing"] = {"dsp": 0, "classification": 1, "anomaly": 0}
                 else:
                     reply = {"id": message.get("id"), "success": False, "error": "unknown message"}

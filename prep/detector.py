@@ -132,6 +132,25 @@ class Sighting:
     height: int
 
 
+def midpoint(a: Detection, b: Detection) -> Detection:
+    """The goal between two cones: halfway between their centers, wide enough to cover both, as
+    tall as the taller one, and only as sure as the weaker one."""
+    left = min(a.x - a.width / 2.0, b.x - b.width / 2.0)
+    right = max(a.x + a.width / 2.0, b.x + b.width / 2.0)
+    width, height = right - left, max(a.height, b.height)
+    return Detection(
+        found=True,
+        x=(a.x + b.x) / 2.0,
+        y=(a.y + b.y) / 2.0,
+        radius=max(width, height) / 2.0,
+        width=width,
+        height=height,
+        quality=min(a.quality, b.quality),
+        timestamp=a.timestamp,
+        touches_bottom=a.touches_bottom or b.touches_bottom,
+    )
+
+
 def _kernel(size: int) -> Optional[np.ndarray]:
     if size <= 1:
         return None

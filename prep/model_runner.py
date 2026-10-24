@@ -13,6 +13,8 @@ it over that Unix socket with the same JSON messages as Edge Impulse's own Pytho
 
 FOMO models (the guide's choice) report object centers as small fixed-size boxes, so their
 "radius" says nothing about distance; the controller also judges closeness by height in frame.
+The organizers' model boxes each cone of the goal on its own, so the goal is reported at the
+midpoint of the two most confident goal boxes, and one box alone counts as no goal.
 """
 
 from __future__ import annotations
@@ -25,14 +27,14 @@ import socket
 import subprocess
 import tempfile
 import time
-from dataclasses import dataclass, fields
+from dataclasses import dataclass, fields, replace
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
 import cv2
 import numpy as np
 
-from detector import Detection, Sighting
+from detector import Detection, Sighting, midpoint
 
 Box = Dict[str, Any]
 Mapper = Callable[[float, float], Tuple[float, float]]
@@ -285,31 +287,52 @@ class ModelVision:
             raise
         boxes = result.get("bounding_boxes", []) or []
         ball = self._best(boxes, self.cfg.ball_labels, mapper, frame_h, timestamp)
-        goal = self._best(boxes, self.cfg.goal_labels, mapper, frame_h, timestamp)
+        goal = self._pair(boxes, self.cfg.goal_labels, mapper, frame_h, timestamp)
         return Sighting(ball=ball, goal=goal, width=frame_w, height=frame_h)
 
     def _best(
         self, boxes: List[Box], labels: Sequence[str], mapper: Mapper, frame_h: int, timestamp: Optional[float]
     ) -> Detection:
-        matches = [b for b in boxes if b.get("label") in labels and float(b.get("value", 0)) >= self.cfg.min_confidence]
-        if not matches:
+        found = self._matches(boxes, labels, mapper, frame_h, timestamp)
+        return found[0] if found else Detection.missing(timestamp, candidates=len(boxes))
+
+    def _pair(
+        self, boxes: List[Box], labels: Sequence[str], mapper: Mapper, frame_h: int, timestamp: Optional[float]
+    ) -> Detection:
+        """The goal: the gap between its two most confident cones. With one cone in view there is
+        no gap to aim at, so the goal counts as not seen."""
+        found = self._matches(boxes, labels, mapper, frame_h, timestamp)
+        if len(found) < 2:
             return Detection.missing(timestamp, candidates=len(boxes))
-        box = max(matches, key=lambda b: float(b["value"]))
-        x0, y0 = mapper(float(box["x"]), float(box["y"]))
-        x1, y1 = mapper(float(box["x"]) + float(box["width"]), float(box["y"]) + float(box["height"]))
-        w, h = max(x1 - x0, 1.0), max(y1 - y0, 1.0)
-        return Detection(
-            found=True,
-            x=(x0 + x1) / 2.0,
-            y=(y0 + y1) / 2.0,
-            radius=max(w, h) / 2.0,
-            width=w,
-            height=h,
-            quality=float(box["value"]),
-            timestamp=timestamp,
-            touches_bottom=y1 >= frame_h - 1,
-            candidates=len(boxes),
-        )
+        return replace(midpoint(found[0], found[1]), candidates=len(boxes))
+
+    def _matches(
+        self, boxes: List[Box], labels: Sequence[str], mapper: Mapper, frame_h: int, timestamp: Optional[float]
+    ) -> List[Detection]:
+        """The boxes with one of the labels and enough confidence, in frame pixels, most confident first."""
+        found = []
+        for box in boxes:
+            if box.get("label") not in labels or float(box.get("value", 0)) < self.cfg.min_confidence:
+                continue
+            x0, y0 = mapper(float(box["x"]), float(box["y"]))
+            x1, y1 = mapper(float(box["x"]) + float(box["width"]), float(box["y"]) + float(box["height"]))
+            w, h = max(x1 - x0, 1.0), max(y1 - y0, 1.0)
+            found.append(
+                Detection(
+                    found=True,
+                    x=(x0 + x1) / 2.0,
+                    y=(y0 + y1) / 2.0,
+                    radius=max(w, h) / 2.0,
+                    width=w,
+                    height=h,
+                    quality=float(box["value"]),
+                    timestamp=timestamp,
+                    touches_bottom=y1 >= frame_h - 1,
+                    candidates=len(boxes),
+                )
+            )
+        # sorted() keeps the model's order among equal confidences, so a tie goes to the first box.
+        return sorted(found, key=lambda d: d.quality, reverse=True)
 
     def close(self) -> None:
         if self.runner is not None:

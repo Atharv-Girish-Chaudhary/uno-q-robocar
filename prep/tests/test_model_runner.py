@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 from pathlib import Path
@@ -69,6 +70,71 @@ def test_only_the_configured_labels_count(rng):
     v = vision(ball_labels=("soccer_ball",))
     try:
         assert not v.observe(syn.scene_image(rng, ball=(160, 180, 20))).ball.found
+    finally:
+        v.close()
+
+
+def cones(*boxes):
+    """The fake's --boxes option for FOMO-sized goal boxes, each (x, y, confidence) in model pixels."""
+    return ("--boxes", json.dumps([["goal", x, y, value] for x, y, value in boxes]))
+
+
+# Squash stretches the fake's 96 by 96 model picture to 320 by 240: 10/3 frame pixels per model
+# pixel across, 2.5 down. Every box is 8 by 8 model pixels, so its center is 4 past its corner.
+SX, SY = 320 / 96, 240 / 96
+
+
+def test_two_cones_give_the_gap_between_them(rng):
+    v = vision(*cones((20, 40, 0.8), (60, 44, 0.7)))
+    try:
+        goal = v.observe(syn.scene_image(rng), timestamp=5.0).goal
+        assert goal.found and goal.timestamp == 5.0
+        assert goal.x == pytest.approx((24 + 64) / 2 * SX)  # halfway between the two centers
+        assert goal.y == pytest.approx((44 + 48) / 2 * SY)
+        assert goal.width == pytest.approx((68 - 20) * SX)  # left edge of one to right edge of the other
+        assert goal.height == pytest.approx(8 * SY)
+        assert goal.quality == pytest.approx(0.7)  # only as sure as the weaker cone
+        assert goal.candidates == 2
+    finally:
+        v.close()
+
+
+def test_one_cone_is_no_goal(rng):
+    # No gap to aim at, so the controller treats the goal as not seen (rules 13 and 14).
+    v = vision(*cones((20, 40, 0.8)))
+    try:
+        goal = v.observe(syn.scene_image(rng)).goal
+        assert not goal.found and goal.candidates == 1
+    finally:
+        v.close()
+
+
+def test_three_cones_use_the_two_most_confident(rng):
+    v = vision(*cones((40, 40, 0.9), (4, 40, 0.6), (80, 40, 0.8)))
+    try:
+        goal = v.observe(syn.scene_image(rng)).goal
+        assert goal.found and goal.x == pytest.approx((44 + 84) / 2 * SX)  # the 0.6 cone is left out
+        assert goal.quality == pytest.approx(0.8)
+    finally:
+        v.close()
+
+
+def test_a_cone_below_min_confidence_does_not_count(rng):
+    v = vision(*cones((20, 40, 0.8), (60, 40, 0.3)))  # min_confidence is 0.45
+    try:
+        assert not v.observe(syn.scene_image(rng)).goal.found
+    finally:
+        v.close()
+
+
+def test_the_ball_keeps_its_single_most_confident_box(rng):
+    # A weaker second ball box and two cones change nothing about the ball.
+    v = vision("--boxes", json.dumps([["soccerball", 10, 70, 0.6], ["goal", 20, 40, 0.8], ["goal", 60, 40, 0.7]]))
+    try:
+        seen = v.observe(syn.scene_image(rng, ball=(200, 180, 20)))
+        assert seen.ball.found and seen.ball.quality == pytest.approx(0.9)  # the fake's own ball box
+        assert abs(seen.ball.x - 200) <= 6 and abs(seen.ball.y - 180) <= 6
+        assert seen.goal.found
     finally:
         v.close()
 

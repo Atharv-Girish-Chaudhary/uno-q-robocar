@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from detector import ColorDetector, ColorVision, DetectorConfig
+from detector import ColorDetector, ColorVision, Detection, DetectorConfig, midpoint
 from tools import make_synthetic_video as syn
 
 
@@ -115,6 +115,16 @@ def test_goal_detector_finds_the_goal_and_not_the_ball(presets, rng):
 def test_goal_detector_ignores_a_lone_ball(presets, rng):
     goal = detector(presets, "white_goal")
     assert not goal.detect(syn.scene_image(rng, ball=(160, 170, 20))).found
+
+
+def test_midpoint_spans_both_cones():
+    left = Detection(found=True, x=100.0, y=140.0, width=30.0, height=50.0, quality=0.6, timestamp=1.0)
+    right = Detection(found=True, x=240.0, y=150.0, width=20.0, height=30.0, quality=0.9, timestamp=1.0, touches_bottom=True)
+    for a, b in ((left, right), (right, left)):  # either order
+        goal = midpoint(a, b)
+        assert goal.found and (goal.x, goal.y) == (170.0, 145.0)
+        assert (goal.width, goal.height) == (165.0, 50.0)  # from 85 to 250, and the taller cone
+        assert goal.quality == 0.6 and goal.touches_bottom and goal.timestamp == 1.0
 
 
 def test_mask_is_empty_outside_the_search_band(presets, rng):
