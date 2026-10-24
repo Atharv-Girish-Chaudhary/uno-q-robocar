@@ -44,43 +44,50 @@ not find it. A real soccer ball in front of the webcam is the better test.
 
 ## On the day
 
-An organizer's advice on Oct 24: the guide's project (studio.edgeimpulse.com/public/1144501/live)
-now holds the organizers' own pictures, 321 of them labelled goal, robot and soccer_ball, the
-same set as August's. They were taken in an office, so their colors and lighting won't match the
-event room. A bigger set from the room is coming; until then, take your own pictures with your
-phone, about 50 of the ball and 50 of the goals, draw the boxes by hand, and start with a small
-model.
+What the organizers said and did on Oct 24. In the late morning the guide's project
+(studio.edgeimpulse.com/public/1144501/live) held their office pictures, 321 labelled goal, robot
+and soccer_ball (the August set), and an organizer advised taking about 50 phone pictures of the
+ball and 50 of the goals in the room until a bigger set from the room was ready. At 12:05 they
+replaced the project's pictures with 353 new ones (281 for training, 72 for testing), labelled
+`soccerball` and `goal`, with no robot class. They are square, 512 by 512, and the one checked
+shows a pale yellow ball on carpet, so they are probably from the event room. A few were uploaded
+without their boxes, and the organizer said they would fix those.
 
-![Your first model today in six steps: phone pictures, boxes, a small model, the .eim file, onto the board, a watch-only test, then the robot's own pictures and train again](../figs/todays-model.svg)
+![Your first model today in six steps: clone the organizers' project, check every picture has its boxes, train a small model, download the .eim file, onto the board, a watch-only test, then your own pictures and train again](../figs/todays-model.svg)
 
-1. Sign in at studio.edgeimpulse.com, open the guide's project and click "Clone this project".
-2. Data acquisition, "+ Add data", "Collect new data", "Scan QR code to connect to your phone".
-   Take the pictures on the field, in the room's own light: about 50 with the ball, 50 with the
-   goals (one picture can hold both), and about 10 of empty floor, which show the model what is
-   not a ball. Vary the distance, and put the ball left, center and right.
-3. Take them the way the robot sees: crouch, hold the phone at about the height of the robot's
-   camera, and hold it sideways. Edge Impulse squashes every picture to 96 by 96, and the shape
-   it squashes from matters, as the picture below shows.
-4. Name the boxes with the labels the clone already has: `soccer_ball` and `goal`. A new
-   `soccerball` label, the spelling in the guide's text, would split the ball into two classes
-   that the model learns apart. The app accepts either spelling (`model.ball_labels`), but one
-   model should use one.
-5. Train with the settings in steps 3 to 5 above, deploy for Arduino UNO Q as in step 7, and
-   download the `.eim`.
-6. Copy it into the app as `python/models/robocar.eim`, set `"detector": "model"` in the
+1. Wait for the organizer's word that the missing boxes are fixed. Then sign in at
+   studio.edgeimpulse.com, open the guide's project and click "Clone this project". A clone is a
+   copy made at that moment, so fixes to their project after it don't reach yours.
+2. In your copy, check that every picture has its boxes: Data acquisition lists each picture's
+   labels. A picture of the ball with no box on it teaches the model that the ball is
+   background, so label or delete any without.
+3. Name any new boxes with the labels your copy already has, `soccerball` and `goal` since 12:05.
+   A second spelling, such as `soccer_ball` from the August set, would split the ball into two
+   classes that the model learns apart. The app accepts either spelling (`model.ball_labels`),
+   but one model should use one.
+4. Train with the settings in steps 3 to 5 above, deploy for Arduino UNO Q as in step 7, and
+   download the `.eim`. The organizer's "150 epochs" are the guide's training cycles: an epoch is
+   one pass through every training picture. Data augmentation, on in those settings, makes
+   slightly changed copies of each picture while training, with noise and small turns, so the
+   model meets more variety than was photographed.
+5. Copy it into the app as `python/models/robocar.eim`, set `"detector": "model"` in the
    config's `run` section, and read the startup log: it prints the model's labels, and warns if
    none of `ball_labels` is among them. Test in watch-only mode first.
-7. Once the robot's camera works, add pictures from it (`demo.py --record`, then "Upload data"
-   in Data acquisition), in separate sessions for training and for testing, and retrain. They
-   match what the model sees on the robot better than any phone picture can.
+6. If the model misses things, add pictures and retrain. The robot's own camera gives the best
+   ones (`demo.py --record`, then "Upload data" in Data acquisition), in separate sessions for
+   training and for testing. Phone pictures work too: crouch to about the height of the robot's
+   camera, and hold the phone sideways if the phone page keeps the phone's shape, as the picture
+   below shows.
 
 ![A round ball squashed to 96 by 96: from the robot's 320 by 240 picture it is 12 wide and 16 tall; from a phone held upright, 16 wide and 12 tall; from a phone held sideways, 12 wide and 16 tall again](../figs/phone-sideways.svg)
 
 The numbers come from drawing a round ball in a picture of each size and squashing it with
 OpenCV's resize, the way Edge Impulse's Squash mode does. A model learns the shapes it is shown,
-so pictures held upright teach it a ball the robot's camera never produces. The general idea has
-a name: a gap between the pictures a model is trained on and the ones it meets later is called
-domain shift, and the office pictures have it too, in color and light.
+so pictures held upright teach it a ball the robot's camera never produces. The organizers'
+square pictures keep the ball round, which is closer to the robot's 12 by 16 than an upright
+phone picture's 16 by 12. The general idea has a name: a gap between the pictures a model is
+trained on and the ones it meets later is called domain shift, and the office pictures had it
+too, in color and light.
 
 FOMO reports where the ball is, not how big it looks, so the controller judges "near" and
 "close" by how low the ball sits in the picture as well. Calibrate `slow_y_frac` and
@@ -96,9 +103,10 @@ the model with a socket path, send `{"hello": 1}` and then `{"classify": [...]}`
 the package's source, version 1.2.2). The package also has a shared-memory path, which it takes
 only when the model offers one.
 
-Adding it would be safe. Its other dependencies (PyAudio 0.2.14, six, numpy) are already in the
-app's container, which sees the system's packages, and App Lab installs `requirements.txt` only
-when the file changes. It would still add a download to an app that never calls it. If the real
+Adding it would be safe. Its other dependencies are already in the app's container, which sees
+the system's packages: PyAudio 0.2.14, a microphone library it lists because the same package
+also runs sound models, and six and numpy. App Lab also installs `requirements.txt` only when
+the file changes. It would still add a download to an app that never calls it. If the real
 model ever fails with `model_runner.py`, the board can rejoin the hotspot over USB and install
 the package then, to compare the two.
 

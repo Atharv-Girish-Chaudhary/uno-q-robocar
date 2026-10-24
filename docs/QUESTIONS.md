@@ -47,11 +47,12 @@ Qualcomm mentors on site.
      `python-apps-base:0.13.1` (Python 3.13.15), so the OpenCV rule stands. Read on the board.
 10. Is it the same black and white ball, white goal and taped field as the August Robot Soccer
     Cup, and will the guide's Edge Impulse project (1144501) get its labelled data?
-    - Answer: partly. The project now holds the organizers' office pictures: 321, labelled goal,
-      robot and soccer_ball. An organizer said on Oct 24 that they won't match this room's
-      colors and lighting, that a bigger set from this room is coming, and that until then teams
-      should take about 50 phone pictures of the ball and 50 of the goals and label them by hand.
-      The ball and the field: open.
+    - Answer: yes, on Oct 24. In the late morning the project held the organizers' office
+      pictures (321, labelled goal, robot and soccer_ball), and an organizer suggested phone
+      pictures until a set from the room was ready. At 12:05 they replaced them with 353
+      pictures, probably from the room, labelled `soccerball` and `goal`; a few lacked their
+      boxes, which the organizer said they would fix. The ball is not the August black and white
+      one: the picture checked shows a pale yellow ball on carpet. The field: open.
 11. How do teams hand in the project: an App Lab export, a ZIP, a GitHub link or a form?
     - Why it matters: it decides where the submission README goes and what else to include.
     - Answer: open. Neither the event page nor the guide says.
