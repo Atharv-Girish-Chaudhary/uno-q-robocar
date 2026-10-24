@@ -14,8 +14,8 @@ Claude Code rules still apply; this file wins on a conflict. The design is in
   the App Lab app's `requirements.txt` (it breaks the install on board images up to
   `bricks/0.13.1`).
 - Nothing in `prep/` sends motor commands except `robocar_main_template.py`, which only runs on
-  the board. Every `drive()` pulse is 1 to `max_pulse_ms` ms; duration 0 means "drive forever" and
-  is never allowed.
+  the board. Every `drive()` pulse is 1 to `max_pulse_ms` ms, and `max_pulse_ms` is capped at 1000
+  in `controller.py`; duration 0 means "drive forever" and is never allowed.
 - Every threshold, speed and timing lives in `prep/robocar_config.json`, not in code.
 - No em dashes or en dashes in any file.
 - Run the tests from `prep/` with `uv run pytest`.

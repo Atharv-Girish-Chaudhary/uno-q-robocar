@@ -88,8 +88,9 @@ value. Speeds and pulse lengths are placeholders until calibration.
   the controller acts on), `max_identical_frames`, `reconnect_delay_s`, `skip_after_connect`
   (frames dropped after each connect, since the camera's two buffers may hold old pictures), and
   `loop_files`.
-- `controller`: see the rules below. Pulse lengths must be 1 to `max_pulse_ms` ms; config load
-  enforces it.
+- `controller`: see the rules below. Pulse lengths must be 1 to `max_pulse_ms` ms, and
+  `max_pulse_ms` itself is capped at 1000 in code, well under the firmware's 5000; config load
+  enforces both.
 
 ## Modules
 

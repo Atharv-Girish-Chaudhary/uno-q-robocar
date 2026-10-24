@@ -14,6 +14,8 @@ from typing import Any, Dict, Optional, Tuple
 DIRECTIONS = ("forward", "backward", "left", "right", "rotate_left", "rotate_right", "stop")
 STEER_MODES = ("strafe", "rotate")
 FIRMWARE_MAX_MS = 5000
+# The prep code's own ceiling, well under the firmware's: no setting can allow a pulse over 1 s.
+PULSE_CAP_MS = 1000
 
 
 class Action(str, Enum):
@@ -84,8 +86,11 @@ class ControllerConfig:
     def validate(self) -> None:
         if self.steer_mode not in STEER_MODES:
             raise ValueError(f"steer_mode must be one of {STEER_MODES}, got {self.steer_mode!r}")
-        if not 1 <= self.max_pulse_ms <= FIRMWARE_MAX_MS:
-            raise ValueError(f"max_pulse_ms must be 1 to {FIRMWARE_MAX_MS} (the firmware's limit)")
+        if not 1 <= self.max_pulse_ms <= PULSE_CAP_MS:
+            raise ValueError(
+                f"max_pulse_ms must be 1 to {PULSE_CAP_MS}: no pulse here may pass 1 s "
+                f"(the firmware's own limit is {FIRMWARE_MAX_MS})"
+            )
         for name in PULSES:
             ms = getattr(self, name)
             if not 1 <= ms <= self.max_pulse_ms:

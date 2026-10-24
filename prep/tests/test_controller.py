@@ -176,6 +176,8 @@ def test_config_file_section_loads(config):
         ({"approach_ms": 0}, "drive forever"),
         ({"push_ms": 1500}, "every pulse"),
         ({"max_pulse_ms": 9000}, "firmware"),
+        ({"max_pulse_ms": 1001}, "1 to 1000"),
+        ({"max_pulse_ms": 3000}, "1 to 1000"),
         ({"steer_mode": "spin"}, "steer_mode"),
         ({"steer_ms_min": 300, "steer_ms_max": 200}, "larger"),
         ({"push_speed": 300}, "1 to 255"),
