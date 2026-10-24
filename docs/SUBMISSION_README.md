@@ -172,7 +172,7 @@ The best runs drove up to the ball and kept pushing it: runs 5 and 8 pushed 3 ti
 and runs 10 and 14 pushed 4 times, following the ball after it rolled ahead. In run 5 the ball
 stopped short of the cones, so the push limit went from 3 to 8 and the time limit from 30 s to
 45 s. No run used more than 4 pushes: each ended when the ball rolled off to one side, where
-sideways slides could not bring it back to the center. Goals scored: none confirmed.
+sideways slides could not bring it back to the center. Goals scored: a run put the ball between the cones. The log can't show which run, since the robot never saw the cones.
 
 What went wrong and how it recovered:
 
