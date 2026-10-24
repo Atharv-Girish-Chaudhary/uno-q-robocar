@@ -68,7 +68,11 @@ a waitlist.
   is sure to bring it back: put new files on the board, then reboot it, then start the app.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
-  at 2:44.
+  at 2:44. A fresh pack read about 11,550.
+- After the battery swap the camera restarted, but the board kept its old Wi-Fi link: `nmcli`
+  said connected while the camera's address stayed `INCOMPLETE` in `ip neigh` and the app logged
+  "No route to host". `nmcli con up "SSID"` (it works over adb without sudo) brought the
+  video back at once, about 7 frames a second. Run it after anything that restarts the camera.
 
 ## Setup, in order
 
