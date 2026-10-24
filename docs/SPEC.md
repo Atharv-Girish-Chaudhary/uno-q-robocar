@@ -1,6 +1,7 @@
 # Build Day prep: spec
 
-Approved 2026-10-22. Source of truth for every robot fact here is `upstream/`
+Approved 2026-10-22; the Build Day field update (the goal is the gap between two yellow cones)
+approved 2026-10-24. Source of truth for every robot fact here is `upstream/`
 (github.com/aaishikasb/uno-q-hackout) at commit `8f40c4e` of 2026-10-20, rechecked at `1fc4493` of
 2026-10-22, which only adds a pre-work page and a new setup link. Facts about the
 board's software come from Arduino's own source (app-bricks-py at `bricks/0.13.1`, PR 458), and
@@ -13,7 +14,7 @@ Arrive at Build Day with Qualcomm (Sat Oct 24, 2026, Robocar track) with the det
 camera reader and the decision logic already written and tested on the laptop, so the day goes to
 calibration, tuning and the scored runs. Nothing here needs the robot until Saturday.
 
-## What the field probably looks like
+## What the field looks like
 
 The event page says the robocar track uses the Robot Soccer Cup resources. That August event had
 a green floor, dark walls with red tape on one side and blue on the other, a small white goal
@@ -21,8 +22,21 @@ with a net against an end wall, and a black and white soccer ball. Its teams fou
 Edge Impulse models, and used HSV color only for the wall tape. Build Day's mission, from its
 event page: "Which robocar can identify the goal and score first?"
 
-So the color detector defaults to a white ball on the floor below the wall, and a model runner
-lets a trained Edge Impulse model replace it on the day without touching anything else.
+Build Day's own field, from the organizers' pictures and answers on Oct 24, is different: gray
+carpet, a small white soccer ball with black spots that looks cream in the room's light, and a
+goal made of two yellow cones with a gap between them. The robot must aim at the gap, not at a
+cone. The organizers left the cone spacing for teams to measure, so nothing here depends on it.
+Measured with OpenCV on their labelled boxes (median, then 5th to 95th percentile), the cones
+are hue 31 (29 to 33), saturation 245 (237 to 247) and brightness 237 (219 to 254); the ball is
+hue 29, saturation 73 (28 to 123) and brightness 248 (240 to 253); the carpet is hue 21,
+saturation 14 and brightness 151. So saturation tells the ball from the cones, and brightness
+tells the ball from the carpet.
+
+So `robocar_config.json` starts the color detector on a cream ball and two yellow cones, and a
+model runner lets a trained Edge Impulse model replace it without touching anything else. Both
+report the goal at the midpoint between the two cones; with only one cone in view there is no
+gap to aim at, so the goal counts as not seen. The synthetic video still shows August's field,
+so the tests and notebooks that run on it use August's presets (`white_ball`, `white_goal`).
 
 ## Layout
 
@@ -42,7 +56,8 @@ qualcomm-build-day/
     pyproject.toml  uv.lock  .python-version
     requirements-board.txt   fallback only, see below
     robocar_config.json      every tunable number
-    detector_presets.json    starting color ranges (white ball, red ball, white goal, tapes)
+    detector_presets.json    starting color ranges (August's white ball and white goal, Build
+                             Day's cream ball and yellow cones, a red ball, tapes)
     detector.py  model_runner.py  stream.py  controller.py  runloop.py
     tune.py  demo.py  robocar_main_template.py
     tools/make_synthetic_video.py  tools/fake_camera.py  tools/fake_eim.py
@@ -84,10 +99,17 @@ value. Speeds and pulse lengths are placeholders until calibration.
   two ranges because its hue wraps around 0), `roi_top_frac` and `roi_bottom_frac` (the rows to
   search), `blur_ksize`, `open_ksize`, `close_ksize`, `min_area_px`, `max_area_frac`, and a
   `shape`. A `round` shape (the ball) needs `min_fill_ratio` and, above
-  `circularity_min_radius_px`, `min_circularity`. A `box` shape (the goal) needs an aspect ratio
-  between `min_aspect` and `max_aspect` and a `min_fill_ratio` against its bounding box.
+  `circularity_min_radius_px`, `min_circularity`. A `box` shape (each cone) needs an aspect ratio
+  between `min_aspect` and `max_aspect` and a `min_fill_ratio` against its bounding box. `pair`
+  (box shape only, off by default, on for the goal) makes the target the midpoint of the two best
+  blobs, and a single blob counts as not found. The starting values are the `cream_ball` and
+  `yellow_cones` presets: for the ball saturation 0 to 150 and brightness from 170, for the cones
+  hue 25 to 37, saturation from 200 and brightness from 120, with an aspect of 0.3 to 6 since a
+  cone may stand tall or lie flat. They are placeholders until `tune.py` runs on the robot's own
+  footage.
 - `model`: the `.eim` path, `ball_labels` (`soccerball` from the guide, `soccer_ball` from the
-  August dataset), `goal_labels`, `min_confidence`, and start and call timeouts.
+  August dataset), `goal_labels` (one box per cone in the organizers' pictures), `min_confidence`,
+  and start and call timeouts.
 - `stream`: `url`, `connect_timeout_s`, `read_timeout_s`, `stale_after_ms` (also the oldest frame
   the controller acts on), `max_identical_frames`, `reconnect_delay_s`, `skip_after_connect`
   (frames dropped after each connect, since the camera's two buffers may hold old pictures), and
@@ -117,7 +139,13 @@ The ball's search band must start below the goal's base. JPEG works in 8 by 8 pi
 the white goal's bottom bar smears brightness to the end of its block row, and the morphology
 then bridges that smear to a far ball just below it. On the synthetic field the band starts at
 0.57 of the frame height, the first block row below the goal; on the real field it is set with
-`tune.py`.
+`tune.py`. Build Day's yellow cones fall outside the ball's saturation range, so on that field
+the band only has to cover the floor.
+
+With `pair` on, the two best blobs (by the same quality times area score) are the two cones, and
+`midpoint(a, b)` turns them into one goal: x and y halfway between their centers, width from the
+leftmost edge to the rightmost one, the taller cone's height, and the weaker cone's quality. One
+blob alone gives no goal. The model runner uses the same `midpoint`.
 
 `Detection` fields: `found`, `x`, `y`, `radius` (apparent, px), `width`, `height`, `quality`
 (0 to 1), `timestamp`, `touches_bottom`, `candidates`. `ColorVision(ball_cfg, goal_cfg)` runs one
@@ -131,11 +159,13 @@ a Unix socket, send JSON messages with an `id`, read replies that end in a zero 
 first for the input size, channel count and resize mode, then `classify` with pixels packed as
 `(R << 16) + (G << 8) + B` after the same resize (`squash`, `fit-shortest` or `fit-longest`).
 Bounding boxes come back in the model's input pixels and are mapped back to the frame. It
-returns the same `Sighting` as `ColorVision`. FOMO models give centers, not sizes, which is why
-the controller can also judge closeness from the ball's height in the frame. The guide's
-`make flash` unzips the app with Python's `zipfile`, which drops the execute bit, so before
-starting a model the runner gives it back, on the file when it can and otherwise on a copy in
-its temporary folder.
+returns the same `Sighting` as `ColorVision`: the ball is its most confident ball box, and the
+goal is the `midpoint` of its two most confident goal boxes, since the organizers' pictures box
+each cone on its own. One goal box alone gives no goal. FOMO models give centers, not sizes,
+which is why the controller can also judge closeness from the ball's height in the frame. The
+guide's `make flash` unzips the app with Python's `zipfile`, which drops the execute bit, so
+before starting a model the runner gives it back, on the file when it can and otherwise on a
+copy in its temporary folder.
 
 ### stream.py
 
@@ -184,6 +214,9 @@ slow approach) means radius at least `slow_radius_px` or center below `slow_y_fr
 | 14 | Close, goal not seen, centered | PUSH, as if the goal were lined up |
 
 ![The same rules as four questions in order: picture fresh, ball seen, ball close, lined up with the goal](../figs/decision-rules.svg)
+
+"Goal seen" means both cones: with one cone in view there is no gap to aim at, so rules 13 and 14
+apply and the robot pushes as if lined up.
 
 Steering pulses grow from `steer_ms_min` at the band edge to `steer_ms_max` at the frame edge.
 When close, rotation centers the ball without changing where the goal sits relative to it, and a
@@ -239,7 +272,9 @@ ends it starts another after a short pause, as if BOOT were pressed again, unles
 `uv run python tune.py --source SOURCE [--target ball|goal] [--preset NAME]`. Trackbars for two
 HSV ranges (the second can be switched off), the search band, kernel sizes, minimum area and the
 shape limits. Clicking the frame prints the HSV under the cursor. `s` saves that target's section
-only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits.
+only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits. For the goal,
+`--preset yellow_cones` starts from the cone ranges; the box drawn spans both cones, and "not
+found" with one cone in view is the pair rule at work.
 
 ### tools
 
@@ -253,15 +288,17 @@ only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits.
   time like the real camera. Flags make it stall, repeat one JPEG, or drop the connection.
 - `fake_eim.py`: a stand-in for an Edge Impulse model that speaks the same socket protocol and
   reports the brightest round blob as `soccerball`, so the runner is tested before a real model
-  exists.
+  exists. `--boxes` adds fixed FOMO-sized boxes, with any label and confidence, to every answer,
+  for the goal's cones.
 
 ### notebooks
 
 Jupyter notebooks in `prep/notebooks/` that show what the robot sees, saved with their pictures
 so they read straight away in VS Code (pick the `prep/.venv` kernel) and on GitHub. Each starts
 with a `SOURCE` setting: the synthetic video by default, or a folder recorded with
-`demo.py --record`. Each checks itself against the real code, so it fails loudly if the code
-and the explanation drift apart.
+`demo.py --record`. The synthetic video uses August's presets, since it shows August's field;
+a recording uses `robocar_config.json`. Each checks itself against the real code, so it fails
+loudly if the code and the explanation drift apart.
 
 - `01_how_the_detector_sees.ipynb` follows one picture through `detector.py`: the picture, its
   hue, saturation and value, the color mask, the search band, the cleanup, every blob with its
@@ -286,10 +323,13 @@ default on the laptop through `default-groups`; the robot never imports them.
   empty floor is not found; a white box and a white bar are rejected; a ball cut by the bottom
   edge is still found; the room wall above the search band is ignored; a red ball near the hue
   wrap is found only with both ranges; the goal detector finds the goal and not the ball; bad
-  config values raise.
+  config values raise. On a drawn Build Day field (gray carpet, cream ball, yellow cones): two
+  cones give their midpoint, one cone gives no goal, three cones use the two biggest, and the
+  cream ball is found while the cones and the carpet are not.
 - Model runner, against `fake_eim.py`: the handshake, the resize modes and the mapping of boxes
   back to frame pixels, a clean stop, and a model saved without its run permission, both when
-  the file can be fixed and when only a copy can.
+  the file can be fixed and when only a copy can. Two goal boxes give their midpoint, one gives
+  no goal, three use the two most confident, and the ball keeps its single most confident box.
 - Stream: the parser on the firmware's framing in random splits, one byte at a time, without
   `Content-Length`, with garbage first and with a broken JPEG; then live against
   `fake_camera.py`: newest frame wins, a stall is reported within `stale_after_ms` plus a margin,
@@ -300,16 +340,19 @@ default on the laptop through `default-groups`; the robot never imports them.
   stale feed and an exception; short bounded pulses only; `is_running()` on every pass; a BOOT
   press mid-run exits without another pulse; the template's wiring with the guide's real
   `robot_client.py` over a fake Bridge, and a Bridge timeout while waiting for BOOT that must
-  not end the app.
-- End to end: the run loop over the synthetic video with a fake clock gives the expected
-  decisions per scene.
+  not end the app. Synthetic pictures go through August's presets, never the live config, so
+  tuning on the day can't break these tests.
+- End to end: the run loop over the synthetic video with a fake clock and August's presets gives
+  the expected decisions per scene.
 - Environment: exactly one OpenCV distribution is installed.
 - Notebooks: each one runs top to bottom in memory (`tests/test_notebooks.py`), so its own
   checks against the code run with the suite; the saved file is never rewritten.
 
 ## Assumptions the guide does not settle
 
-- That Build Day uses the August ball, goal and field. Ask at check-in.
+- Build Day's field is settled (see above), but not the cones' shape (tall or flat), their size
+  in the robot's picture or their spacing; `tune.py` on the robot's own footage sets the goal's
+  band, aspect and size limits.
 - Which App Lab image the boards run; the startup version print settles whether OpenCV imports.
 - That the App Lab container reaches `192.168.5.1` once UNO Q Linux joins the camera network.
 - Camera latency and frame rate: unmeasured; `measure_latency` measures them on the day.
