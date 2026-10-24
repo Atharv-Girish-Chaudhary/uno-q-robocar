@@ -108,7 +108,7 @@ flagged picture looked at by eye.
 - 3 have two boxes on one ball.
 
 All 353 are 512 by 512, the two labels are spelled the same everywhere, and no picture appears in
-both training and test. The names went to the organizers.
+both training and test. The picture names are on the game plan page, for the organizers.
 
 FOMO reports where the ball is, not how big it looks, so the controller judges "near" and
 "close" by how low the ball sits in the picture as well. Calibrate `slow_y_frac` and
