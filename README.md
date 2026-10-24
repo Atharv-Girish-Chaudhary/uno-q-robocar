@@ -24,6 +24,7 @@ Every move is one short pulse decided from a fresh picture, and any doubt stops 
 | Path | What it is for |
 |---|---|
 | `README.md` | This file: what is here, what the organizers' files do, and the commands that matter. |
+| `GAME_PLAN.html` | The Build Day game plan: the event, the robot, the rules, tonight's work and Saturday's steps, with every diagram. Open it in a browser; GitHub shows HTML as code. |
 | `CLAUDE.md` | The rules for Claude sessions in this repo: Python 3.10, one OpenCV build per environment, the 1000 ms pulse cap, no em or en dashes. |
 | `.gitignore` | Keeps `upstream/`, virtual environments, generated samples, recordings and trained models out of this repo's history. |
 | `docs/` | Notes for you and the judges, listed below. |

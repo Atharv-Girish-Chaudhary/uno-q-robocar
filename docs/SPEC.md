@@ -30,6 +30,7 @@ lets a trained Edge Impulse model replace it on the day without touching anythin
 qualcomm-build-day/
   .gitignore                 upstream/, venvs, generated samples, recordings and models
   README.md                  what is here and the commands that matter
+  GAME_PLAN.html             the Build Day game plan page, published from here
   CLAUDE.md                  this repo's rules for future Claude sessions
   upstream/                  separate clone of the guide, read only, never in this history
   docs/
