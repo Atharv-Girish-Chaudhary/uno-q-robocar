@@ -76,7 +76,7 @@
     "orbit_ms": 150,
     "settle_ms": 120,
     "min_new_frames": 2,
-    "miss_frames_to_end": 2,
+    "miss_frames_to_end": 5,
     "run_time_limit_s": 30,
     "max_pulse_ms": 1000
   }
