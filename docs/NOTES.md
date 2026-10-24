@@ -47,6 +47,14 @@ a waitlist.
   sketch talks to the camera's button and the sensors over I2C in `setup()` and every `loop()`,
   so a disturbed camera cable that holds the I2C bus would stall it. Power saving off made the
   fastest ping 2 ms instead of 21 ms; the busy channel still spikes to 200 ms.
+- Power-cycling the board switch at 2:15 didn't help: the camera came back and the board rejoined
+  it by itself, but the chip still didn't answer. Every app start does reset the chip
+  (`flash_sketch.cfg`: reset, check the flash, reset again), and the sketch compiles fine offline.
+  The starts that worked (2:55 and 2:58 PM here meaning 20:55 and 20:58 UTC) each put a burst of
+  "invalid packet" lines in the router log, the sketch's start-up text arriving on the RPC
+  serial line; the failing starts put none, so nothing reaches the router from the chip at all.
+  Next test: a board restart, which also restarts the router; if the chip still says nothing,
+  suspect the I2C wiring and ask the organizers.
 
 ## Setup, in order
 
