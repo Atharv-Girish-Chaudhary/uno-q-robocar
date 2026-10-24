@@ -221,6 +221,12 @@ a waitlist.
   The `--no-prepare` restart worked (`bridge: True`, `line_ok` true, battery 10,939). Motor speed
   alone could not go 4x, since speeds stop at 255; the robot also looks slow because a move comes
   only every 1.5 s, waiting for fresh pictures.
+- The first run with the faster moves: the ball started near (y=170), so only the near and push
+  moves ran, at their new sizes. Each big move made the ball drop out of view for 2 pictures (the
+  robot jumped into it, into the blind spot or past it), it pushed twice at 255 for 550 ms, and
+  after a second near move the ball stayed lost: "ball gone after 2 push(es)" at 10.8 s. The best
+  run at the old speeds kept the ball in front for all 8 pushes, so near the ball the big moves
+  cost control.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
