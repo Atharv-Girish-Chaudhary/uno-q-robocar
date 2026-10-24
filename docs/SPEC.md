@@ -206,8 +206,11 @@ the three modes, all taking any robot with `is_running()`, `drive(direction, spe
 
 Reference only, never copied into `upstream/`. It is the guide's `main.py` with `motion_check()`
 calling `runloop.run_mode(...)`: same imports, same startup `robot.stop()`, health and sensor
-prints, the same `App.run(user_loop=lambda: robot.run_program(...))` and `finally:
-robot.stop()`. It loads `robocar_config.json` from its own folder, prints the Python, numpy and
+prints, `robot.run_program(...)` as `App.run`'s user loop, and `finally: robot.stop()`. One
+addition: `user_loop()` wraps `run_program`, whose own Bridge calls (`is_running()` while
+waiting for BOOT, `stop()` and `hold_toggle()` after each run) are unguarded. An error there is
+printed, followed by `robot.stop()` and a wait of `stream.reconnect_delay_s`, instead of ending
+the app. It loads `robocar_config.json` from its own folder, prints the Python, numpy and
 OpenCV versions, and opens the camera once at startup so frames are flowing when BOOT is
 pressed.
 
@@ -260,7 +263,8 @@ only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits.
 - Run loop and template, with a fake robot, fake camera and fake clock: stop on a lost ball, a
   stale feed and an exception; short bounded pulses only; `is_running()` on every pass; a BOOT
   press mid-run exits without another pulse; the template's wiring with the guide's real
-  `robot_client.py` over a fake Bridge.
+  `robot_client.py` over a fake Bridge, and a Bridge timeout while waiting for BOOT that must
+  not end the app.
 - End to end: the run loop over the synthetic video with a fake clock gives the expected
   decisions per scene.
 - Environment: exactly one OpenCV distribution is installed.

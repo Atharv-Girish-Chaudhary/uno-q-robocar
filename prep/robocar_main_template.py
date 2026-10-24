@@ -5,11 +5,13 @@ detector.py, model_runner.py, stream.py, controller.py, runloop.py and robocar_c
 python/ beside main.py, then use this file's contents as main.py. Don't add numpy or OpenCV to
 python/requirements.txt: the App Lab image already has both (see docs/NOTES.md).
 
-Kept from the guide: the startup robot.stop(), the health and sensor prints,
-App.run(user_loop=lambda: robot.run_program(...)) and the finally block. Changed: motion_check()
-runs one look, decide, move attempt from runloop.py instead of a single forward pulse.
+Kept from the guide: the startup robot.stop(), the health and sensor prints, run_program as
+App.run's user loop, and the finally block. Changed: motion_check() runs one look, decide, move
+attempt from runloop.py instead of a single forward pulse, and user_loop() wraps run_program so
+that an error from its own Bridge calls can't end the app.
 """
 
+import time
 from pathlib import Path
 
 from arduino.app_utils import App
@@ -34,13 +36,28 @@ def motion_check() -> None:
     runloop.run_mode(robot, camera, vision, settings, passthrough=(ProgramStopped,))
 
 
+def user_loop() -> None:
+    # run_program's own Bridge calls (is_running() while waiting for BOOT, stop() and
+    # hold_toggle() after each run) have no guard. One timeout there would leave App.run, and
+    # App Lab would shut the app down with BOOT dead until a restart.
+    try:
+        robot.run_program(motion_check)
+    except Exception as error:
+        print(f"[ERROR] {type(error).__name__}: {error}; stopping the motors and trying again")
+        try:
+            robot.stop()
+        except Exception:
+            pass  # the motor timer still ends any pulse
+        time.sleep(settings.stream.reconnect_delay_s)
+
+
 try:
     robot.stop()
     print(f"health  : {robot.health()}")
     print(f"sensors : {robot.read_sensors()}")
     print(f"mode    : {settings.run.mode}, {settings.run.detector} detector, camera {settings.stream.url}")
     print("Raise the wheels, then short-press the camera BOOT button to start a run.")
-    App.run(user_loop=lambda: robot.run_program(motion_check))
+    App.run(user_loop=user_loop)
 finally:
     robot.stop()
     camera.close()

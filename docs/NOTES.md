@@ -110,7 +110,9 @@ details.
   ARM wheels for Python 3.10 to 3.13 (checked with `uv pip compile --python-platform
   aarch64-unknown-linux-gnu`). Add them while the board still has Internet.
 - If an error escapes `App.run`'s loop, App Lab shuts the app down and BOOT does nothing until it
-  is restarted. The prep loop catches every error, stops the motors and returns.
+  is restarted. The prep loop catches every error, stops the motors and returns, and the
+  template's `user_loop()` also catches errors from `run_program`'s own Bridge calls, such as a
+  timeout while waiting for BOOT.
 - The container sits on its own Docker network. If the camera answers from `adb shell` but not
   from the app, run `ip route` on the board and check that the camera's subnet is not hidden.
 

@@ -34,9 +34,13 @@ class FakeBoard:
         self.calls = []
         self.disable_after_drives = disable_after_drives
         self.drives = 0
+        self.failing_reads = 0
 
     def call(self, method, *params, timeout=10):
         self.calls.append((method, params))
+        if method == "read_sensors" and self.failing_reads > 0:
+            self.failing_reads -= 1
+            raise TimeoutError("Bridge call 'read_sensors' timed out")  # the MCU didn't answer
         if method == "read_sensors":
             return json.dumps({"program_enabled": self.enabled, "hold_toggle": False, "ultrasonic_mm": -1, "battery_mv": 7600})
         if method == "health":
@@ -53,11 +57,16 @@ class FakeBoard:
 
 
 class FakeApp:
-    def __init__(self, board, camera):
+    def __init__(self, board, camera, idle_timeouts=0):
         self.board, self.camera = board, camera
         self.presses = 0
+        self.idle_timeouts = idle_timeouts
 
     def run(self, user_loop):
+        if self.idle_timeouts:
+            # Waiting for BOOT, run_program's own is_running() call times out on the Bridge.
+            self.board.failing_reads = self.idle_timeouts
+            user_loop()
         for hide_ball in (False, True):
             self.camera.hide_ball = hide_ball
             # Let frames of the new scene arrive first; the robot always acts on the newest one.
@@ -91,11 +100,7 @@ class LiveCamera(FrameSource):
         super().close()
 
 
-@pytest.mark.skipif(not ROBOT_CLIENT.exists(), reason="needs the guide cloned into upstream/")
-def test_template_runs_the_loop_inside_the_guides_lifecycle(monkeypatch, capsys):
-    board = FakeBoard(disable_after_drives=2)
-    camera = LiveCamera().start()
-    app = FakeApp(board, camera)
+def run_template(monkeypatch, capsys, board, camera, app):
     app_utils = types.ModuleType("arduino.app_utils")
     app_utils.App = app
     app_utils.Bridge = board
@@ -112,7 +117,15 @@ def test_template_runs_the_loop_inside_the_guides_lifecycle(monkeypatch, capsys)
     monkeypatch.setattr(runloop, "open_camera", lambda settings, source=None: camera)
 
     runpy.run_path(str(PREP / "robocar_main_template.py"), run_name="__main__")
-    out = capsys.readouterr().out
+    return capsys.readouterr().out
+
+
+@pytest.mark.skipif(not ROBOT_CLIENT.exists(), reason="needs the guide cloned into upstream/")
+def test_template_runs_the_loop_inside_the_guides_lifecycle(monkeypatch, capsys):
+    board = FakeBoard(disable_after_drives=2)
+    camera = LiveCamera().start()
+    app = FakeApp(board, camera)
+    out = run_template(monkeypatch, capsys, board, camera, app)
 
     methods = [m for m, _ in board.calls]
     assert methods[0] == "stop"  # the startup stop, before anything can move
@@ -127,4 +140,20 @@ def test_template_runs_the_loop_inside_the_guides_lifecycle(monkeypatch, capsys)
     assert "program stopped" in out
     assert "ball lost" in out
     assert methods[-1] == "stop" and methods.count("stop") >= 4
+    assert camera.closed_by_template
+
+
+@pytest.mark.skipif(not ROBOT_CLIENT.exists(), reason="needs the guide cloned into upstream/")
+def test_a_bridge_timeout_while_waiting_for_boot_does_not_end_the_app(monkeypatch, capsys):
+    # Without the template's guard, this TimeoutError would leave App.run and shut the app down.
+    board = FakeBoard(disable_after_drives=2)
+    camera = LiveCamera().start()
+    app = FakeApp(board, camera, idle_timeouts=1)
+    out = run_template(monkeypatch, capsys, board, camera, app)
+
+    assert "[ERROR] TimeoutError" in out
+    # The app kept going: both later BOOT presses ran, with the same bounded pulses.
+    assert app.presses == 2
+    drives = [params for m, params in board.calls if m == "drive"]
+    assert len(drives) == 2 and all(1 <= ms <= 1000 for _, _, ms in drives)
     assert camera.closed_by_template
