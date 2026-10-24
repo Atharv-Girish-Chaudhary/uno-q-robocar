@@ -130,9 +130,15 @@ it matters. The two sections below give the details.
   template prints the Python, numpy and OpenCV versions at startup, which settles it.
 - Checked on Oct 23: App Lab 0.11.0 came out that day, and the PR 458 fix is still only in a
   prerelease (`bricks/0.14.0rc1`, Oct 15), so the rule above stands. If App Lab offers to update
-  the board's software at the event, ask the organizers first. One open, unmerged pull request on
-  the guide (#1) would add a second way to run an Edge Impulse model, through App Lab's Video
-  Object Detection brick; the prep's model runner doesn't need it.
+  the board's software at the event, ask the organizers first.
+- Seen on Oct 24: the board update (arduino-app-cli 0.14.0, arduino-router 0.11.0, kernel 7.0.0)
+  ended with "Update failed" while it streamed its log, and its cleanup removed the running app.
+  A restart (`sudo reboot` in App Lab's board shell) finished it, the new kernel came up, and the
+  app had to be started again. The app's container is still `python-apps-base:0.13.1`, so the
+  rule above stands.
+- The guide's pull request #1, merged on Oct 24, adds two more ways to run an Edge Impulse
+  model: `edge-impulse-linux` in `requirements.txt`, and App Lab's Video Object Detection brick.
+  The prep's model runner needs neither; `EDGE_IMPULSE.md` says why.
 - If `import cv2` does fail on Saturday, `prep/requirements-board.txt` has exact pins with Linux
   ARM wheels for Python 3.10 to 3.13 (checked with `uv pip compile --python-platform
   aarch64-unknown-linux-gnu`). Add them while the board still has Internet.

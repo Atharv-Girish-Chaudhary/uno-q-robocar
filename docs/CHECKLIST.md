@@ -63,8 +63,10 @@ Yours:
     supplied start arrangement. Change one setting at a time and write it down. Keep watch-only
     runs short: each run holds every picture in memory, about 100 MB per 30 s at 15 frames a
     second.
-14. Optional: retrain the Edge Impulse model with this camera's footage and switch
-    `"detector": "model"`.
+14. Whenever the robot has to wait, such as while its battery charges, train a first Edge
+    Impulse model from phone pictures, as an organizer advised (`EDGE_IMPULSE.md`, "On the
+    day"). Test it in watch-only mode, retrain it with this camera's footage, and switch
+    `"detector": "model"` once it finds the ball at least as well as the color detector.
 15. Package: export the app from App Lab, copy `SUBMISSION_README_TEMPLATE.md` in as its
     `README.md` and fill it in, and credit the guide, Arduino, Hiwonder, Edge Impulse and OpenCV.
 

@@ -42,8 +42,16 @@ Qualcomm mentors on site.
 9. Which App Lab version and Python image do the boards run?
    - Why it matters: on images up to `bricks/0.13.1`, listing OpenCV in `requirements.txt` breaks
      the install.
+   - Answer: App Lab 0.11.0. After its board update on Oct 24 the board runs arduino-app-cli
+     0.14.0 and arduino-router 0.11.0, but the app's container is still
+     `python-apps-base:0.13.1` (Python 3.13.15), so the OpenCV rule stands. Read on the board.
 10. Is it the same black and white ball, white goal and taped field as the August Robot Soccer
     Cup, and will the guide's Edge Impulse project (1144501) get its labelled data?
+    - Answer: partly. The project now holds the organizers' office pictures: 321, labelled goal,
+      robot and soccer_ball. An organizer said on Oct 24 that they won't match this room's
+      colors and lighting, that a bigger set from this room is coming, and that until then teams
+      should take about 50 phone pictures of the ball and 50 of the goals and label them by hand.
+      The ball and the field: open.
 11. How do teams hand in the project: an App Lab export, a ZIP, a GitHub link or a form?
     - Why it matters: it decides where the submission README goes and what else to include.
     - Answer: open. Neither the event page nor the guide says.

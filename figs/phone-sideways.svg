@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" width="600" height="412.5" role="img" aria-label="Edge Impulse squashes every picture to 96 by 96. The robot camera's 320 by 240 picture is wider than tall, so a round ball comes out 12 wide and 16 tall. A phone picture held upright, 3024 by 4032, gives the opposite shape, 16 wide and 12 tall. Held sideways, 4032 by 3024, the phone gives 12 wide and 16 tall, the same as the robot.">
+<title>Edge Impulse squashes every picture to 96 by 96. The robot camera's 320 by 240 picture is wider than tall, so a round ball comes out 12 wide and 16 tall. A phone picture held upright, 3024 by 4032, gives the opposite shape, 16 wide and 12 tall. Held sideways, 4032 by 3024, the phone gives 12 wide and 16 tall, the same as the robot.</title>
+<style>
+svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.bg { fill: #ffffff; }
+.d-box { fill: #ffffff; stroke: #566a5d; stroke-width: 1.25; }
+.d-yours { fill: #e2efe5; stroke: #23743f; stroke-width: 1.5; }
+.d-theirs { fill: #e3ebf7; stroke: #1d55a0; stroke-width: 1.5; }
+.d-stop { fill: #f7e8df; stroke: #ad4316; stroke-width: 1.75; }
+.d-model { fill: #f5ebcd; stroke: #7d5900; stroke-width: 1.5; }
+.d-frame { fill: none; stroke: #566a5d; stroke-width: 1.25; stroke-dasharray: 5 4; }
+.d-dash { stroke-dasharray: 6 4; }
+.d-line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.d-t { fill: currentColor; font-size: 13px; }
+.d-m { fill: #566a5d; font-size: 12px; }
+.d-s { font-size: 12.5px; }
+.d-b { font-weight: 700; }
+.d-i { font-style: italic; }
+.d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.d-xs { font-size: 11.5px; }
+.d-red { fill: #ad4316; }
+.r-hi { fill: #23743f; }
+.r-lo { fill: #d3ddd5; }
+.r-sep { stroke: #ffffff; stroke-width: 2; }
+.r-on-hi { fill: #ffffff; font-size: 15px; font-weight: 700; }
+.r-on-lo { fill: #17211b; font-size: 15px; font-weight: 700; }
+.r-br-hi { fill: none; stroke: #23743f; stroke-width: 1.5; }
+.r-br-lo { fill: none; stroke: #566a5d; stroke-width: 1.5; }
+@media (prefers-color-scheme: dark) {
+  svg { color: #e3eae5; }
+  .bg { fill: #161e19; }
+  .d-box { fill: #161e19; stroke: #9aac9f; }
+  .d-yours { fill: #173022; stroke: #62c58a; }
+  .d-theirs { fill: #16253b; stroke: #7eaaf0; }
+  .d-stop { fill: #3a2015; stroke: #f0925f; }
+  .d-model { fill: #322810; stroke: #e8bd57; }
+  .d-frame { stroke: #9aac9f; }
+  .d-m { fill: #9aac9f; }
+  .d-red { fill: #f0925f; }
+  .r-hi { fill: #62c58a; }
+  .r-lo { fill: #2b372f; }
+  .r-sep { stroke: #161e19; }
+  .r-on-hi { fill: #0b120e; }
+  .r-on-lo { fill: #e3eae5; }
+  .r-br-hi { stroke: #62c58a; }
+  .r-br-lo { stroke: #9aac9f; }
+}
+</style>
+<rect class="bg" x="0" y="0" width="480" height="330" rx="12"/>
+<defs><marker id="m-ei" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect class="d-theirs" x="18" y="10" width="136" height="310" rx="12"/>
+<text class="d-t d-b" x="86" y="34" text-anchor="middle">Robot camera</text>
+<text class="d-m" x="86" y="52" text-anchor="middle">320 × 240</text>
+<rect class="d-box" x="38" y="68" width="96" height="72" rx="3"/>
+<circle class="d-line" cx="86" cy="104" r="12" fill="none"/>
+<line class="d-line" x1="86" y1="152" x2="86" y2="173" marker-end="url(#m-ei)"/>
+<text class="d-m d-s" x="86" y="190" text-anchor="middle">squashed to 96 × 96</text>
+<rect class="d-box" x="50" y="198" width="72" height="72" rx="3"/>
+<ellipse class="d-line" cx="86" cy="234" rx="9" ry="12" fill="none"/>
+<text class="d-t d-b" x="86" y="292" text-anchor="middle">12 wide, 16 tall</text>
+<text class="d-m" x="86" y="310" text-anchor="middle">what the robot sees</text>
+<rect class="d-stop" x="172" y="10" width="136" height="310" rx="12"/>
+<text class="d-t d-b" x="240" y="34" text-anchor="middle">Phone upright</text>
+<text class="d-m" x="240" y="52" text-anchor="middle">3024 × 4032</text>
+<rect class="d-box" x="207" y="60" width="66" height="88" rx="3"/>
+<circle class="d-line" cx="240" cy="104" r="12" fill="none"/>
+<line class="d-line" x1="240" y1="152" x2="240" y2="173" marker-end="url(#m-ei)"/>
+<text class="d-m d-s" x="240" y="190" text-anchor="middle">squashed to 96 × 96</text>
+<rect class="d-box" x="204" y="198" width="72" height="72" rx="3"/>
+<ellipse class="d-line" cx="240" cy="234" rx="12" ry="9" fill="none"/>
+<text class="d-t d-b" x="240" y="292" text-anchor="middle">16 wide, 12 tall</text>
+<text class="d-m" x="240" y="310" text-anchor="middle">the wrong shape</text>
+<rect class="d-yours" x="326" y="10" width="136" height="310" rx="12"/>
+<text class="d-t d-b" x="394" y="34" text-anchor="middle">Phone sideways</text>
+<text class="d-m" x="394" y="52" text-anchor="middle">4032 × 3024</text>
+<rect class="d-box" x="350" y="71" width="88" height="66" rx="3"/>
+<circle class="d-line" cx="394" cy="104" r="12" fill="none"/>
+<line class="d-line" x1="394" y1="152" x2="394" y2="173" marker-end="url(#m-ei)"/>
+<text class="d-m d-s" x="394" y="190" text-anchor="middle">squashed to 96 × 96</text>
+<rect class="d-box" x="358" y="198" width="72" height="72" rx="3"/>
+<ellipse class="d-line" cx="394" cy="234" rx="9" ry="12" fill="none"/>
+<text class="d-t d-b" x="394" y="292" text-anchor="middle">12 wide, 16 tall</text>
+<text class="d-m" x="394" y="310" text-anchor="middle">the same shape</text>
+</svg>
