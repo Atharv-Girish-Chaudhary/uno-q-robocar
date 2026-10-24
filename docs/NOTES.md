@@ -61,6 +61,11 @@ a waitlist.
   before 2:00, so check the pack with a meter. A watch-only run (BOOT pressed) averaged about
   5 frames a second but had gaps of up to 1.5 s, which the 400 ms `stale_after_ms` treats as a
   dead camera.
+- 2:36 PM: `stale_after_ms` went to 1500 and `read_timeout_s` to 2.0 (the reader must outwait the
+  limit, or it reconnects first). Then a plain `app stop` and `app start` left the chip silent
+  again, with no "invalid packet" burst in the router log, while the restart after `sudo reboot`
+  had worked. So on this board an app restart can leave the chip silent and only a board restart
+  is sure to bring it back: put new files on the board, then reboot it, then start the app.
 
 ## Setup, in order
 
