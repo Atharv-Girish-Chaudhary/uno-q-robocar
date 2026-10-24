@@ -51,10 +51,11 @@ Yours:
 10. Record real footage from the laptop (board app stopped) and tune the ball and the goal with
     `tune.py`; set the ball's search band to start just below the goal's base. Record the goal
     mouth up close too: the ball and the goal are both white and their search bands overlap
-    there, so check that they stay apart. The event's ball looks pale yellow: in an organizer
-    picture from Oct 24 it measured saturation 86 and brightness 239, and the carpet 14 and 151,
-    so both pass the placeholder white range (saturation up to 90, brightness from 150). Expect
-    to raise the brightness floor.
+    there, so check that they stay apart. The event's goals are yellow cones, not a white goal:
+    in the organizers' pictures (Oct 24) the cones measured hue 31, saturation 245 and brightness
+    237 at the median, and the ball, white with black patches, 29, 73 and 248. So give the goal a
+    yellow range (about hue 25 to 37, saturation from 200), keep the ball's saturation below the
+    cones', and raise the brightness floor above the carpet's (151).
 11. Watch-only test: ball left, center, right, far, near, then hidden. The printed detections
     should match. Every robot's camera uses Wi-Fi channel 1, so if runs stop with "newest frame
     is N ms old" in the crowded room, raise `stream.stale_after_ms` a little, at most to 800.

@@ -51,8 +51,13 @@ Qualcomm mentors on site.
       pictures (321, labelled goal, robot and soccer_ball), and an organizer suggested phone
       pictures until a set from the room was ready. At 12:05 they replaced them with 353
       pictures, probably from the room, labelled `soccerball` and `goal`; a few lacked their
-      boxes, which the organizer said they would fix. The ball is not the August black and white
-      one: the picture checked shows a pale yellow ball on carpet. The field: open.
+      boxes, which the organizer said they would fix. The ball is a small white soccer ball
+      with black patches, on carpet, and the goals are yellow cones. The field: open.
 11. How do teams hand in the project: an App Lab export, a ZIP, a GitHub link or a form?
     - Why it matters: it decides where the submission README goes and what else to include.
     - Answer: open. Neither the event page nor the guide says.
+12. Is the goal the gap between two yellow cones, and how far apart are they?
+    - Why it matters: the organizers' pictures box each cone as its own goal, and the app takes
+      the single most confident goal box. With two cones it would line the ball up with one
+      cone, a post, instead of the gap between them.
+    - Answer: open (asked on Oct 24).

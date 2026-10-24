@@ -49,16 +49,18 @@ What the organizers said and did on Oct 24. In the late morning the guide's proj
 and soccer_ball (the August set), and an organizer advised taking about 50 phone pictures of the
 ball and 50 of the goals in the room until a bigger set from the room was ready. At 12:05 they
 replaced the project's pictures with 353 new ones (281 for training, 72 for testing), labelled
-`soccerball` and `goal`, with no robot class. They are square, 512 by 512, and the one checked
-shows a pale yellow ball on carpet, so they are probably from the event room. A few were uploaded
-without their boxes, and the organizer said they would fix those.
+`soccerball` and `goal`, with no robot class. They are square, 512 by 512, taken from above on the room's carpet. The ball is
+a small white soccer ball with black patches, which looks cream in that light, and the goals are
+yellow cones, one box per cone. A few were uploaded without their boxes, and the organizer said
+they would fix those.
 
 ![Your first model today in six steps: clone the organizers' project, box or delete the 6 pictures with no boxes, train a small model, download the .eim file, onto the board, a watch-only test, then your own pictures and train again](../figs/todays-model.svg)
 
 1. Sign in at studio.edgeimpulse.com, open the guide's project and click "Clone this project".
    A clone is a copy made at that moment, so fixes to their project after it don't reach yours.
-   At 12:35, 6 of the 353 pictures still had no boxes (3 for training, 3 for testing; read from
-   Edge Impulse's public API), few enough to fix in your copy instead of waiting.
+   The check below found about 50 labelling mistakes at 12:45, too many to fix by hand, so tell
+   the organizer, train once on a clone anyway to test the whole path, and clone again after
+   their fix.
 2. In your copy, check that every picture has its boxes: Data acquisition lists each picture's
    labels. A picture of the ball with no box on it teaches the model that the ball is
    background, so label or delete any without.
@@ -89,6 +91,24 @@ square pictures keep the ball round, which is closer to the robot's 12 by 16 tha
 phone picture's 16 by 12. The general idea has a name: a gap between the pictures a model is
 trained on and the ones it meets later is called domain shift, and the office pictures had it
 too, in color and light.
+
+### The dataset check, Oct 24 at 12:45
+
+The organizer said the set was ready, so it was checked: the picture list from Edge Impulse's
+public API (`/v1/api/1144501/raw-data`), every picture downloaded, every box measured by color
+(the cones are saturated yellow, saturation about 245; the ball is not, about 73), and each
+flagged picture looked at by eye.
+
+- 20 pictures have a yellow cone labelled `soccerball` (15 training, 5 test): the worst one,
+  since it teaches the model that cones are balls.
+- 7 have the ball labelled `goal` (3 training, 4 test).
+- In about 20 pictures a cone has no box, mostly the second cone in those same 20.
+- Of the 6 pictures with no boxes at all, 2 are empty floor (fine), 1 shows the ball and 3 show
+  part of a cone.
+- 3 have two boxes on one ball.
+
+All 353 are 512 by 512, the two labels are spelled the same everywhere, and no picture appears in
+both training and test. The names went to the organizers.
 
 FOMO reports where the ball is, not how big it looks, so the controller judges "near" and
 "close" by how low the ball sits in the picture as well. Calibrate `slow_y_frac` and
