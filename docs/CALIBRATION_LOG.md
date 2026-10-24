@@ -74,3 +74,4 @@ These set `slow_radius_px`, `close_radius_px`, `slow_y_frac` and `close_y_frac` 
 | 13 | retry for the judges | attempt | none | 7 moves to the ball, then all 8 pushes, the ball kept at the front; done on the push limit at 23.1 s | | best run of the day |
 | 14 | retry for the judges | attempt | none | 4 forward moves, then stopped with BOOT at about 5 s | | |
 | 15 | ball near at the start | attempt | approach 220/400 ms, slow 180/300 ms, push 255/550 ms (about 4x the distance per move) | 2 near moves, 2 pushes, ball out of view three times, ball gone at 10.8 s | | big moves near the ball lose it |
+| 16 | the judged run | attempt | none (the faster moves) | first place in the track, as reported at the field | 7.12 | log not read: the board was unplugged |

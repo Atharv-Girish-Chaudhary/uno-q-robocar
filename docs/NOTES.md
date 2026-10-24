@@ -227,6 +227,10 @@ a waitlist.
   after a second near move the ball stayed lost: "ball gone after 2 push(es)" at 10.8 s. The best
   run at the old speeds kept the ball in front for all 8 pushes, so near the ball the big moves
   cost control.
+- About 4:57 PM: first in the Robocar track, with a 7.12 s run, as reported at the field. The
+  robot still had the faster moves from 4:51 (approach 220 for 400 ms, slow 180 for 300 ms, push
+  255 for 550 ms); nothing changed after them. The board was unplugged from the laptop, so that
+  run's log was not read.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
