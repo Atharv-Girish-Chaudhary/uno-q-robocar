@@ -111,6 +111,10 @@ a waitlist.
 - 3:28 PM: `max_pushes` went to 8 and `run_time_limit_s` to 45. This time the `--no-prepare`
   restart failed: "Request 'stop' timed out after 10s", the motor chip silent again, though the
   run before it had ended normally. `sudo reboot` is the known fix.
+- 3:32 PM: after `sudo reboot` the board rejoined the camera's network by itself (camera address
+  REACHABLE), and a full `app start` came up with `bridge: True` and the new settings. The app
+  log keeps the earlier failed start above the new one, so read the newest "App is starting"
+  block and its time before deciding a start failed.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
