@@ -46,6 +46,7 @@ qualcomm-build-day/
     detector.py  model_runner.py  stream.py  controller.py  runloop.py
     tune.py  demo.py  robocar_main_template.py
     tools/make_synthetic_video.py  tools/fake_camera.py  tools/fake_eim.py
+    notebooks/                    what the robot sees, step by step, with pictures
     tests/
 ```
 
@@ -55,7 +56,8 @@ qualcomm-build-day/
   or `datetime.UTC`. The dev venv is pinned to 3.10; the tests also run on 3.13, which is what
   the App Lab container runs.
 - Runtime dependencies are numpy and OpenCV only; the model runner uses the standard library
-  and numpy. pytest is a dev dependency.
+  and numpy. pytest is a dev dependency, and the `notebooks` group (ipykernel, matplotlib,
+  nbclient) is for the laptop too.
 - The dev venv has `opencv-python` 4.13 (GUI build, for `tune.py` and `demo.py --show`), matching
   the board's OpenCV 4.13. A test fails if `opencv-python` and `opencv-python-headless` are both
   installed in one environment.
@@ -253,6 +255,24 @@ only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits.
   reports the brightest round blob as `soccerball`, so the runner is tested before a real model
   exists.
 
+### notebooks
+
+Jupyter notebooks in `prep/notebooks/` that show what the robot sees, saved with their pictures
+so they read straight away in VS Code (pick the `prep/.venv` kernel) and on GitHub. Each starts
+with a `SOURCE` setting: the synthetic video by default, or a folder recorded with
+`demo.py --record`. Each checks itself against the real code, so it fails loudly if the code
+and the explanation drift apart.
+
+- `01_how_the_detector_sees.ipynb` follows one picture through `detector.py`: the picture, its
+  hue, saturation and value, the color mask, the search band, the cleanup, every blob with its
+  size, fill and roundness, and the circle it picks. Then the goal box, the red ball's two hue
+  ranges, and the band bug fixed on Oct 22 (a ball band starting at the goal's 0.38 merges the
+  far ball into the goal). Its step-by-step mask must equal `ColorDetector.mask()` pixel for
+  pixel, and its pick must equal `analyze()`.
+
+The packages (ipykernel, matplotlib, nbclient) are the `notebooks` dependency group, on by
+default on the laptop through `default-groups`; the robot never imports them.
+
 ## Tests (pytest)
 
 - Detector, on synthetic images saved through JPEG quality 80 like the camera: a ball is found
@@ -278,6 +298,8 @@ only (atomic write, other sections kept), `r` reloads, `p` pauses, `q` quits.
 - End to end: the run loop over the synthetic video with a fake clock gives the expected
   decisions per scene.
 - Environment: exactly one OpenCV distribution is installed.
+- Notebooks: each one runs top to bottom in memory (`tests/test_notebooks.py`), so its own
+  checks against the code run with the suite; the saved file is never rewritten.
 
 ## Assumptions the guide does not settle
 

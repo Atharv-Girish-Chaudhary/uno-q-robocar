@@ -64,6 +64,8 @@ Laptop only, never on the robot:
 - `demo.py` dry-runs the whole loop with pretend motors; `tune.py` tunes colors with sliders.
 - `tools/`: a synthetic field video, a fake camera, and a stand-in Edge Impulse model.
 - `detector_presets.json`: starting color ranges for `tune.py`.
+- `notebooks/`: what the robot sees, step by step, with the pictures saved in. Open them in VS
+  Code and pick the `prep/.venv` kernel.
 - `tests/`, `pyproject.toml`, `uv.lock` and `.python-version`: the tests and the uv project.
 - `requirements-board.txt`: exact pins for the board, used only if `import cv2` fails there.
 
