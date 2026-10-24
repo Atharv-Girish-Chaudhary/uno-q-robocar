@@ -211,6 +211,11 @@ a waitlist.
   robot stood still; the approach is slow mostly because a move comes only every 1.5 s.
 - About 4:45 PM: presented to the judge with the robot ready. Standing: first in the Robocar
   track so far, not confirmed yet, since other teams are trying their runs again.
+- Just before 4:50 PM, the retry runs. The first was the best run of the day: 6 forward moves and
+  a slow one to the ball, then all 8 pushes between 10.0 and 22.2 s, keeping the ball against
+  the front of the robot; twice the ball dropped into the blind spot for 2 pictures and came back,
+  so the miss limit of 5 carried it through. It ended "attempt finished after 8 pushes" at 23.1 s.
+  The second was stopped with BOOT after 4 forward moves, at about 5 s.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
