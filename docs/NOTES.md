@@ -204,6 +204,11 @@ a waitlist.
   picture and the run ended "ball gone after 2 push(es)" at 12.9 s. Where it went decides the
   fix: off to a side is outside the model's view (it sees only the middle 240 of 320 columns),
   and right against the robot is below the camera's view.
+  It was the second: after the second push the ball stayed against the robot, in the blind spot
+  below the bottom of the picture, and the rule "ball gone after a push means finished" ended the
+  run. A caution on the forward moves: the model's positions come in 10 px steps, and far away a
+  few centimeters change the picture by less than that, so y=150 four times does not prove the
+  robot stood still; the approach is slow mostly because a move comes only every 1.5 s.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
