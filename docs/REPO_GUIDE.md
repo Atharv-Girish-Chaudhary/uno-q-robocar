@@ -11,6 +11,7 @@ tells the project's story.
 | Path | What it is for |
 |---|---|
 | `README.md` | The project's story: the problem, how it works, the results and the limits. |
+| `LICENSE` | MIT, for this repo's own code and text; the README's credits name what it does not cover. |
 | `CLAUDE.md` | The rules for Claude sessions in this repo: Python 3.10, one OpenCV build per environment, the 1000 ms pulse cap, no em or en dashes. |
 | `.gitignore` | Keeps `upstream/`, virtual environments, generated samples, recordings and trained models out of this repo's history. |
 | `docs/` | Notes from the build and for the judges, listed below. |
@@ -22,14 +23,14 @@ tells the project's story.
 
 | File | What it is for |
 |---|---|
-| `NOTES.md` | The day's time-stamped log, kept inside its first section, and the quick reference for Saturday: the kit, the setup order, how a run works, the driver API, the network and safety rules, the Mac notes, Python on the board, moving the code into the app, and the commands. |
-| `CHECKLIST.md` | What to do before Saturday, the day's steps in order, and what to uninstall after the event. |
-| `QUESTIONS.md` | The open questions for check-in, each with why it matters. |
-| `RUBRIC_PLAN.md` | The judges' five criteria and how this build earns each one. |
-| `CALIBRATION_LOG.md` | The tables for the day's measurements. The runs table holds every floor run; the pulse, camera timing, ball size and detector tables stayed empty. |
+| `NOTES.md` | The day's time-stamped log, in its own section, and the quick reference written before the event: the kit, the setup order, how a run works, the driver API, the network and safety rules, the Mac notes, Python on the board, moving the code into the app, and the commands. |
+| `CHECKLIST.md` | Written before the event: the prep list, the day's steps in order, and what to uninstall after the event. |
+| `QUESTIONS.md` | The questions for check-in, each with why it mattered and the answer the day gave. |
+| `RUBRIC_PLAN.md` | Written before the event: the rubric's five criteria and how this build planned to earn each one. |
+| `CALIBRATION_LOG.md` | The tables planned for the day's measurements. The runs table holds every run; the pulse, camera timing, ball size and detector tables were never measured. |
 | `SUBMISSION_README_TEMPLATE.md` | The template for the README the judges get, copied into the app as `README.md` on the day and filled in. |
-| `SUBMISSION_README.md` | The README handed in with the app, filled in from the template on the day. |
-| `EDGE_IMPULSE.md` | A practice run for training the ball and goal model, and how to use it on the day. |
+| `SUBMISSION_README.md` | The README handed in with the app at 3:45 PM, filled in from the template on the day. |
+| `EDGE_IMPULSE.md` | The model that ran, how it was trained on the day, the label check, and the practice run before the event. |
 | `SPEC.md` | The design: the constraints, the config file, each module, and the tests. |
 | `REPO_GUIDE.md` | This file. |
 
@@ -41,7 +42,7 @@ Robot files, which went into the app on the day:
   Edge Impulse model instead.
 - `stream.py` reads the camera, keeping only the newest frame, and notices stalls.
 - `controller.py` picks each move; `runloop.py` repeats look, decide, move.
-- `robocar_config.json` holds every number.
+- `robocar_config.json` holds every threshold, speed and timing the rules use.
 - `robocar_main_template.py` is the guide's `main.py` wired to these; its contents become the
   app's `main.py`.
 
@@ -52,7 +53,8 @@ Laptop only, never on the robot:
 - `demo.py` dry-runs the whole loop with pretend motors; `tune.py` tunes colors with sliders.
 - `tools/`: a synthetic field video, a fake camera, and a stand-in Edge Impulse model.
 - `detector_presets.json`: starting color ranges for `tune.py`.
-- `notebooks/`: what the robot sees, step by step, with the pictures saved in. Open them in VS
+- `notebooks/`: how the color detector and the rules work, step by step on the synthetic video,
+  with the pictures saved in. Open them in VS
   Code and pick the `prep/.venv` kernel.
 - `tests/`, `pyproject.toml`, `uv.lock` and `.python-version`: the tests and the uv project.
 - `requirements-board.txt`: exact pins for the board, used only if `import cv2` fails there.
