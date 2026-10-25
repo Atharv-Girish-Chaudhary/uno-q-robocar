@@ -8,6 +8,9 @@ board's software come from Arduino's own source (app-bricks-py at `bricks/0.13.1
 facts about the field come from the organizers' August event, the Robot Soccer Cup
 (github.com/aaishikasb/qc-robot-soccer-cup and Edge Impulse project 1085406).
 
+Kept as the design record. It was written before the event, so it says what was planned; where
+the day changed or settled something, a note says so, and the README tells how the day went.
+
 ## Goal
 
 Arrive at Build Day with Qualcomm (Sat Oct 24, 2026, Robocar track) with the detector, the
@@ -41,15 +44,16 @@ so the tests and notebooks that run on it use August's presets (`white_ball`, `w
 ## Layout
 
 ```
-qualcomm-build-day/
+uno-q-robocar/
   .gitignore                 upstream/, venvs, generated samples, recordings and models
-  README.md                  what is here and the commands that matter
+  LICENSE                    MIT, for this repo's own code and text
+  README.md                  the project's story, results, limits and how to run it
   CLAUDE.md                  this repo's rules for future Claude sessions
   upstream/                  separate clone of the guide, read only, never in this history
   docs/
     SPEC.md                  this file
     NOTES.md  RUBRIC_PLAN.md  QUESTIONS.md  CHECKLIST.md  CALIBRATION_LOG.md
-    SUBMISSION_README_TEMPLATE.md  EDGE_IMPULSE.md
+    SUBMISSION_README_TEMPLATE.md  SUBMISSION_README.md  EDGE_IMPULSE.md  REPO_GUIDE.md
   figs/                      the diagrams as SVG files, shown in the README and the docs
   prep/                      uv project, Python 3.10
     pyproject.toml  uv.lock  .python-version
@@ -69,8 +73,8 @@ qualcomm-build-day/
 - Code runs on Python 3.10 and newer: no `tomllib`, `ExceptionGroup`, `typing.Self`, `StrEnum`
   or `datetime.UTC`. The dev venv is pinned to 3.10; the tests also run on 3.13, which is what
   the App Lab container runs.
-- Runtime dependencies are numpy and OpenCV only; the model runner uses the standard library
-  and numpy. pytest is a dev dependency, and the `notebooks` group (ipykernel, matplotlib,
+- Runtime dependencies are numpy and OpenCV only; the model runner uses the standard library,
+  numpy and OpenCV, and no Edge Impulse package. pytest is a dev dependency, and the `notebooks` group (ipykernel, matplotlib,
   nbclient) is for the laptop too.
 - The dev venv has `opencv-python` 4.13 (GUI build, for `tune.py` and `demo.py --show`), matching
   the board's OpenCV 4.13. A test fails if `opencv-python` and `opencv-python-headless` are both
@@ -90,7 +94,8 @@ qualcomm-build-day/
 ## robocar_config.json
 
 Sections, each loaded into a validated dataclass whose `from_dict` raises `ValueError` on a bad
-value. Speeds and pulse lengths are placeholders until calibration.
+value. Speeds and pulse lengths started as placeholders; the file now holds the values from the
+end of the day.
 
 - `run`: `mode` (`attempt`, `observe` or `latency`), `detector` (`color` or `model`), and the
   latency check's direction, speed and pulse length.
@@ -104,8 +109,8 @@ value. Speeds and pulse lengths are placeholders until calibration.
   blobs, and a single blob counts as not found. The starting values are the `cream_ball` and
   `yellow_cones` presets: for the ball saturation 0 to 150 and brightness from 170, for the cones
   hue 25 to 37, saturation from 200 and brightness from 120, with an aspect of 0.3 to 6 since a
-  cone may stand tall or lie flat. They are placeholders until `tune.py` runs on the robot's own
-  footage.
+  cone may stand tall or lie flat. They were never retuned on the robot's own footage, since the
+  model ran instead; the README's limits say what the robot's camera showed.
 - `model`: the `.eim` path, `ball_labels` (`soccerball` from the guide, `soccer_ball` from the
   August dataset), `goal_labels` (one box per cone in the organizers' pictures), `min_confidence`,
   and start and call timeouts.
@@ -137,7 +142,7 @@ would otherwise sink the score. Quality is fill times circularity (fill alone fo
 The ball's search band must start below the goal's base. JPEG works in 8 by 8 pixel blocks, so
 the white goal's bottom bar smears brightness to the end of its block row, and the morphology
 then bridges that smear to a far ball just below it. On the synthetic field the band starts at
-0.57 of the frame height, the first block row below the goal; on the real field it is set with
+0.57 of the frame height, the first block row below the goal; on the real field it was to be set with
 `tune.py`. Build Day's yellow cones fall outside the ball's saturation range, so on that field
 the band only has to cover the floor.
 
@@ -152,8 +157,8 @@ detector for each and returns a `Sighting(ball, goal, width, height)`.
 
 ### model_runner.py
 
-`ModelVision(ModelConfig)` runs an Edge Impulse `.eim` model with only the standard library and
-numpy, using the protocol of Edge Impulse's own Python SDK: start `model.eim SOCKET_PATH`, connect
+`ModelVision(ModelConfig)` runs an Edge Impulse `.eim` model with the standard library, numpy and
+OpenCV (for the color conversion and the resize), using the protocol of Edge Impulse's own Python SDK: start `model.eim SOCKET_PATH`, connect
 a Unix socket, send JSON messages with an `id`, read replies that end in a zero byte, `hello`
 first for the input size, channel count and resize mode, then `classify` with pixels packed as
 `(R << 16) + (G << 8) + B` after the same resize (`squash`, `fit-shortest` or `fit-longest`).
@@ -197,7 +202,7 @@ slow approach) means radius at least `slow_radius_px` or center below `slow_y_fr
 
 | # | Observation | Decision |
 |---|---|---|
-| 1 | Stream reports a problem: no new frame for `stale_after_ms`, identical frames, or a reader error | STOP |
+| 1 | Stream reports a problem: no new frame for `stale_after_ms` (naming any read error), identical frames, or the reader stopped | STOP |
 | 2 | No frame, or the newest frame is older than `stale_after_ms` | STOP |
 | 3 | Run longer than `run_time_limit_s` | DONE |
 | 4 | Frame arrived less than `settle_ms` after the last pulse, or fewer than `min_new_frames` new frames since it | WAIT |
@@ -292,7 +297,7 @@ found" with one cone in view is the pair rule at work.
 
 ### notebooks
 
-Jupyter notebooks in `prep/notebooks/` that show what the robot sees, saved with their pictures
+Jupyter notebooks in `prep/notebooks/` that show how the color detector and the rules work, saved with their pictures
 so they read straight away in VS Code (pick the `prep/.venv` kernel) and on GitHub. Each starts
 with a `SOURCE` setting: the synthetic video by default, or a folder recorded with
 `demo.py --record`. The synthetic video uses August's presets, since it shows August's field;
@@ -351,10 +356,15 @@ default on the laptop through `default-groups`; the robot never imports them.
 
 - Build Day's field is settled (see above), but not the cones' shape (tall or flat), their size
   in the robot's picture or their spacing; `tune.py` on the robot's own footage sets the goal's
-  band, aspect and size limits.
+  band, aspect and size limits. On the day the robot's camera saw the cones as pale yellow
+  triangles, and neither the model nor this color range found them (see the README's limits).
 - Which App Lab image the boards run; the startup version print settles whether OpenCV imports.
-- That the App Lab container reaches `192.168.5.1` once UNO Q Linux joins the camera network.
-- Camera latency and frame rate: unmeasured; `measure_latency` measures them on the day.
+  On the day: `python-apps-base:0.13.1` with Python 3.13.15, and OpenCV imported.
+- That the App Lab container reaches `192.168.5.1` once UNO Q Linux joins the camera network. It
+  did.
+- Camera latency and frame rate: unmeasured; `measure_latency` measures them on the day. The
+  latency mode never ran, and the floor runs got about 2 pictures a second, far below the 15 the
+  prep assumed.
 - The camera faces forward unmirrored (the firmware sets `hmirror` and `vflip` to 0);
   `invert_steering` exists in case it does not.
 - Rotation is weaker than straight driving at the same speed value: the sketch halves the wheel
@@ -364,7 +374,6 @@ default on the laptop through `default-groups`; the robot never imports them.
 ## Out of scope
 
 - A trained model: it is trained in an Edge Impulse account, outside this repo.
-- Any change to `upstream/`, and a ready-to-import app ZIP, until the rules on pre-written code
-  are known. `NOTES.md` lists the copy steps instead.
+- Any change to `upstream/`. The app ZIP handed in on the day was built by hand from the board's
+  app folder (`NOTES.md`).
 - An ultrasonic "path clear" check: the ball itself trips the sensor when close.
-- A GitHub remote or any push.
