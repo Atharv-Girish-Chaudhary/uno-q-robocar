@@ -1,6 +1,9 @@
 # Checklist
 
-## Before Saturday
+Written before the event as the prep list and the day's steps in order, and kept as it was used:
+its steps say what was planned. The day's log in `NOTES.md` says what happened.
+
+## Before the event
 
 Done on Oct 22:
 - [x] uv 0.13.5 and adb (platform-tools 37.0.1) installed with Homebrew.
@@ -63,7 +66,7 @@ To do by hand:
     every 5 s, with `read_timeout_s` at 4.0: the reader must wait longer than that limit, or it
     drops the stream and reconnects first.
 12. Calibrate short moves with the wheels raised, then on the floor, and fill in
-    `CALIBRATION_LOG.md`. The placeholder speeds give only about 24 to 33% wheel power, so expect
+    `CALIBRATION_LOG.md`. The placeholder speeds give only about 24 to 44% wheel power, so expect
     to raise them if the robot barely moves. Run `"mode": "latency"` once on the floor and set
     `settle_ms` from it.
 13. Autonomous runs (`"mode": "attempt"`): wheels raised first, then on the floor from the

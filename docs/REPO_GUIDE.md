@@ -100,8 +100,8 @@ A separate git clone of github.com/aaishikasb/uno-q-hackout, kept for reading. T
 - Bridge calls give up after 10 seconds with a `TimeoutError` (Arduino's `bridge.py`).
 - The sketch turns a speed of 0 to 255 into a percentage, then drives the wheels at that divided
   by √2 for straight moves and slides, and at half of it for turns in place. Speed 100 gives
-  about 27% wheel power going straight and 19% turning; the prep's placeholder speeds give 24 to
-  33%.
+  about 27% wheel power going straight and 19% turning. The speeds before 4:51 PM gave about 24
+  to 44%, and the final ones about 31 to 71%.
 - Every camera's Wi-Fi uses channel 1, since the firmware sets no channel, so a room of robots
   shares one channel.
 - Their `.gitignore` lists `robocar/models/`, while the guide's text puts the model in `python/`;
