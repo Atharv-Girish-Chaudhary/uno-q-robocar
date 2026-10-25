@@ -231,6 +231,17 @@ a waitlist.
   robot still had the faster moves from 4:51 (approach 220 for 400 ms, slow 180 for 300 ms, push
   255 for 550 ms); nothing changed after them. The board was unplugged from the laptop, so that
   run's log was not read.
+- About 5:05 PM, the judged runs read from the app's log, which survived the board's power-off.
+  After the first fast run there were two more: one stopped with BOOT after 2 far moves, and the
+  last, most likely the judged one: 2 far moves (220 for 400 ms), a near move, pushes at 4.4 s
+  and 5.9 s, then 2 near moves after the ball as it rolled off to the right, until it left the
+  picture at 10.4 s ("ball gone after 2 push(es)" at 10.9 s). A goal at 7.12 s fits between the
+  second push and the ball leaving the picture; the log can't show the goal itself.
+- Before handing the kit back: the app stopped, the guide's `robot_client.py` put back (same
+  checksum as the copy saved before the change), and the model file removed from the board
+  (identical to `prep/models/robocar.eim`, so nothing was lost). The board still holds the saved
+  Wi-Fi profiles (the camera's, a phone hotspot and another saved network) and this app without its
+  model; removing those is the owner's call.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
