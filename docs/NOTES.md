@@ -243,7 +243,10 @@ a waitlist.
   Wi-Fi profiles (the camera's, a phone hotspot and another saved network) and this app without its
   model; removing those is the owner's call.
 - 5:07 PM: the phone hotspot profile deleted from the board (by the owner, with sudo). The app
-  stays on the board, as do the camera's profile and another saved network.
+  stays on the board, as do the camera's profile and another saved network (not ours, so left).
+- 5:09 PM: the board shut down with `sudo poweroff` before unplugging, and the kit went back to
+  the organizers. Photos and videos of the robot exist for the write-up. The organizers are
+  announcing the results.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
