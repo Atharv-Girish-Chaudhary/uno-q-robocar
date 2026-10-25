@@ -1,3 +1,6 @@
+> Written before the event as the template for the README handed in with the app; the filled-in
+> copy is [SUBMISSION_README.md](SUBMISSION_README.md).
+
 # [Project name]: Robocar track, Build Day with Qualcomm 2026
 
 [One or two sentences: what the robot does, and how it finds the ball and the goal.]
