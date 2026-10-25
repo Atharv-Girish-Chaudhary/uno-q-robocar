@@ -1,5 +1,13 @@
 # UNO Q Robocar: Robocar track, Build Day with Qualcomm 2026
 
+This is the README handed in with the app at 3:45 PM on Oct 24, kept as it was except for three
+corrected statements: what `model_runner.py` imports, how many pictures the model's timing came
+from, and which later runs still ended early. Two changes came after the hand-in: at 4:06 PM
+steering switched from sideways slides to turning in place, with a 40 px center band, and at
+4:51 PM every move got bigger (approach 220 for 400 ms, slow 180 for 300 ms, push 255 for
+550 ms). The judged run used those later settings, which are the ones in
+`prep/robocar_config.json`; the rules, settings and runs below are from before them.
+
 The robot finds a soccer ball with an Edge Impulse model running on the Arduino UNO Q, drives up
 to it in short moves, each one decided from a fresh camera picture, and pushes it toward a goal
 made of two yellow cones. The same model is meant to find the cones as well, but from the robot's
@@ -77,8 +85,8 @@ In the repository the Python files live in `prep/`, with their tests in `prep/te
   held-back pictures (goal 98%, ball 96.4%). The test set's score was not recorded. The
   resize mode came out as Fit shortest axis, so the model sees the middle 240 of the camera's 320
   columns. The file to download is the Linux (AARCH64) `.eim`.
-- On the board, `model_runner.py` runs the `.eim` with only the standard library and numpy; on
-  the organizers' pictures it took 3 to 9 ms each. It ignores boxes under 0.45 confidence, keeps
+- On the board, `model_runner.py` runs the `.eim` with the standard library, numpy and OpenCV, and
+  no Edge Impulse package; on five of the organizers' pictures it took 3 to 9 ms each. It ignores boxes under 0.45 confidence, keeps
   the most confident ball box, and puts the goal at the midpoint of the two most confident cone
   boxes. One cone alone counts as no goal.
 - Color settings (the fallback, not used in today's runs): the ball is HSV (0, 0, 170) to (179,
@@ -178,7 +186,8 @@ What went wrong and how it recovered:
 
 - Runs 1 and 2 ended at 0.2 s, before any move, because the first 2 pictures had no ball. The BOOT
   button is on the camera, so the hand pressing it likely filled those pictures. Raising
-  `miss_frames_to_end` from 2 to 5 fixed it: no run after the change ended in its first pictures.
+  `miss_frames_to_end` from 2 to 5 made such early ends rare: of the later runs, only run 12 ended
+  in its first pictures.
 - Balls far away near the top of the picture, probably other teams', pulled the robot sideways in
   4 of the last 5 runs. When it lost them, it stopped cleanly (runs 3 and 7).
 - In run 6 the ball rolled off to the left after 2 pushes, slides failed to re-center it, and the
