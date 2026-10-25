@@ -31,8 +31,8 @@ Qualcomm mentors on site.
      knowing.
    - Answer: open.
 7. How do prizes work for teams versus individuals?
-   - Answer: one winning team, or the top 3 if competing individually. Each Robocar winner gets a
-     LEGO APXGP Team Race Car (F1) and an UNO Q 4GB. Source: the host's email.
+   - Answer: one winning team, or the top 3 if competing individually. Each Robocar winner gets an
+     Arduino UNO Q (4 GB) and a LEGO race car.
 8. Does the day start at 9:30 AM or 10:00 AM?
    - Answer: doors and registration at 9:30 AM; building runs 10:00 AM to 4:00 PM (the listing
      says until 5:00).

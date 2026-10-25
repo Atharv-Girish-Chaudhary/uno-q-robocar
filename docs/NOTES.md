@@ -247,8 +247,8 @@ a waitlist.
 - 5:09 PM: the board shut down with `sudo poweroff` before unplugging, and the kit went back to
   the organizers. Photos and videos of the robot exist for the write-up. The organizers are
   announcing the results.
-- Result, announced at the close: first place in the Robocar track. The prizes were a small
-  circuit kit and a Lego car.
+- Result, announced at the close: first place in the Robocar track. The prizes were an Arduino
+  UNO Q (4 GB) and a LEGO race car.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
