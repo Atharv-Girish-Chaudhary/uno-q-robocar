@@ -9,7 +9,7 @@ The event page is https://luma.com/2xsshzd3.
 
 ## The kit
 
-![The UNO Q's two computers: your Python on the Linux side, the motor sketch on the microcontroller, Bridge between them](../figs/robot-two-computers.svg)
+![The UNO Q's two computers: the Python code on the Linux side, the motor sketch on the microcontroller, Bridge between them](../figs/robot-two-computers.svg)
 
 - An Arduino UNO Q on a Hiwonder miniAuto chassis, preassembled. Its mecanum wheels can drive,
   slide sideways and turn in place.

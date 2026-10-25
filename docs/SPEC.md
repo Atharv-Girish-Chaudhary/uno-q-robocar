@@ -217,7 +217,7 @@ slow approach) means radius at least `slow_radius_px` or center below `slow_y_fr
 | 13 | Close, goal not seen, ball outside the band | STEER toward it with `steer_mode` |
 | 14 | Close, goal not seen, centered | PUSH, as if the goal were lined up |
 
-![The same rules as four questions in order: picture fresh, ball seen, ball close, lined up with the goal](../figs/decision-rules.svg)
+![The same rules as five questions in order: picture fresh, ball seen, ball close, goal seen, lined up with the goal](../figs/decision-rules.svg)
 
 "Goal seen" means both cones: with one cone in view there is no gap to aim at, so rules 13 and 14
 apply and the robot pushes as if lined up.

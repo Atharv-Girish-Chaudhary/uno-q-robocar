@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="600" height="450" role="img" aria-label="Four questions in order. Picture fresh and run OK? If not, stop or wait. Ball seen? If not, wait, then stop after 2 missed frames. Ball close? If not, steer or drive forward. Lined up with the goal? If not, rotate or step around. If yes, push.">
-<title>Four questions in order. Picture fresh and run OK? If not, stop or wait. Ball seen? If not, wait, then stop after 2 missed frames. Ball close? If not, steer or drive forward. Lined up with the goal? If not, rotate or step around. If yes, push.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 432" width="600" height="540" role="img" aria-label="Five questions in order. Picture fresh and run OK? If not, stop or wait. Ball seen? If not, wait, then stop after 5 missed frames. Ball close? If not, steer or drive forward. Goal seen, both cones? If not, center the ball and push straight, as if lined up: every push on the day went this way. Lined up with the goal? If not, rotate or step around. If yes, push: 550 ms, up to 8 times.">
+<title>Five questions in order. Picture fresh and run OK? If not, stop or wait. Ball seen? If not, wait, then stop after 5 missed frames. Ball close? If not, steer or drive forward. Goal seen, both cones? If not, center the ball and push straight, as if lined up: every push on the day went this way. Lined up with the goal? If not, rotate or step around. If yes, push: 550 ms, up to 8 times.</title>
 <style>
 svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 .bg { fill: #ffffff; }
@@ -46,7 +46,7 @@ svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto,
   .r-br-lo { stroke: #9aac9f; }
 }
 </style>
-<rect class="bg" x="0" y="0" width="480" height="360" rx="12"/>
+<rect class="bg" x="0" y="0" width="480" height="432" rx="12"/>
         <defs><marker id="m-dec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect class="d-box" x="16" y="12" width="220" height="48" rx="8"/>
         <text class="d-t d-b" x="126" y="41" text-anchor="middle">Picture fresh, run OK?</text>
@@ -63,7 +63,7 @@ svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto,
         <text class="d-m" x="256" y="102" text-anchor="middle">no</text>
         <rect class="d-stop" x="276" y="84" width="188" height="48" rx="8"/>
         <text class="d-t d-b" x="370" y="104" text-anchor="middle">WAIT, then STOP</text>
-        <text class="d-m" x="370" y="122" text-anchor="middle">after 2 missed frames</text>
+        <text class="d-m" x="370" y="122" text-anchor="middle">after 5 missed frames</text>
         <line class="d-line" x1="126" y1="132" x2="126" y2="156" marker-end="url(#m-dec)"/>
         <text class="d-m" x="134" y="149">yes</text>
         <rect class="d-box" x="16" y="156" width="220" height="48" rx="8"/>
@@ -76,15 +76,24 @@ svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto,
         <line class="d-line" x1="126" y1="204" x2="126" y2="228" marker-end="url(#m-dec)"/>
         <text class="d-m" x="134" y="221">yes</text>
         <rect class="d-box" x="16" y="228" width="220" height="48" rx="8"/>
-        <text class="d-t d-b" x="126" y="257" text-anchor="middle">Lined up with the goal?</text>
+        <text class="d-t d-b" x="126" y="257" text-anchor="middle">Goal seen, both cones?</text>
         <line class="d-line" x1="236" y1="252" x2="275" y2="252" marker-end="url(#m-dec)"/>
         <text class="d-m" x="256" y="246" text-anchor="middle">no</text>
         <rect class="d-yours" x="276" y="228" width="188" height="48" rx="8"/>
-        <text class="d-t d-b" x="370" y="248" text-anchor="middle">ROTATE or ORBIT</text>
-        <text class="d-m" x="370" y="266" text-anchor="middle">turn, or step around it</text>
+        <text class="d-t d-b" x="370" y="248" text-anchor="middle">PUSH straight</text>
+        <text class="d-m" x="370" y="266" text-anchor="middle">every push on the day</text>
         <line class="d-line" x1="126" y1="276" x2="126" y2="300" marker-end="url(#m-dec)"/>
         <text class="d-m" x="134" y="293">yes</text>
-        <rect class="d-yours" x="16" y="300" width="220" height="48" rx="8"/>
-        <text class="d-t d-b" x="126" y="320" text-anchor="middle">PUSH</text>
-        <text class="d-m" x="126" y="338" text-anchor="middle">350 ms, up to 3 times</text>
+        <rect class="d-box" x="16" y="300" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="329" text-anchor="middle">Lined up with the goal?</text>
+        <line class="d-line" x1="236" y1="324" x2="275" y2="324" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="256" y="318" text-anchor="middle">no</text>
+        <rect class="d-yours" x="276" y="300" width="188" height="48" rx="8"/>
+        <text class="d-t d-b" x="370" y="320" text-anchor="middle">ROTATE or ORBIT</text>
+        <text class="d-m" x="370" y="338" text-anchor="middle">turn, or step around it</text>
+        <line class="d-line" x1="126" y1="348" x2="126" y2="372" marker-end="url(#m-dec)"/>
+        <text class="d-m" x="134" y="365">yes</text>
+        <rect class="d-yours" x="16" y="372" width="220" height="48" rx="8"/>
+        <text class="d-t d-b" x="126" y="392" text-anchor="middle">PUSH</text>
+        <text class="d-m" x="126" y="410" text-anchor="middle">550 ms, up to 8 times</text>
       </svg>
