@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 262" width="600" height="327.5" role="img" aria-label="Once, before the event and online, you label pictures, train the model in the cloud and export model.eim. On the robot, offline, every camera picture goes to model.eim on the Qualcomm chip, which answers with where the ball is.">
-<title>Once, before the event and online, you label pictures, train the model in the cloud and export model.eim. On the robot, offline, every camera picture goes to model.eim on the Qualcomm chip, which answers with where the ball is.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 262" width="600" height="327.5" role="img" aria-label="Once and online, you label pictures, train the model in the cloud and export model.eim. On the robot, offline, every camera picture goes to model.eim on the Qualcomm chip, which answers with where the ball is.">
+<title>Once and online, you label pictures, train the model in the cloud and export model.eim. On the robot, offline, every camera picture goes to model.eim on the Qualcomm chip, which answers with where the ball is.</title>
 <style>
 svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 .bg { fill: #ffffff; }
@@ -49,7 +49,7 @@ svg { color: #17211b; font-family: system-ui, -apple-system, "Segoe UI", Roboto,
 <rect class="bg" x="0" y="0" width="480" height="262" rx="12"/>
         <defs><marker id="m-ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect class="d-frame" x="8" y="12" width="464" height="104" rx="12"/>
-        <text class="d-m" x="20" y="30">once, before the event, online</text>
+        <text class="d-m" x="20" y="30">once, online</text>
         <rect class="d-box" x="20" y="48" width="136" height="48" rx="8"/>
         <text class="d-t d-b" x="88" y="68" text-anchor="middle">Label pictures</text>
         <text class="d-m" x="88" y="86" text-anchor="middle">ball, goal, empty</text>

@@ -1,14 +1,34 @@
-# Edge Impulse practice run
+# Edge Impulse: the model that ran
 
-Goal: train one ball and goal detector before Saturday, so on the day the steps are familiar and
-`model_runner.py` has a real model to run. About an hour, most of it waiting for training. It uses
-the guide's settings (`upstream/robocar/README.md`, "Edge Impulse: train a detector") and the
-organizers' August dataset: 321 pictures from the robot's own camera, labelled goal, robot and
-soccer_ball.
+The robot's ball and goal model, how it was trained on the day, and the practice run before the
+event. Edge Impulse is a web service that trains small models to run on devices.
 
 ![Training happens once, online, and exports model.eim; on the robot the same file runs on every frame, offline: that is on-device AI](../figs/on-device-ai.svg)
 
-## Steps
+## The model that ran
+
+- Trained on a copy of the organizers' public project 1144501
+  (studio.edgeimpulse.com/public/1144501/live), made after their label fix at 1:04 PM on Oct 24
+  and named `robocar-cones`. Its 353 pictures of the room are 512 by 512 and taken from above:
+  281 for training and 72 for testing, labelled `soccerball` and `goal`, with one box per cone.
+- An object detector, FOMO MobileNetV2 0.35, with a 96 by 96 input. Its resize mode came out as
+  Fit shortest axis, so the model sees the middle 240 of the camera's 320 columns.
+- Edge Impulse's score: an F1 of 96.9% on the 57 pictures it held back from the training set to
+  check the model (goal 98%, ball 96.4%). Those are the organizers' photos from above, like the
+  rest of the set, so the score says how well it learned those photos, not how it does on the
+  robot's camera. The 72 test pictures were not scored.
+- On the board, as the Linux (AARCH64) `.eim` run by `model_runner.py`, it took 3 to 9 ms a
+  picture on five of the organizers' pictures.
+- On the robot's camera it found the ball in every new frame of a 22 s watch-only run, and it
+  never found a cone; the README's limits say why.
+
+## The practice run, before the event
+
+Written before the event: train one ball and goal detector beforehand, so on the day the steps
+are familiar and `model_runner.py` has a real model to run. About an hour, most of it waiting for
+training. It uses the guide's settings (`robocar/README.md` in the guide, "Edge Impulse: train a
+detector") and the organizers' August dataset: 321 pictures from the robot's own camera, labelled
+goal, robot and soccer_ball.
 
 1. Make a free account at studio.edgeimpulse.com.
 2. Open the August dataset, studio.edgeimpulse.com/public/1085406/live, and click "Clone this
@@ -23,7 +43,8 @@ soccer_ball.
    training on CPU, data augmentation on. Save and train, then note the F1 score for each label.
 6. Model testing: classify the test set and note the accuracy. This is the honest number, since
    the model never saw those pictures.
-7. Deployment: choose Arduino UNO Q, build, and download the `.eim` file. Save it as
+7. Deployment: choose Arduino UNO Q, build, and download the `.eim` file (on the day, the
+   download that ran was the Linux (AARCH64) one; see below). Save it as
    `prep/models/robocar.eim`; `models/` is git-ignored, since the model comes from your own
    account. If Edge Impulse also offers a macOS build, download that too, as
    `prep/models/robocar-mac.eim`, to run it on the laptop.
@@ -42,23 +63,22 @@ uv run python demo.py --source 0 --show --detector model --config my_config.json
 The synthetic video's ball is drawn, not photographed, so a model trained on real pictures may
 not find it. A real soccer ball in front of the webcam is the better test.
 
-## On the day
+## Training on the day
 
 What the organizers said and did on Oct 24. In the late morning the guide's project
 (studio.edgeimpulse.com/public/1144501/live) held their office pictures, 321 labelled goal, robot
 and soccer_ball (the August set), and an organizer advised taking about 50 phone pictures of the
 ball and 50 of the goals in the room until a bigger set from the room was ready. At 12:05 they
 replaced the project's pictures with 353 new ones (281 for training, 72 for testing), labelled
-`soccerball` and `goal`, with no robot class. They are square, 512 by 512, taken from above on the room's carpet. The ball is
-a small white soccer ball with black patches, which looks cream in that light, and the goals are
-yellow cones, one box per cone. A few were uploaded without their boxes, and the organizer said
-they would fix those.
+`soccerball` and `goal`, with no robot class. They are square, 512 by 512, taken from above on the
+room's carpet. The ball is a small white soccer ball with black patches, which looks cream in that
+light, and the goals are yellow cones, one box per cone. A few were uploaded without their boxes,
+and the organizer said they would fix those.
 
 1. Sign in at studio.edgeimpulse.com, open the guide's project and click "Clone this project".
    A clone is a copy made at that moment, so fixes to their project after it don't reach yours.
-   The check below found about 50 labelling mistakes at 12:45, too many to fix by hand, so tell
-   the organizer, train once on a clone anyway to test the whole path, and clone again after
-   their fix.
+   With the label check below under way, the plan was to train once on a clone to test the
+   whole path, and clone again after the organizers' fix.
 2. In your copy, check that every picture has its boxes: Data acquisition lists each picture's
    labels. A picture of the ball with no box on it teaches the model that the ball is
    background, so label or delete any without.
@@ -72,8 +92,8 @@ they would fix those.
    slightly changed copies of each picture while training, with noise and small turns, so the
    model meets more variety than was photographed.
 5. Copy it into the app as `python/models/robocar.eim`, set `"detector": "model"` in the
-   config's `run` section, and read the startup log: it prints the model's labels, and warns if
-   none of `ball_labels` is among them. Test in watch-only mode first.
+   config's `run` section, and read the startup log: if none of `ball_labels` is among the model's
+   labels, it warns and lists them. Test in watch-only mode first.
 6. If the model misses things, add pictures and retrain. The robot's own camera gives the best
    ones (`demo.py --record`, then "Upload data" in Data acquisition), in separate sessions for
    training and for testing. Phone pictures work too: crouch to about the height of the robot's
@@ -82,53 +102,37 @@ they would fix those.
 
 ![A round ball squashed to 96 by 96: from the robot's 320 by 240 picture it is 12 wide and 16 tall; from a phone held upright, 16 wide and 12 tall; from a phone held sideways, 12 wide and 16 tall again](../figs/phone-sideways.svg)
 
-The numbers come from drawing a round ball in a picture of each size and squashing it with
-OpenCV's resize, the way Edge Impulse's Squash mode does. A model learns the shapes it is shown,
-so pictures held upright teach it a ball the robot's camera never produces. The organizers'
-square pictures keep the ball round, which is closer to the robot's 12 by 16 than an upright
-phone picture's 16 by 12. The general idea has a name: a gap between the pictures a model is
-trained on and the ones it meets later is called domain shift, and the office pictures had it
-too, in color and light.
+The numbers come from drawing a round ball in a picture of each size and squashing it with OpenCV's
+resize, the way Edge Impulse's Squash mode does. A model learns the shapes it is shown, so pictures
+held upright teach it a ball the robot's camera never produces. The organizers' square pictures
+keep the ball round, which is closer to the robot's 12 by 16 than an upright phone picture's 16 by
+12. The model that ran used Fit shortest axis instead, which crops the middle of the picture before
+the resize and so keeps the ball round. The general idea has a name: a gap between the pictures a
+model is trained on and the ones it meets later is called domain shift, and the office pictures had
+it too, in color and light.
 
-### The dataset check, Oct 24 at 12:45
+### The label check, Oct 24 at 12:45
 
-The organizer said the set was ready, so it was checked: the picture list from Edge Impulse's
-public API (`/v1/api/1144501/raw-data`), every picture downloaded, every box measured by color
-(the cones are saturated yellow, saturation about 245; the ball is not, about 73), and each
-flagged picture looked at by eye.
-
-- 20 pictures have a yellow cone labelled `soccerball` (15 training, 5 test): the worst one,
-  since it teaches the model that cones are balls.
-- 7 have the ball labelled `goal` (3 training, 4 test).
-- In about 20 pictures a cone has no box, mostly the second cone in those same 20.
-- Of the 6 pictures with no boxes at all, 2 are empty floor (fine), 1 shows the ball and 3 show
-  part of a cone.
-- 3 have two boxes on one ball.
-
-All 353 are 512 by 512, the two labels are spelled the same everywhere, and no picture appears in
-both training and test.
-
-The organizers fixed it at 1:04 PM, and the same check ran again at 1:14. The training pictures
-are mostly right now: 3 still have a cone labelled `soccerball`, 1 has the ball labelled `goal`,
-and 2 have two cones with no boxes, out of 281. The 72 test pictures were not changed, so 5 still
-have a cone labelled `soccerball`, 4 the ball labelled `goal`, and about 6 a cone with no box.
-Test mistakes don't change the model, only its score: Edge Impulse marks some right answers as
-wrong, so the test accuracy reads lower than the truth.
+Before training, every picture's boxes were checked: the picture list came from Edge Impulse's
+public API (`/v1/api/1144501/raw-data`), every picture was downloaded, every box was measured by
+color (the cones are a saturated yellow, saturation about 245; the ball is not, about 73), and each
+flagged picture was looked at by eye. It found some labelling slips, such as cones boxed as the
+ball; the organizers fixed the 281 training pictures at 1:04 PM, before the model above was
+trained, and left the 72 test pictures as they were. All 353 are 512 by 512, the two labels are
+spelled the same everywhere, and no picture appears in both training and test.
 
 ### The first model on the board, Oct 24 at 2:40 PM
 
-Project `robocar-cones`, trained on the organizers' fixed pictures: F1 96.9% on 57 held-back
-pictures (goal 98%, ball 96.4%). Its resize mode came out as Fit shortest axis, so on the robot it
-sees the middle 240 of the camera's 320 columns. The download to use is the Linux (AARCH64)
-`.eim`: the Deployment page builds the C++ library by default, which is source code, not the
-program. Run on the board through `model_runner.py` (in a throwaway container from the app's
-image), on five of the organizers' pictures, it found the ball, both cones with the goal at their
-midpoint, and nothing on the empty floor, in 3 to 9 ms a picture. The midpoints landed within
-about 5 px of the hand-drawn boxes'.
+The download to use is the Linux (AARCH64) `.eim`: the Deployment page builds the C++ library by
+default, which is source code, not the program. Run on the board through `model_runner.py` (in a
+throwaway container from the app's image), on five of the organizers' pictures, it found the ball,
+both cones with the goal at their midpoint, and nothing on the empty floor, in 3 to 9 ms a picture.
+The midpoints landed within about 5 px of the hand-drawn boxes'.
 
 FOMO reports where the ball is, not how big it looks, so the controller judges "near" and
-"close" by how low the ball sits in the picture as well. Calibrate `slow_y_frac` and
-`close_y_frac` (see `CALIBRATION_LOG.md`).
+"close" by how low the ball sits in the picture as well. `slow_y_frac` and `close_y_frac` set
+those heights; they kept their planned values, since the calibration log's ball table was never
+measured.
 
 ### The guide's `edge-impulse-linux` line, and why this app skips it
 

@@ -68,6 +68,9 @@ The event page is https://luma.com/2xsshzd3.
   again, with no "invalid packet" burst in the router log, while the restart after `sudo reboot`
   had worked. So on this board an app restart can leave the chip silent and only a board restart
   is sure to bring it back: put new files on the board, then reboot it, then start the app.
+- About 2:40 PM: the camera was tilted so the far edge of the carpet sits about 30% of the way down
+  the picture. With nothing in front of it, the model found nothing in three live pictures: no
+  false alarm on the carpet, the windows or another robot.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
