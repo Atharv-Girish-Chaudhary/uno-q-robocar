@@ -1,9 +1,9 @@
 # Build Day notes
 
 Written before the event as the quick reference for the day, then kept on Oct 24 as the day's
-time-stamped log, which has its own section below. The reference parts condense the event guide
-(`upstream/README.md` and `upstream/robocar/README.md`, written against commit `8f40c4e` and
-rechecked at `1fc4493` of Oct 22, which adds `upstream/robocar/PREWORK.md`), Arduino's App Lab
+time-stamped log, which has its own section below. The reference parts condense the event guide,
+github.com/aaishikasb/uno-q-hackout (its `README.md` and `robocar/README.md`, read at commit
+`8f40c4e` and rechecked at `1fc4493` of Oct 22, which adds `robocar/PREWORK.md`), Arduino's App Lab
 source (app-bricks-py at `bricks/0.13.1`), and the organizers' August event, the Robot Soccer Cup.
 The event page is https://luma.com/2xsshzd3.
 
@@ -271,16 +271,16 @@ The event page is https://luma.com/2xsshzd3.
 ## Setup, in order
 
 1. Raise the wheels off the table, find the motor-power disconnect, and keep it within reach.
-2. Plug the UNO Q in with a USB-C cable that carries data, and follow App Lab's board
-   connection guide.
+2. Plug the UNO Q in with a USB-C cable that carries data, and set it up in App Lab as its board
+   guide describes.
 3. Collect the camera's Wi-Fi name and password, and the robot's motor calibration, from the
    organizers. Find the BOOT button on the camera.
 4. While the board still has Internet, run the starter once: import the prepared ZIP in App Lab
    (My Apps, then import), or `make flash` from a copy of `robocar/`. The first run downloads and
    compiles the sketch's Arduino libraries. Press BOOT: one 200 ms forward pulse, then a stop.
-5. On the laptop, join the camera's Wi-Fi and open the preview page. Put the ball near, far, left
-   and right to find a good camera angle. Close the page afterwards: the camera serves one
-   stream at a time.
+5. On the laptop, join the camera's Wi-Fi and open the preview page. Try the ball at several distances
+   and to each side, and settle the camera's angle. Then close the page, since the camera serves
+   only one viewer.
 6. On the board, join the camera's Wi-Fi from its Linux side, with USB still connected:
    `adb shell`, then `sudo nmcli device wifi connect "SSID" password "PASS"`. The board saves the
    network and rejoins it after a reboot; `nmcli device wifi list` shows what is in range.
@@ -474,7 +474,7 @@ uv run python demo.py --source http://192.168.5.1:81/stream --mode observe --rec
 |---|---|
 | `make devices` | List connected boards |
 | `make flash` | Copy the app to the board, compile and upload the sketch, start Python |
-| `make logs` | Follow Python output, including `print()` and errors (Ctrl+C leaves it running) |
+| `make logs` | Show the app's Python output as it comes, `print()` lines and errors included (Ctrl+C leaves the app running) |
 | `make monitor` | The MCU serial monitor at 9600 baud |
 | `make stop` | Stop this app (not a motor-power cutoff) |
 | `make package` | Build `build/uno-q-robocar.zip` for App Lab import |

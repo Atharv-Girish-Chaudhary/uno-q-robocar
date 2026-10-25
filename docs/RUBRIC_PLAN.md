@@ -5,9 +5,11 @@ numbers in it are the plan's (a 400 ms stale limit, 2 missed frames, pushes of 3
 times, sideways slides); the values that ran are in `prep/robocar_config.json`, and the README
 tells how the day went.
 
-The Robocar rubric totals 100 points. Each criterion gets a rating from 0 to 4: absent, partial,
-basic, reliable, or consistently demonstrated. The guide doesn't say how a rating becomes points;
-this plan assumed weight × rating ÷ 4, so a "reliable" 3 on ball detection is worth about 19 of 25.
+The event guide's [Robocar rubric](https://github.com/aaishikasb/uno-q-hackout#robocar-rubric)
+totals 100 points, and each criterion gets a rating from 0 to 4: "absent, partial, basic,
+reliable, or consistently demonstrated". The quoted lines below are the rubric's own words. The
+guide doesn't say how a rating becomes points; this plan assumed weight × rating ÷ 4, so a
+"reliable" 3 on ball detection is worth about 19 of 25.
 
 ![The 100 points to scale: half go to finding the ball and moving on fresh pictures](../figs/rubric-points.svg)
 
@@ -20,7 +22,7 @@ lengthen the pulses.
 
 ## Ball detection (25)
 
-- Judges want: the robot finds the ball across the agreed conditions and acts on it on its own.
+- The rubric: "Finds the ball across the agreed conditions and autonomously acts on it."
 - How this build shows it: the color detector looks for the white ball below the wall line, and
   checks size, fill and roundness, so boxes, bars and the goal are rejected. The model runner can
   swap in a trained Edge Impulse detector with no other change. Either one is tuned on site:
@@ -32,7 +34,7 @@ lengthen the pulses.
 
 ## Actions driven by perception (25)
 
-- Judges want: fresh observations control short steering and approach movements.
+- The rubric: "Fresh observations control short steering and approach movements."
 - How this build shows it: every move is a pulse of 80 to 350 ms decided from a frame that
   arrived at least `settle_ms` after the previous pulse ended and is at least the second new frame
   since, because the camera's two frame buffers can still hold a picture taken before the move.
@@ -43,8 +45,7 @@ lengthen the pulses.
 
 ## Goal-directed behavior (20)
 
-- Judges want: the robot lines the ball up with the goal and scores under the challenge
-  conditions.
+- The rubric: "Aligns the ball with the goal and scores under the challenge conditions."
 - How this build shows it: steering slides sideways by default, so the robot keeps pointing the
   way it started (at the goal, in the guide's lined-up arrangement). Once the ball is close, the
   goal finder checks whether the goal is behind the ball. If it isn't, the robot turns to keep
@@ -57,7 +58,7 @@ lengthen the pulses.
 
 ## Reliability and safe recovery (20)
 
-- Judges want: the robot stops on a lost ball, stale video or errors, and restarts predictably.
+- The rubric: "Stops on lost ball, stale video, or errors; restarts predictably."
 - How this build shows it: the run ends with `robot.stop()` after 2 missed frames in a row; when
   no new frame arrives for `stale_after_ms` (400 ms), or the same JPEG repeats 5 times; and on any
   error, including a crashed model. No error escapes the loop, because App Lab shuts the whole app
@@ -72,8 +73,8 @@ lengthen the pulses.
 
 ## Explanation and reproducibility (10)
 
-- Judges want: source, launch instructions, calibration, results and credits let someone else
-  repeat the demo.
+- The rubric: "Source, launch instructions, calibration, results, and credits let someone else
+  repeat the demo."
 - How this build shows it: `docs/SUBMISSION_README_TEMPLATE.md` to fill in, `docs/CALIBRATION_LOG.md`
   for the pulses and thresholds to measure (only its runs table was filled in on the day), and one settings file (`robocar_config.json`) holding
   every number. Recordings from the robot's camera (`demo.py --record`) let anyone replay a run; the day's

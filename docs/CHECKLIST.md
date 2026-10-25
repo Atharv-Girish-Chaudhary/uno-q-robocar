@@ -33,7 +33,7 @@ To do by hand:
 2. Ask the open questions in `QUESTIONS.md`: the ball and goal, the final run setup, pre-written
    code, which Wi-Fi the boards use, and how to hand in the project.
 3. Safety setup: raise the wheels and find the motor-power disconnect.
-4. Connect the UNO Q by USB and follow App Lab's board connection guide. Collect the camera's
+4. Connect the UNO Q over USB and set it up in App Lab, as its board guide describes. Collect the camera's
    Wi-Fi name and password, and the motor calibration. If App Lab offers to update the board's
    software, ask the organizers first.
 5. While the board has Internet, run the starter once (it compiles the sketch's libraries), and
