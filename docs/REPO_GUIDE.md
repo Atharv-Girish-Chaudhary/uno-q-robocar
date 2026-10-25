@@ -11,11 +11,10 @@ tells the project's story.
 | Path | What it is for |
 |---|---|
 | `README.md` | The project's story: the problem, how it works, the results and the limits. |
-| `GAME_PLAN.html` | The Build Day game plan: the event, the robot, the rules, tonight's work and Saturday's steps, with every diagram. Open it in a browser; GitHub shows HTML as code. |
 | `CLAUDE.md` | The rules for Claude sessions in this repo: Python 3.10, one OpenCV build per environment, the 1000 ms pulse cap, no em or en dashes. |
 | `.gitignore` | Keeps `upstream/`, virtual environments, generated samples, recordings and trained models out of this repo's history. |
 | `docs/` | Notes for you and the judges, listed below. |
-| `figs/` | The diagrams as SVG files, each drawn once and shown in the README, the docs and the game plan page. |
+| `figs/` | The diagrams as SVG files, each drawn once and shown in the README and the docs. |
 | `prep/` | The code: a uv project on Python 3.10, listed below. |
 | `upstream/` | The organizers' guide: a separate git clone, not part of this repo, explained below. |
 
@@ -64,8 +63,6 @@ A separate git clone of github.com/aaishikasb/uno-q-hackout, kept for reading. Y
 `.gitignore` leaves it out, so it is never committed or pushed here. Get it with
 `git clone https://github.com/aaishikasb/uno-q-hackout upstream`, and refresh it with
 `git -C upstream pull`. The guide has two tracks; only `robocar/` matters for this build.
-
-![Your repo and the organizers' guide share one folder but are two separate git repos; the robot's app takes files from both](../figs/repo-and-upstream.svg)
 
 | Path | What it is for |
 |---|---|

@@ -44,14 +44,13 @@ so the tests and notebooks that run on it use August's presets (`white_ball`, `w
 qualcomm-build-day/
   .gitignore                 upstream/, venvs, generated samples, recordings and models
   README.md                  what is here and the commands that matter
-  GAME_PLAN.html             the Build Day game plan page, published from here
   CLAUDE.md                  this repo's rules for future Claude sessions
   upstream/                  separate clone of the guide, read only, never in this history
   docs/
     SPEC.md                  this file
     NOTES.md  RUBRIC_PLAN.md  QUESTIONS.md  CHECKLIST.md  CALIBRATION_LOG.md
     SUBMISSION_README_TEMPLATE.md  EDGE_IMPULSE.md
-  figs/                      the diagrams as SVG files, shown in the README, the docs and the page
+  figs/                      the diagrams as SVG files, shown in the README and the docs
   prep/                      uv project, Python 3.10
     pyproject.toml  uv.lock  .python-version
     requirements-board.txt   fallback only, see below

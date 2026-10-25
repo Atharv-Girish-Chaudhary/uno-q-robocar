@@ -54,8 +54,6 @@ a small white soccer ball with black patches, which looks cream in that light, a
 yellow cones, one box per cone. A few were uploaded without their boxes, and the organizer said
 they would fix those.
 
-![Your first model today in six steps: clone the organizers' project, box or delete the 6 pictures with no boxes, train a small model, download the .eim file, onto the board, a watch-only test, then your own pictures and train again](../figs/todays-model.svg)
-
 1. Sign in at studio.edgeimpulse.com, open the guide's project and click "Clone this project".
    A clone is a copy made at that moment, so fixes to their project after it don't reach yours.
    The check below found about 50 labelling mistakes at 12:45, too many to fix by hand, so tell
@@ -108,7 +106,7 @@ flagged picture looked at by eye.
 - 3 have two boxes on one ball.
 
 All 353 are 512 by 512, the two labels are spelled the same everywhere, and no picture appears in
-both training and test. The picture names are on the game plan page, for the organizers.
+both training and test.
 
 The organizers fixed it at 1:04 PM, and the same check ran again at 1:14. The training pictures
 are mostly right now: 3 still have a cone labelled `soccerball`, 1 has the ball labelled `goal`,

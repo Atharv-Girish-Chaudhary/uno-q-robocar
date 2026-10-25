@@ -427,8 +427,6 @@ Keep the USB-C cable in while the robot runs: App Lab's log view, or `make logs`
 moved. The laptop can't watch the video during a run, because the camera serves one viewer and
 the robot is using it; record with `demo.py --record` while the board's app is stopped instead.
 
-![The Mac reaches the board over USB-C and the Internet over the venue Wi-Fi; to preview or record, it joins the camera's Wi-Fi and loses its Internet](../figs/watching-a-run.svg)
-
 ## Laptop commands (from `prep/`)
 
 ```bash

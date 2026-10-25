@@ -244,8 +244,6 @@ the board ran the model (`"detector": "model"`).
 - [docs/SUBMISSION_README.md](docs/SUBMISSION_README.md): the README handed in with the app.
 - [docs/REPO_GUIDE.md](docs/REPO_GUIDE.md): a file-by-file guide to this repo and to the
   organizers' event guide, including what the guide's own docs leave out.
-- `GAME_PLAN.html`: the plan page used on the day. Open it in a browser, since GitHub shows HTML as
-  code.
 - `figs/`: the diagrams, as SVG files.
 
 ## Credits
