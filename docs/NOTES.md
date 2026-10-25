@@ -124,7 +124,7 @@ a waitlist.
   (speed 120, 86 ms) never re-centered it: sideways slides don't move the robot on this carpet.
   One of these runs put the ball between the cones (seen at the field; the log can't show
   which, since the robot never saw the cones).
-- 3:45 PM: submitted. The organizers' email at 2:59 named the hand-in: one pull request to
+- 3:45 PM: submitted. At 2:59 the organizers named the hand-in: one pull request to
   github.com/aaishikasb/uno-q-hackout-submissions adding only
   `10-24-neu/robocar-track/<github-username>.zip`, with the submission details in the ZIP's
   `app.yaml` description, before 4:00 PM. The ZIP was built from the board's app folder

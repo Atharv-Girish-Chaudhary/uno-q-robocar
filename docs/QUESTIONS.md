@@ -1,7 +1,7 @@
 # Questions for the organizers
 
 The office hours (Tue Oct 20, 2:00 PM PT, with the two judges) have passed. The event page and
-the host's email of Oct 21 answer questions 7 and 8. Ask the rest at check-in, or ask the
+the organizers' instructions answer questions 7 and 8. Ask the rest at check-in, or ask the
 Qualcomm mentors on site.
 
 1. What are the "agreed conditions" for ball detection: ball color, lighting, distances,
@@ -35,7 +35,7 @@ Qualcomm mentors on site.
      LEGO APXGP Team Race Car (F1) and an UNO Q 4GB. Source: the host's email.
 8. Does the day start at 9:30 AM or 10:00 AM?
    - Answer: doors and registration at 9:30 AM; building runs 10:00 AM to 4:00 PM (the listing
-     says until 5:00). Source: the host's email of Oct 21.
+     says until 5:00).
 
 ## More, from the research
 
@@ -55,7 +55,7 @@ Qualcomm mentors on site.
       with black patches, on carpet, and the goals are yellow cones. The field: open.
 11. How do teams hand in the project: an App Lab export, a ZIP, a GitHub link or a form?
     - Why it matters: it decides where the submission README goes and what else to include.
-    - Answer (organizers' email, 2:59 PM): one pull request to
+    - Answer (the organizers, at 2:59 PM): one pull request to
       github.com/aaishikasb/uno-q-hackout-submissions adding only
       `10-24-neu/robocar-track/<github-username>.zip`, with the details in the ZIP's `app.yaml`,
       before 4:00 PM. Submitted at 3:45 PM as pull request 8.
