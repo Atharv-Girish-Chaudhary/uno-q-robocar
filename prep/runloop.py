@@ -108,7 +108,7 @@ def open_camera(settings: Settings, source: Union[None, int, str, Path] = None) 
 
 
 def print_versions(log: Log = print) -> None:
-    """What the board actually runs; the first run on Saturday settles whether OpenCV imports."""
+    """What the board actually runs; the first run on Oct 24 settled whether OpenCV imports."""
     builds = []
     for name in ("opencv-python", "opencv-python-headless"):
         try:
