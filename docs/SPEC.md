@@ -363,7 +363,7 @@ default on the laptop through `default-groups`; the robot never imports them.
 
 ## Out of scope
 
-- A trained model: the user trains it with their own Edge Impulse account.
+- A trained model: it is trained in an Edge Impulse account, outside this repo.
 - Any change to `upstream/`, and a ready-to-import app ZIP, until the rules on pre-written code
   are known. `NOTES.md` lists the copy steps instead.
 - An ultrasonic "path clear" check: the ball itself trips the sensor when close.

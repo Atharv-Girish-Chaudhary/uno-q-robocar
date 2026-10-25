@@ -7,7 +7,7 @@ Done on Oct 22:
 - [x] The guide cloned into `upstream/` for offline reading; its Makefile works with the Mac's make.
 - [x] Prep code written and tested (`uv run pytest` in `prep/`).
 
-Yours:
+To do by hand:
 - [ ] Do the organizers' pre-work, `upstream/robocar/PREWORK.md` (about 30 minutes, no board
       needed). They added it on the evening of Oct 22 and ask for it before you connect the kit.
 - [ ] Install Arduino App Lab and open it once (docs.arduino.cc/software/app-lab).

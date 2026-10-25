@@ -2,7 +2,7 @@
 
 The Robocar rubric totals 100 points. Each criterion gets a rating from 0 to 4: absent, partial,
 basic, reliable, or consistently demonstrated. The guide doesn't say how a rating becomes points;
-my reading is weight × rating ÷ 4, so a "reliable" 3 on ball detection is worth about 19 of 25.
+this plan assumed weight × rating ÷ 4, so a "reliable" 3 on ball detection is worth about 19 of 25.
 
 ![The 100 points to scale: half go to finding the ball and moving on fresh pictures](../figs/rubric-points.svg)
 

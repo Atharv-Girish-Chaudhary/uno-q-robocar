@@ -81,7 +81,7 @@ a waitlist.
   ended at 1.5 s; the pictures below show another team's ball far off, which may be what it saw.
   The fourth drove toward the ball for 9.4 s: six forward moves (speed 110, 200 ms), one slide
   right, then a slow approach as the ball got near (y from 110 to 160). It was still going when
-  I stopped the app at 3:03 to grab pictures, which cut it off, so check the log for a run in
+  the app was stopped at 3:03 to grab pictures, which cut it off, so check the log for a run in
   progress before stopping the app. Those pictures show the ball about 20 cm ahead, where that
   run had brought the robot, and the model found it there (confidence 1.0). The likely cause of
   the instant stops is the BOOT press itself: the button is on the camera, so the hand pressing it
@@ -240,9 +240,9 @@ a waitlist.
 - Before handing the kit back: the app stopped, the guide's `robot_client.py` put back (same
   checksum as the copy saved before the change), and the model file removed from the board
   (identical to `prep/models/robocar.eim`, so nothing was lost). The board still holds the saved
-  Wi-Fi profiles (the camera's, a phone hotspot and another saved network) and this app without its
-  model; removing those is the owner's call.
-- 5:07 PM: the phone hotspot profile deleted from the board (by the owner, with sudo). The app
+  Wi-Fi profiles (the camera's, a phone hotspot and another saved network) and this app
+  without its model.
+- 5:07 PM: the phone hotspot profile deleted from the board (with sudo). The app
   stays on the board, as do the camera's profile and another saved network (not ours, so left).
 - 5:09 PM: the board shut down with `sudo poweroff` before unplugging, and the kit went back to
   the organizers. Photos and videos of the robot exist for the write-up. The organizers are
@@ -330,7 +330,7 @@ it matters. The two sections below give the details.
 - The camera serves one stream at a time: close the browser preview, or stop the board's app,
   before another reader connects.
 - Keep USB connected while the board is on the camera's Wi-Fi; App Lab talks to it over USB.
-- The laptop has no Internet while it is on the camera's Wi-Fi, so Claude and the web go offline
+- The laptop has no Internet while it is on the camera's Wi-Fi, so the web goes offline
   during previews, recordings and tuning. A phone hotspot over USB keeps the Mac online.
 
 ## On the Mac
@@ -346,8 +346,7 @@ it matters. The two sections below give the details.
   `prep/` (Ruff's fixes plus its formatter at 88 characters, and VS Code's JSON layout), and Ruff
   and Pylance listed 207 warnings, none of them a bug. `prep/.vscode/settings.json` turns Ruff and
   Pylance's type checking off for this folder and stops formatting on save; reload the VS Code
-  window for it to take effect. The rewrite itself was undone at 1:20 PM, with a patch of it kept
-  in the trash folder.
+  window for it to take effect. The rewrite itself was undone at 1:20 PM.
 
 ## Safety rules
 

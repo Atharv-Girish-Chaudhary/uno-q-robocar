@@ -10,7 +10,7 @@ soccer_ball.
 
 ## Steps
 
-1. Make a free account at studio.edgeimpulse.com. This needs you; I can't create accounts.
+1. Make a free account at studio.edgeimpulse.com.
 2. Open the August dataset, studio.edgeimpulse.com/public/1085406/live, and click "Clone this
    project". Your copy has the labelled pictures, already split into training (255) and test
    (66).

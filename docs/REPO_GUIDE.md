@@ -13,7 +13,7 @@ tells the project's story.
 | `README.md` | The project's story: the problem, how it works, the results and the limits. |
 | `CLAUDE.md` | The rules for Claude sessions in this repo: Python 3.10, one OpenCV build per environment, the 1000 ms pulse cap, no em or en dashes. |
 | `.gitignore` | Keeps `upstream/`, virtual environments, generated samples, recordings and trained models out of this repo's history. |
-| `docs/` | Notes for you and the judges, listed below. |
+| `docs/` | Notes from the build and for the judges, listed below. |
 | `figs/` | The diagrams as SVG files, each drawn once and shown in the README and the docs. |
 | `prep/` | The code: a uv project on Python 3.10, listed below. |
 | `upstream/` | The organizers' guide: a separate git clone, not part of this repo, explained below. |
@@ -59,7 +59,7 @@ Laptop only, never on the robot:
 
 ## upstream/: the organizers' guide
 
-A separate git clone of github.com/aaishikasb/uno-q-hackout, kept for reading. Your repo's
+A separate git clone of github.com/aaishikasb/uno-q-hackout, kept for reading. This repo's
 `.gitignore` leaves it out, so it is never committed or pushed here. Get it with
 `git clone https://github.com/aaishikasb/uno-q-hackout upstream`, and refresh it with
 `git -C upstream pull`. The guide has two tracks; only `robocar/` matters for this build.
