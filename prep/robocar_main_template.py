@@ -1,5 +1,9 @@
 """Reference copy of the guide's robocar/python/main.py, wired to the prep modules.
 
+Adapted from robocar/python/main.py in the Build Day guide, github.com/aaishikasb/uno-q-hackout,
+which states no license: the lines kept from it belong to the guide's authors and are not covered
+by this repository's MIT license.
+
 Never copy this into upstream/. On the day, in your own copy of the robocar app, put
 detector.py, model_runner.py, stream.py, controller.py, runloop.py and robocar_config.json in
 python/ beside main.py, then use this file's contents as main.py. Don't add numpy or OpenCV to
