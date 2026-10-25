@@ -242,6 +242,8 @@ a waitlist.
   (identical to `prep/models/robocar.eim`, so nothing was lost). The board still holds the saved
   Wi-Fi profiles (the camera's, a phone hotspot and another saved network) and this app without its
   model; removing those is the owner's call.
+- 5:07 PM: the phone hotspot profile deleted from the board (by the owner, with sudo). The app
+  stays on the board, as do the camera's profile and another saved network.
 - 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
   battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
   at 2:44. A fresh pack read about 11,550.
