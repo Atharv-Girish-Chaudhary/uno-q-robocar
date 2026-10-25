@@ -1,12 +1,11 @@
 # Build Day notes
 
-The quick reference for Saturday. It condenses the event guide (`upstream/README.md` and
-`upstream/robocar/README.md`, written against commit `8f40c4e` and rechecked at `1fc4493` of
-Oct 22, which adds `upstream/robocar/PREWORK.md`), Arduino's App Lab source (app-bricks-py at
-`bricks/0.13.1`), and the organizers' August event, the Robot Soccer Cup. Do the organizers'
-pre-work (about 30 minutes) and read the guide itself once end to end; come back here for the
-details. The event page is https://luma.com/2xsshzd3; on Oct 23 it showed the event as full, with
-a waitlist.
+Written before the event as the quick reference for the day, then kept on Oct 24 as the day's
+time-stamped log, which has its own section below. The reference parts condense the event guide
+(`upstream/README.md` and `upstream/robocar/README.md`, written against commit `8f40c4e` and
+rechecked at `1fc4493` of Oct 22, which adds `upstream/robocar/PREWORK.md`), Arduino's App Lab
+source (app-bricks-py at `bricks/0.13.1`), and the organizers' August event, the Robot Soccer Cup.
+The event page is https://luma.com/2xsshzd3.
 
 ## The kit
 
@@ -39,6 +38,9 @@ a waitlist.
   connection; turning it off (`802-11-wireless.powersave 2`) is the cheap thing to try first.
 - After the app stops, the camera keeps its one stream busy for a few seconds, so a second viewer
   can time out if it connects at once; it works a few seconds later.
+
+## The day's log, Oct 24
+
 - 2:06 PM: the cone-goal code (midpoint of two cones, yellow cone colors, ball floor 170) is on the
   board. From 2:07 the app fails at start: its first Bridge call, `stop`, times out after 10 s,
   so the motor chip (MCU) isn't answering, and the serial monitor (`arduino-app-cli monitor`)
@@ -66,6 +68,21 @@ a waitlist.
   again, with no "invalid packet" burst in the router log, while the restart after `sudo reboot`
   had worked. So on this board an app restart can leave the chip silent and only a board restart
   is sure to bring it back: put new files on the board, then reboot it, then start the app.
+- 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
+  battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
+  at 2:44. A fresh pack read about 11,550.
+- After the battery swap the camera restarted, but the board kept its old Wi-Fi link: `nmcli`
+  said connected while the camera's address stayed `INCOMPLETE` in `ip neigh` and the app logged
+  "No route to host". `nmcli con up "SSID"` (it works over adb without sudo) brought the
+  video back at once, about 7 frames a second. Run it after anything that restarts the camera.
+- 2:55 PM, first watch-only run with the model (ball about 1 m ahead, two cones about 2 m away
+  with a phone-length gap): 73 new frames in 21.7 s, and the ball was found in every one, at
+  x=140 or 150 and y=130; the move each time was "forward speed=110 ms=200: ball centered and
+  far: approach". The goal was never found: the training pictures show the cones from above, as
+  round discs, while the robot sees them from the side and small at 2 m. The video still stalled
+  for 1.5 s or more about every 5 s: the other 13 checks said "no new frame for" 1540 to 1785 ms.
+- 2:57 PM: `stale_after_ms` went to 3000 and `read_timeout_s` to 4.0, to ride out stalls of about
+  2 s every 5 s; the reader must still outwait the limit.
 - 2:58 PM, the fast way: `arduino-app-cli app stop` then `arduino-app-cli app start --no-prepare`.
   It skips the preparing step (compiling the sketch and resetting the chip through openocd), the
   chip keeps running, and the app came up with `bridge: True`. Use it for settings and Python
@@ -189,10 +206,10 @@ a waitlist.
   sensor's lights blue every 1.5 s, also over I2C, so no blinking means the I2C wiring is off.
   Since the line sensor still answered at 4:06 on the flat pack and stopped after the swap, a
   cable knocked loose during the battery swap is the likeliest cause.
-- 4:32 PM, a stopgap for the judge: the board's `robot_client.py` (the guide's file, not in this
-  repo; the patched copy is in `prep/out/robocar-app/python/`) now also counts a run as enabled
-  while a file `python/go` exists, and deletes the file when the run ends, so a run can start from
-  the laptop (`touch` over adb). Loading it with a `--no-prepare` restart left the chip silent, so
+- 4:32 PM, a stopgap for the judge: the board's `robot_client.py` (the guide's file, patched on the
+  board only; no copy of the patch was kept) now also counts a run as enabled while a file
+  `python/go` exists, and deletes the file when the run ends, so a run can start from the laptop
+  (`touch` over adb). Loading it with a `--no-prepare` restart left the chip silent, so
   the board was rebooted once more and fully started at 4:34 (`bridge: True`, battery 11,328), and
   this time `line_ok` was true again. A laptop-started run at 4:34 stopped at 0.6 s with no ball in
   view. Then a run started by BOOT (so the button works again) drove to the ball, pushed 4 times,
@@ -239,7 +256,7 @@ a waitlist.
   second push and the ball leaving the picture; the log can't show the goal itself.
 - Before handing the kit back: the app stopped, the guide's `robot_client.py` put back (same
   checksum as the copy saved before the change), and the model file removed from the board
-  (identical to `prep/models/robocar.eim`, so nothing was lost). The board still holds the saved
+  (identical to the local copy, so nothing was lost). The board still holds the saved
   Wi-Fi profiles (the camera's, a phone hotspot and another saved network) and this app
   without its model.
 - 5:07 PM: the phone hotspot profile deleted from the board (with sudo). The app
@@ -249,19 +266,7 @@ a waitlist.
   announcing the results.
 - Result, announced at the close: first place in the Robocar track. The prizes were an Arduino
   UNO Q (4 GB) and a LEGO race car.
-- 2:44 PM: after `sudo reboot` the app started with the model (`observe, model detector`). The
-  battery number keeps falling with no motor running: about 11,300 at 2:00, 6,500 at 2:21, 5,529
-  at 2:44. A fresh pack read about 11,550.
-- After the battery swap the camera restarted, but the board kept its old Wi-Fi link: `nmcli`
-  said connected while the camera's address stayed `INCOMPLETE` in `ip neigh` and the app logged
-  "No route to host". `nmcli con up "SSID"` (it works over adb without sudo) brought the
-  video back at once, about 7 frames a second. Run it after anything that restarts the camera.
-- 2:55 PM, first watch-only run with the model (ball about 1 m ahead, two cones about 2 m away
-  with a phone-length gap): 73 new frames in 21.7 s. The ball was found on 73 of 86 checks,
-  always at x=140 y=130, and the move each time was "forward speed=110 ms=200: ball centered and
-  far: approach". The goal was never found: the training pictures show the cones from above, as
-  round discs, while the robot sees them from the side and small at 2 m. The video still stalled
-  for about 1.5 to 2.5 s every 5 s or so (13 checks said "no new frame for 154N ms").
+
 
 ## Setup, in order
 
@@ -408,7 +413,7 @@ the laptop; reference it in `requirements.txt` with `--no-index` and
 uvx pip download numpy==2.2.6 opencv-python-headless==4.13.0.92 -d wheels --only-binary=:all: --implementation cp --python-version 3.13 --abi cp313 --platform manylinux_2_28_aarch64 --platform manylinux2014_aarch64
 ```
 
-## Moving the prep code into the app (only if pre-written code is allowed)
+## Moving the prep code into the app
 
 1. In your own copy of the robocar app (an imported ZIP in App Lab, or a copy of
    `upstream/robocar/` outside `upstream/`), put these files in `python/` beside `main.py`:
