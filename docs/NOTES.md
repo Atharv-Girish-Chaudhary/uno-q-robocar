@@ -359,7 +359,7 @@ it matters. The two sections below give the details.
 ## Safety rules
 
 - Duration 0 means "drive forever". Every pulse in the prep code is 1 to 1000 ms, enforced when
-  the config loads and again before each `drive()`.
+  the config loads and again before each move of a run.
 - BOOT is a software stop, and blocking firmware routines can delay it. The motor-power
   disconnect is the real stop.
 - Never rely on a Python `finally` as the only stop: if the process dies it never runs. The

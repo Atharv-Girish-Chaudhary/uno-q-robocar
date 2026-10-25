@@ -89,17 +89,16 @@ such as `FORWARD forward speed=220 ms=400: ball centered and far: approach`. Tho
 every run was read afterwards.
 
 Safety lives in the same numbers. Every pulse is 1 to 1000 ms, checked when the settings load and
-again before each `drive()` call (the guide's function that sends one move to the
-microcontroller), so a duration of 0 never goes out. The firmware's own timer ends each pulse even
-if Python dies. That timer is checked in the motor sketch's main loop, though, so a stall there
-would delay the stop, and on the day a stuck I2C bus (the two-wire link that also carries the
+again before each move of a run is sent with `drive()` (the guide's function that hands one move to
+the microcontroller), so a duration of 0 never goes out. The firmware's own timer ends each pulse
+even if Python dies. That timer is checked in the motor sketch's main loop, though, so a stall
+there would delay the stop, and on the day a stuck I2C bus (the two-wire link that also carries the
 camera's button) was suspected of stalling it once. BOOT is a software stop as well, so the
-motor-power switch stayed the real one. A run ends by itself after 45 s, after 8 pushes, or after
-5 pictures in a row without the ball. Any error stops the motors and ends the run without crashing
+motor-power switch stayed the real one. A run ends by itself after 45 s, after 8 pushes, or after 5
+pictures in a row without the ball. Any error stops the motors and ends the run without crashing
 the app, so the next BOOT press starts clean. From 4:32 PM a stopgap on the board also let a run
-start from the laptop, through a file that a patched copy of the guide's `robot_client.py`
-watched for; it never steered the robot, and the guide's file went back before the kit was
-returned.
+start from the laptop, through a file that a patched copy of the guide's `robot_client.py` watched
+for; it never steered the robot, and the guide's file went back before the kit was returned.
 
 The robot acts only on a picture that arrived at least 120 ms after its last move ended, and only
 once at least 2 new pictures have come in, so a move came about every 1.5 s (the middle value over
