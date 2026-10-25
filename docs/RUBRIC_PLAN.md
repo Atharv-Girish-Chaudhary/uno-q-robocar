@@ -1,5 +1,10 @@
 # Rubric plan
 
+Written before the event: the plan for how this build would earn each part of the rubric. The
+numbers in it are the plan's (a 400 ms stale limit, 2 missed frames, pushes of 350 ms up to 3
+times, sideways slides); the values that ran are in `prep/robocar_config.json`, and the README
+tells how the day went.
+
 The Robocar rubric totals 100 points. Each criterion gets a rating from 0 to 4: absent, partial,
 basic, reliable, or consistently demonstrated. The guide doesn't say how a rating becomes points;
 this plan assumed weight × rating ÷ 4, so a "reliable" 3 on ball detection is worth about 19 of 25.
@@ -33,7 +38,8 @@ lengthen the pulses.
   since, because the camera's two frame buffers can still hold a picture taken before the move.
   Steering pulses grow with how far off center the ball is; the approach slows near the ball.
 - Show them: the log, where each line prints what the camera saw beside the move chosen, and the
-  latency check (`"mode": "latency"`) that measured `settle_ms` instead of guessing it.
+  latency check (`"mode": "latency"`), meant to measure `settle_ms` instead of guessing it (it
+  never ran on the day).
 
 ## Goal-directed behavior (20)
 
@@ -62,13 +68,14 @@ lengthen the pulses.
   until the log shows fresh frames first: the board has to rejoin the camera's Wi-Fi, and BOOT
   itself is read through the camera.
 - Evidence already: tests cover each of these against a fake camera that stalls, freezes and
-  drops its connection; a frozen camera is reported within about 430 ms.
+  drops its connection; with a 200 ms limit, a stalled camera is reported within half a second.
 
 ## Explanation and reproducibility (10)
 
 - Judges want: source, launch instructions, calibration, results and credits let someone else
   repeat the demo.
 - How this build shows it: `docs/SUBMISSION_README_TEMPLATE.md` to fill in, `docs/CALIBRATION_LOG.md`
-  for the measured pulses and thresholds, and one settings file (`robocar_config.json`) holding
-  every number. Recordings from the robot's camera (`demo.py --record`) let anyone replay a run.
+  for the pulses and thresholds to measure (only its runs table was filled in on the day), and one settings file (`robocar_config.json`) holding
+  every number. Recordings from the robot's camera (`demo.py --record`) let anyone replay a run; the day's
+  recordings are not in this repo.
 - Show them: the README, the calibration log, and a recorded run replayed through `demo.py`.
