@@ -204,7 +204,10 @@ on OpenCV's 0 to 255 scale, so it accepted 200 and up. On the robot's recording 
 found both cones in all 29 frames that show them and in none of the other 76 frames recorded that
 day, which show no cones. It was fitted and checked on the same frames, so it is untested on new
 footage. It came after the hand-in and never ran on the robot, and it needs a small code change as
-well: with the model switched on, the color finder doesn't run at all.
+well: with the model switched on, the color finder doesn't run at all. Here is one of those frames,
+with what each color range picks out:
+
+![One frame from the robot's camera at 3:03 PM, cropped below the windows: the ball and two pale yellow cones on gray carpet. The color range set from the organizers' photos marks nothing; the range refit on this recording marks both cones](figs/robot-camera-cones.svg)
 
 Both failures are domain shift: the pictures a model, or a hand-set threshold, meets in use differ
 from the ones it was built from. The tests could not catch it. They check logic and safety on
@@ -322,7 +325,7 @@ and that is the only difference from the settings on the board.
   [docs/QUESTIONS.md](docs/QUESTIONS.md), [docs/RUBRIC_PLAN.md](docs/RUBRIC_PLAN.md) and the
   hand-in template, [docs/SUBMISSION_README_TEMPLATE.md](docs/SUBMISSION_README_TEMPLATE.md).
 - `CLAUDE.md`: the rules Claude Code followed in this repo.
-- `figs/`: the diagrams, as SVG files.
+- `figs/`: the diagrams and the robot-camera picture, as SVG files.
 
 ## Credits
 
