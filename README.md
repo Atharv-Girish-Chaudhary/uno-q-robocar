@@ -10,7 +10,7 @@ Arduino UNO Q. It took first place in the track, with a 7.12 s run.
 | At a glance | |
 |---|---|
 | Robot | Arduino UNO Q on a Hiwonder miniAuto chassis, with an ESP32-S3 camera streaming over Wi-Fi |
-| Team | Solo, in a track of about ten teams |
+| Team | Solo |
 | Vision | An Edge Impulse FOMO model running on the board, 3 to 9 ms a picture when timed on five test pictures |
 | Control | Python rules: one short timed move per fresh picture, every move 1 to 1000 ms |
 | Result | First place in the Robocar track, with a 7.12 s run |
