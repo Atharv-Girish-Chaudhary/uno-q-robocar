@@ -54,7 +54,7 @@ uno-q-robocar/
     SPEC.md                  this file
     NOTES.md  RUBRIC_PLAN.md  QUESTIONS.md  CHECKLIST.md  CALIBRATION_LOG.md
     SUBMISSION_README_TEMPLATE.md  SUBMISSION_README.md  EDGE_IMPULSE.md  REPO_GUIDE.md
-  figs/                      the diagrams as SVG files, shown in the README and the docs
+  figs/                      the diagrams, a robot-camera picture and a photo of the robot
   prep/                      uv project, Python 3.10
     pyproject.toml  uv.lock  .python-version
     requirements-board.txt   fallback only, see below

@@ -15,7 +15,7 @@ tells the project's story.
 | `CLAUDE.md` | The rules for Claude sessions in this repo: Python 3.10, one OpenCV build per environment, the 1000 ms pulse cap, no em or en dashes. |
 | `.gitignore` | Keeps `upstream/`, virtual environments, generated samples, recordings and trained models out of this repo's history. |
 | `docs/` | Notes from the build and for the judges, listed below. |
-| `figs/` | The diagrams and one robot-camera picture as SVG files, each made once and shown in the README and the docs. |
+| `figs/` | The diagrams and one robot-camera picture as SVG files, and a photo of the robot, each made once and shown in the README and the docs. |
 | `prep/` | The code: a uv project on Python 3.10, listed below. |
 | `upstream/` | The organizers' guide: a separate git clone, not part of this repo, explained below. |
 

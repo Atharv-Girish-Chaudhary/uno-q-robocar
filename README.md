@@ -7,6 +7,8 @@ straight. I built its software alone, with Claude Code as my coding assistant, f
 track at Build Day with Qualcomm (October 24, 2026, Northeastern University Silicon Valley), on an
 Arduino UNO Q. It took first place in the track, with a 7.12 s run.
 
+<img src="figs/robot.jpg" alt="The robot on the event's carpet: an Arduino UNO Q on a Hiwonder miniAuto chassis with yellow mecanum wheels, the camera on a short mast, and a USB-C cable to the laptop" width="420">
+
 | At a glance | |
 |---|---|
 | Robot | Arduino UNO Q on a Hiwonder miniAuto chassis, with an ESP32-S3 camera streaming over Wi-Fi |
@@ -326,7 +328,7 @@ and that is the only difference from the settings on the board.
   [docs/QUESTIONS.md](docs/QUESTIONS.md), [docs/RUBRIC_PLAN.md](docs/RUBRIC_PLAN.md) and the
   hand-in template, [docs/SUBMISSION_README_TEMPLATE.md](docs/SUBMISSION_README_TEMPLATE.md).
 - `CLAUDE.md`: the rules Claude Code followed in this repo.
-- `figs/`: the diagrams and the robot-camera picture, as SVG files.
+- `figs/`: the diagrams and the robot-camera picture as SVG files, and the photo of the robot.
 
 ## Credits
 
