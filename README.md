@@ -10,7 +10,7 @@ Arduino UNO Q. It took first place in the track, with a 7.12 s run.
 | At a glance | |
 |---|---|
 | Robot | Arduino UNO Q on a Hiwonder miniAuto chassis, with an ESP32-S3 camera streaming over Wi-Fi |
-| Team | Solo |
+| Team | Solo, one of 15 teams that handed in a Robocar app (pull requests to the organizers' submissions repo) |
 | Vision | An Edge Impulse FOMO model running on the board, 3 to 9 ms a picture when timed on five test pictures |
 | Control | Python rules: one short timed move per fresh picture, every move 1 to 1000 ms |
 | Result | First place in the Robocar track, with a 7.12 s run |
@@ -37,10 +37,11 @@ room's light, and a goal made of two yellow cones with a gap between them. A few
 kit shaped the design:
 
 - The camera is a separate board with its own Wi-Fi network, streaming 320 by 240 MJPEG (a video
-  made of separate JPEG pictures). Every kit's camera uses the same Wi-Fi channel, and about ten
-  of them shared the room, the likely reason the video was slow and uneven: in the 17 runs whose
-  app logs survive, the rate ran from 1.9 to 7.5 new pictures a second, with 2.9 in the middle
-  run, and in one watch-only run the video stalled for 1.5 s or more about every 5 s.
+  made of separate JPEG pictures). Every kit's camera uses the same Wi-Fi channel, and the board's
+  Wi-Fi scan found 9 other teams' cameras on it, the likely reason the video was slow and uneven:
+  in the 17 runs whose app logs survive, the rate ran from 1.9 to 7.5 new pictures a second, with
+  2.9 in the middle run, and in one watch-only run the video stalled for 1.5 s or more about every
+  5 s.
 - The motor firmware reads a move's duration of 0 as "drive forever".
 - The board's Python runs inside the container of Arduino App Lab (the tool that builds and runs
   apps on the board), with Python 3.13, numpy and OpenCV already installed. The camera's network
